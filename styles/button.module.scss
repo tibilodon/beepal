@@ -1,0 +1,13 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  // @include test();
+  @include mix.button();
+}
+.wrap:hover {
+  @include mix.buttonHover();
+}
+.wrp:focus {
+  @include mix.buttonFocus();
+}
