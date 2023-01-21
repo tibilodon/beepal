@@ -9,6 +9,6 @@
 .wrap:hover {
   @include mix.buttonHover();
 }
-.wrap:focus {
-  @include mix.buttonFocus();
-}
+// .wrap:focus {
+//   @include mix.buttonFocus();
+// }

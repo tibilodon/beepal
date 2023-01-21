@@ -8,10 +8,6 @@
   align-items: center;
   justify-content: space-between;
   .buttonWrap {
-    // background-color: $bgCol;
-    // border: 1px solid $blackCol;
-    // @include test();
-    // width: 15em;
     gap: 1em;
     padding: 0.2em;
     display: flex;
@@ -33,4 +29,8 @@
       margin: 0.2em;
     }
   }
+}
+.active {
+  border: 1px solid $honeyCol;
+  border-radius: 4px;
 }

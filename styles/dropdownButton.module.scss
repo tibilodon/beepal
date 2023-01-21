@@ -26,9 +26,9 @@
   }
   @include mix.buttonHover();
 }
-.wrap:focus {
-  .dropdown {
-    display: flex;
-  }
-  @include mix.buttonFocus();
-}
+// .wrap:focus {
+//   .dropdown {
+//     display: flex;
+//   }
+//   @include mix.buttonFocus();
+// }

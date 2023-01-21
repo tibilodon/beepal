@@ -3,7 +3,6 @@ import styles from "@/styles/basket.module.scss";
 import icon from "@/assets/emptyCart.svg";
 import Image from "next/image";
 
-
 interface BasketProps {
   quantity: number;
   amount: number;

@@ -15,7 +15,7 @@
     left: 2.2em;
     position: absolute;
     font-weight: 800;
-    background-color: red;
+    background-color: $honeyCol;
   }
   .amount {
     margin-left: 0.6em;
@@ -24,6 +24,6 @@
 .wrap:hover {
   @include mix.buttonHover();
 }
-.wrap:focus {
-  @include mix.buttonFocus();
-}
+// .wrap:focus {
+//   @include mix.buttonFocus();
+// }
