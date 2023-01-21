@@ -1,0 +1,34 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  // @include test();
+  // display: flex;
+  // position: relative;
+  // flex-direction: column;
+  .content {
+    @include rtest();
+    display: flex;
+    align-items: center;
+    @include mix.button();
+  }
+  .dropdown {
+    display: none;
+    margin-left: 0.5em;
+    // position: absolute;
+    // align-self: flex-end;
+  }
+}
+
+.wrap:hover {
+  .dropdown {
+    display: flex;
+  }
+  @include mix.buttonHover();
+}
+.wrap:focus {
+  .dropdown {
+    display: flex;
+  }
+  @include mix.buttonFocus();
+}

@@ -2,12 +2,13 @@
 @use "./vars" as *;
 
 .wrap {
+  width: 100%;
   // @include test();
   @include mix.button();
 }
 .wrap:hover {
   @include mix.buttonHover();
 }
-.wrp:focus {
+.wrap:focus {
   @include mix.buttonFocus();
 }

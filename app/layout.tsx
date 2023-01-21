@@ -1,5 +1,6 @@
 import "./globals.css";
 import Header from "./Header";
+import styles from "@/styles/header.module.scss";
 
 export default function RootLayout({
   children,
@@ -15,7 +16,7 @@ export default function RootLayout({
       <head />
       <body>
         <Header />
-        {children}
+        <div className={styles.container}>{children}</div>
       </body>
     </html>
   );

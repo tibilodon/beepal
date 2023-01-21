@@ -1,0 +1,65 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  display: flex;
+  align-items: center;
+  background-image: url("../assets/beepalbg.jpg");
+  background-size: cover;
+  background-position: center;
+  // @include rtest();
+  height: 5em;
+  // overflow: hidden;
+  position: fixed;
+  width: 100%;
+  .logo {
+    // @include test();
+    width: 80px;
+    height: 80px;
+  }
+}
+.container {
+  padding-top: 5em;
+  // z-index: -1;
+}
+// .wrap {
+//   @include test();
+
+//   position: relative;
+//   max-height: 10em;
+//   overflow: hidden;
+//   width: 100%;
+
+//   .bgImg {
+//     z-index: -1;
+//     // max-height: 10em;
+//     // max-width: 100%;
+//     // object-fit: cover;
+//     opacity: 0.6;
+//   }
+//   .content {
+//     gap: 1em;
+//     display: flex;
+//     align-items: center;
+//     top: 0.599em;
+//     // left: 3em;
+//     // padding-left: 3em;
+//     position: absolute;
+//     @include rtest();
+//     width: 100%;
+//     .logo {
+//       // @include test();
+//     }
+//   }
+// }
+// @media (max-width: 668px) {
+//   .content {
+//     // height: 100%;
+//     gap: 4em;
+//     .logo {
+//       // height: 100px;
+//       @include gtest();
+//       margin: 0;
+//     }
+//   }
+// }

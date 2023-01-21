@@ -1,0 +1,36 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  // @include test();
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .buttonWrap {
+    // background-color: $bgCol;
+    // border: 1px solid $blackCol;
+    // @include test();
+    // width: 15em;
+    gap: 1em;
+    padding: 0.2em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .basket {
+    margin-right: 1em;
+    // @include rtest();
+  }
+}
+@media (max-width: 668px) {
+  .wrap {
+    .buttonWrap {
+      gap: 0;
+      flex-wrap: wrap;
+      // justify-content: center;
+    }
+    .basket {
+      margin: 0.2em;
+    }
+  }
+}

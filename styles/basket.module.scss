@@ -1,0 +1,29 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  // @include test();
+  @include mix.button();
+  display: flex;
+  align-items: center;
+  position: relative;
+  .quantity {
+    border: 1px solid $blackCol;
+    border-radius: 999px;
+    padding: 0.2em 0.4em;
+    top: 1.5em;
+    left: 2.2em;
+    position: absolute;
+    font-weight: 800;
+    background-color: red;
+  }
+  .amount {
+    margin-left: 0.6em;
+  }
+}
+.wrap:hover {
+  @include mix.buttonHover();
+}
+.wrap:focus {
+  @include mix.buttonFocus();
+}
