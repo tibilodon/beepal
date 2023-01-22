@@ -1,2 +1,19 @@
 @use "./mixins" as mix;
 @use "./vars" as *;
+
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  // @include test();
+  outline: 1px solid $blackCol;
+  padding: 0.2em 3em;
+  background-color: $dBgCol;
+  div {
+    gap: 1em;
+    display: flex;
+    button {
+      @include mix.button($honeyCol, 20em);
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.character {
+  /* width: 20vh; */
+  width: 162px;
+  height: 127px;
+  /* width: calc(32px * var(--pixel-size)); */
+  /* height: calc(32px * var(--pixel-size)); */
+  /* background: red; */
+  overflow: hidden;
+}
+
+.characterSpriteSheet {
+  animation: moveSpriteSheet 0.5s steps(5) infinite;
+}
+
+/*TODO:for images smaller than the actual size you'd like to use*/
+/* .pixelart {
+  image-rendering: pixelated;
+} */
+
+@keyframes moveSpriteSheet {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+.beeWrap {
+  /* border: 2px solid black; */
+  /* width: 100%; */
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

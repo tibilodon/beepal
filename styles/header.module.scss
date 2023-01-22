@@ -17,7 +17,8 @@
   align-items: center;
   background-image: url("../assets/beepalbg.jpg");
   background-size: cover;
-  background-position: center;
+  // background-repeat: no-repeat;
+  background-position: left;
   z-index: 1;
   // @include rtest();
   height: 5em;

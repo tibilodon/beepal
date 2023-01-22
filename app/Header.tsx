@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./Navbar";
 import styles from "@/styles/header.module.scss";
 import Image from "next/image";
@@ -9,8 +8,6 @@ const Header = () => {
   return (
     <>
       <div className={styles.wrap}>
-        {/* <Image priority className={styles.bgImg} alt="hive" src={bgImg} /> */}
-        {/* <div className={styles.content}> */}
         <Link href={"/"}>
           <Image
             width={100}
@@ -22,7 +19,6 @@ const Header = () => {
           />
         </Link>
         <Navbar />
-        {/* </div> */}
       </div>
     </>
   );
