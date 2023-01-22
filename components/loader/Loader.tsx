@@ -1,12 +1,17 @@
 import styles from "./bee.module.scss";
 import bee from "./bee.png";
+import Image from "next/image";
 
-const Bee = () => {
+const Bee: React.FC<any> = () => {
   return (
     <>
       <div className={styles.beeWrap}>
         <div className={styles.character}>
-          <img className={styles.characterSpriteSheet} src={bee} alt="bee" />
+          <Image
+            alt="bee sprite"
+            src={bee}
+            className={styles.characterSpriteSheet}
+          />
         </div>
       </div>
     </>
