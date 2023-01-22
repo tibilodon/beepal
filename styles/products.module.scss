@@ -6,10 +6,11 @@
   flex-direction: column;
   @include rtest();
   height: 100%;
+
   div {
     padding: 1em;
 
-    @include test();
+    // @include test();
     display: flex;
     align-items: center;
     justify-content: space-around;

@@ -1,9 +1,20 @@
 @use "./mixins" as mix;
 @use "./vars" as *;
 .wrap {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   display: flex;
   flex-direction: column;
   padding: 1em;
+  margin: 1em;
+  // @include test();
+  gap: 1em;
+  div {
+    overflow: hidden;
+    img {
+      width: 70%;
+      height: auto;
+    }
+  }
   button {
     @include mix.button($honeyCol, 20em);
   }
