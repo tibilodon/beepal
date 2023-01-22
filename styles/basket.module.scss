@@ -3,7 +3,7 @@
 
 .wrap {
   // @include test();
-  @include mix.button();
+  @include mix.button($bgCol, 8em);
   display: flex;
   align-items: center;
   position: relative;

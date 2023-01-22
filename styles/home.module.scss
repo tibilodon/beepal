@@ -2,6 +2,17 @@
 @use "./vars" as *;
 
 .wrap {
+  background-color: $bgCol;
   display: flex;
-  gap: 10em;
+  background-image: url("../assets/homeImg.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center right;
+  width: 100%;
+  min-height: 100vh;
+  background-blend-mode: darken;
+  // gap: 10em;
+  button {
+    @include mix.button($honeyCol, 8em);
+  }
 }

@@ -2,9 +2,10 @@
 @use "./vars" as *;
 
 .wrap {
-  width: 100%;
-  // @include test();
-  @include mix.button();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include mix.button($bgCol, 8em);
 }
 .wrap:hover {
   @include mix.buttonHover();

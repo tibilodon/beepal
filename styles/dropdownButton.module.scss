@@ -10,7 +10,7 @@
     @include rtest();
     display: flex;
     align-items: center;
-    @include mix.button();
+    @include mix.button($bgCol, 8em);
   }
   .dropdown {
     display: none;

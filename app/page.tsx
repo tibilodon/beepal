@@ -2,6 +2,9 @@ import React from "react";
 import CookieFooter from "./CookieFooter";
 import Dropdown from "@/components/dropdown/Dropdown";
 import styles from "@/styles/home.module.scss";
+import Image from "next/image";
+import Link from "next/link";
+import Button from "@/components/Button";
 
 interface HomeProps {
   props: any;
@@ -12,10 +15,9 @@ const Home: React.FC<HomeProps> = () => {
     <>
       <div className={styles.wrap}>
         <div>
-          <h1>Home</h1>
-          <h1>Home</h1>
-          <h1>Home</h1>
-          <h1>Home4</h1>
+          <h1>Kiváló minőségű méz az alföld szívéből.</h1>
+
+          <Button text="Vásárlás" />
           <CookieFooter />
         </div>
         <div className={styles.test}>{/* <Dropdown /> */}</div>

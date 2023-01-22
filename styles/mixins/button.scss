@@ -1,15 +1,16 @@
-@use "../vars" as *;
-@mixin button() {
+@use "../vars" as var;
+
+@mixin button($bgCol, $width) {
   // cursor: pointer;
-  background-color: #f8f9fa;
-  border: 1px solid #f8f9fa;
+  background-color: $bgCol;
+  border: 1px solid $bgCol;
   border-radius: 4px;
-  color: #3c4043;
+  color: var.$blackCol;
   font-family: arial, sans-serif;
   // font-size: 1em;
   height: 2.5em;
   line-height: 1em;
-  min-width: 8em;
+  max-width: $width;
   padding: 0 1em;
   text-align: center;
   user-select: none;
@@ -20,7 +21,7 @@
 
 @mixin buttonHover() {
   border-color: #dadce0;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 2px 3px;
   // box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
-  color: #202124;
+  color: var.$blackCol;
 }
