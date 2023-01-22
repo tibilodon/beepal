@@ -1,8 +1,5 @@
-import React from "react";
 import CookieFooter from "./CookieFooter";
-import Dropdown from "@/components/dropdown/Dropdown";
 import styles from "@/styles/home.module.scss";
-import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 
@@ -14,13 +11,17 @@ const Home: React.FC<HomeProps> = () => {
   return (
     <>
       <div className={styles.wrap}>
-        <div>
-          <h1>Kiváló minőségű méz az alföld szívéből.</h1>
-
-          <Button text="Vásárlás" />
-          <CookieFooter />
+        <div className={styles.content}>
+          <h1>
+            Kiváló minőségű <span>méz</span> az alföld szívéből.
+          </h1>
+          <h2 className={styles.h2}>A nyár ízei</h2>
+          <h2>Fenntartható forrásból</h2>
+          <Link href={"/products"}>
+            <Button text="Vásárlás" />
+          </Link>
         </div>
-        <div className={styles.test}>{/* <Dropdown /> */}</div>
+        <CookieFooter />
       </div>
     </>
   );
