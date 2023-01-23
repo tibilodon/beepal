@@ -2,18 +2,26 @@
 @use "./vars" as *;
 
 .wrap {
+  height: calc(100vh - 5em);
+  // @include rtest();
   display: flex;
   flex-direction: column;
-  @include rtest();
-  height: 100%;
+  align-items: center;
+  width: 100%;
 
-  div {
-    padding: 1em;
-
-    // @include test();
+  .content {
     display: flex;
-    align-items: center;
     justify-content: space-around;
-    height: 100%;
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+
+    // flex-direction: column;
+    height: 80vh;
+
+    width: 100%;
+    gap: 1em;
+    padding: 1em;
+    // padding-bottom: 1em;
+    // height: 100vh;
   }
 }

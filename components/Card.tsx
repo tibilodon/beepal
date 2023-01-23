@@ -11,16 +11,21 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ path, src }) => {
   return (
-    <div className={styles.wrap}>
-      <div>
-        <Image alt="jar of honey" src={src} />
+    <>
+      <div className={styles.wrap}>
+        <div className={styles.content}>
+          <Image alt="jar of honey" src={src} />
+        </div>
+
+        <div className={styles.item}>
+          <h1>title</h1>
+          <h2>value of prod</h2>
+          <Link href={path}>
+            <Button text="Bővebben" />
+          </Link>
+        </div>
       </div>
-      <h1>title</h1>
-      <h2>value of prod</h2>
-      <Link href={path}>
-        <Button text="Bővebben" />
-      </Link>
-    </div>
+    </>
   );
 };
 
