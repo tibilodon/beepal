@@ -1,9 +1,10 @@
 import React from "react";
 import Card from "@/components/Card";
-import styles from "@/styles/products.module.scss";
+import styles from "@/styles//products/products.module.scss";
 import prod1 from "@/assets/prod.jpg";
 import prod2 from "@/assets/prod2.jpg";
 import prod3 from "@/assets/prod3.jpg";
+import prod from "@/assets/acacia.png";
 
 interface ProductsProps {
   props: any;
@@ -17,13 +18,28 @@ const Products: React.FC<ProductsProps> = () => {
 
         <div className={styles.content}>
           {/* <div> */}
-          <Card src={prod1} path="/products/acacia" />
+          <Card
+            title="Akác méz"
+            value={3000}
+            src={prod}
+            path="/products/acacia"
+          />
           {/* </div>
         <div> */}
-          <Card src={prod2} path="/products/colza" />
+          <Card
+            title="Repce Méz"
+            value={3500}
+            src={prod1}
+            path="/products/colza"
+          />
           {/* </div>
         <div> */}
-          <Card src={prod3} path="/products/mixed" />
+          <Card
+            title="Vegyes méz"
+            value={3000}
+            src={prod3}
+            path="/products/mixed"
+          />
           {/* </div> */}
         </div>
       </div>

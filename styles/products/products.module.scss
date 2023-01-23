@@ -1,5 +1,5 @@
-@use "./mixins" as mix;
-@use "./vars" as *;
+@use "../mixins" as mix;
+@use "../vars" as *;
 
 .wrap {
   height: calc(100vh - 5em);
