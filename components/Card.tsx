@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({ path, src, title, value }) => {
 
         <div className={styles.item}>
           <h1>{title}</h1>
-          <h2>{value} Ft / kg</h2>
+          <h4>{value} Ft / kg</h4>
           <Link href={path}>
             <Button text="Bővebben" />
           </Link>

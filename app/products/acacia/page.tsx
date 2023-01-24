@@ -2,6 +2,9 @@ import React from "react";
 import styles from "@/styles/products/item.module.scss";
 import Image from "next/image";
 import img from "@/assets/acacia.png";
+import tasteIcon from "@/assets/taste.svg";
+import benefitsIcon from "@/assets/benefits.svg";
+import test from "@/assets/benefits2.png";
 
 const Acacia: React.FC<any> = () => {
   return (
@@ -11,7 +14,24 @@ const Acacia: React.FC<any> = () => {
           <Image alt="jar of acacia honey" src={img} priority />
         </div>
         <div className={styles.item}>
-          <h1>acacia</h1>
+          <div>
+            <h1>Akác méz</h1>
+            <h4>3000 Ft / kg</h4>
+          </div>
+          <div className={styles.icon}>
+            <div>
+              <Image alt="taste icon" src={tasteIcon} />
+              <h5>Kellemes, tavaszi érzést keltő ízélmény</h5>
+            </div>
+            {/* <div>
+              <Image alt="benefits icon" src={benefitsIcon} />
+              <h5>Torokfájás és légúti megbetegedések enyhítésére</h5>
+            </div> */}
+            <div>
+              <Image alt="test icon" src={test} />
+              <h5>keep or delete icon here</h5>
+            </div>
+          </div>
           <p>
             Az akácméz világos és tiszta színű, amely az akácvirágzás gyümölcse.
             Különös odafigyelés és előkészület gondoskodik arról, hogy a
@@ -19,7 +39,8 @@ const Acacia: React.FC<any> = () => {
             Könnyed, édes és finom virágos íze az egyik legnépszerűbb mézfajta.
             Állaga folyékony (nem kristályosodik), amely a magas
             fruktóztartalmának köszönhető. Alacsony savasságának köszönhetően
-            kiválóan édesíd úgy, hogy az aroma és az íz nem változik.
+            kiválóan édesít úgy, hogy az étel vagy ital aromája és íze nem
+            változik.
           </p>
         </div>
       </div>
