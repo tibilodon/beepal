@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Button from "@/components/Button";
+import { deleteCookie } from "cookies-next";
+export const dynamic = "force-dynamic";
 
 interface CheckoutProps {
   props: any;
@@ -8,7 +10,7 @@ interface CheckoutProps {
 
 const Checkout: React.FC<CheckoutProps> = () => {
   const clearBasket = () => {
-    localStorage.clear();
+    deleteCookie("acacia");
   };
   return (
     <div>

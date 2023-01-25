@@ -4,9 +4,11 @@ import Image from "next/image";
 import logo from "@/assets/beepalogo5.png";
 import Link from "next/link";
 import Basket from "@/components/Basket";
+import Wrap from "@/components/Wrap";
 // export const dynamic = "force-dynamic";
 
 const Header = () => {
+  // const link = Link();
   return (
     <>
       <div className={styles.wrap}>
@@ -21,7 +23,11 @@ const Header = () => {
           />
         </Link>
         <Navbar />
-        <Basket />
+        <Link href={"/checkout"}>
+          <Wrap checkPath={"/checkout"}>
+            <Basket />
+          </Wrap>
+        </Link>
       </div>
     </>
   );

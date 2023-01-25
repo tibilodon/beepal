@@ -5,7 +5,6 @@ import Basket from "@/components/Basket";
 import DropdownButton from "@/components/dropdown/DropdownButton";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
 
 // export const dynamic = "force-dynamic";
 
@@ -21,8 +20,6 @@ const Navbar = () => {
     pathName === path ? (res = styles.active) : (res = null);
     return res;
   };
-
-  const [zuState, setZustate] = useState(true);
 
   return (
     <nav className={styles.wrap}>
@@ -46,11 +43,11 @@ const Navbar = () => {
           </div>
         </Link>
       </div>
-      <div className={styles.basket}>
+      {/* <div className={styles.basket}>
         <Link href={"/checkout"}>
-          <div className={activeClass("/checkout")}>{/* <Basket /> */}</div>
+          <div className={activeClass("/checkout")}></div>
         </Link>
-      </div>
+      </div> */}
     </nav>
   );
 };
