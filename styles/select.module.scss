@@ -2,8 +2,13 @@
 @use "./vars" as *;
 
 .wrap {
-  @include test();
+  // @include test();
+  gap: 1em;
+  display: flex;
   button {
     @include mix.button($honeyCol, 20em);
+  }
+  select {
+    padding: 0.2em;
   }
 }

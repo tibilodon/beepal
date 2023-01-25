@@ -20,7 +20,7 @@ const Acacia: React.FC<any> = () => {
             <h1>Akác méz</h1>
           </div>
           <div className={styles.icon}>
-            <div>
+            <div className={styles.taste}>
               <Image alt="taste icon" src={tasteIcon} />
               <h5>Kellemes, tavaszi érzést keltő ízélmény</h5>
             </div>
@@ -30,7 +30,7 @@ const Acacia: React.FC<any> = () => {
             </div> */}
             <div>
               <Image alt="test icon" src={test} />
-              <h5>keep or delete icon here</h5>
+              <h5>Torokfájás és légúti megbetegedések enyhítésére</h5>
             </div>
           </div>
           <p>
@@ -43,9 +43,9 @@ const Acacia: React.FC<any> = () => {
             kiválóan édesít úgy, hogy az étel vagy ital aromája és íze nem
             változik.
           </p>
-          <div className={styles.cart}>
-            <Select />
-          </div>
+          {/* <div className={styles.select}> */}
+          <Select />
+          {/* </div> */}
         </div>
       </div>
     </>

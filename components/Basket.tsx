@@ -4,26 +4,33 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 
 interface BasketProps {
-  amount: number;
+  vals?: {
+    name: string;
+    value: any;
+  };
   // quantity: any;
 }
 
-const Basket = () => {
+const Basket: React.FC<BasketProps> = () => {
   const nextCookies = cookies();
 
   const vals = nextCookies.get("acacia");
+
+  const amount = Number(vals.value) * 3000;
 
   return (
     <>
       <button className={styles.wrap}>
         <Image alt="cart icon" src={icon} />
 
-        {vals && vals.value >= 1 ? (
-          <p className={styles.quantity}>{vals.value || 1}</p>
+        {vals && Number(vals.value) >= 1 ? (
+          <p className={styles.quantity}>{Number(vals.value) || 1}</p>
         ) : (
           <p>Kosár</p>
         )}
-        {vals && vals.value >= 1 && <p className={styles.amount}>{242} Ft</p>}
+        {vals && Number(vals.value) >= 1 && (
+          <p className={styles.amount}>{amount} Ft</p>
+        )}
       </button>
     </>
   );

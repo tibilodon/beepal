@@ -2,11 +2,7 @@ import styles from "@/styles/home.module.scss";
 import Link from "next/link";
 import Button from "@/components/Button";
 
-interface HomeProps {
-  props: any;
-}
-
-const Home: React.FC<HomeProps> = () => {
+const Home: React.FC<any> = () => {
   return (
     <>
       <div className={styles.wrap}>

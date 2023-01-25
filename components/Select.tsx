@@ -31,9 +31,9 @@ const Select: React.FC<any> = () => {
 
   return (
     <div className={styles.wrap}>
-      <select onChange={handleChange} value={selectedValue} name="" id="">
+      <select onChange={handleChange} value={selectedValue}>
         {valArr &&
-          valArr.map((val, index) => {
+          valArr.map((val: any, index: number) => {
             return (
               <option value={val} key={index}>
                 {val}

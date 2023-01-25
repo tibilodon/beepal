@@ -6,11 +6,7 @@ import { useRouter } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
-interface CheckoutProps {
-  props: any;
-}
-
-const Checkout: React.FC<CheckoutProps> = () => {
+const Checkout: React.FC<any> = () => {
   const router = useRouter();
 
   const clearBasket = () => {
