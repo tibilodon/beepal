@@ -1,4 +1,3 @@
-import CookieFooter from "./CookieFooter";
 import styles from "@/styles/home.module.scss";
 import Link from "next/link";
 import Button from "@/components/Button";
@@ -21,7 +20,7 @@ const Home: React.FC<HomeProps> = () => {
             <Button text="Vásárlás" />
           </Link>
         </div>
-        <CookieFooter />
+        {/* <CookieFooter /> */}
       </div>
     </>
   );

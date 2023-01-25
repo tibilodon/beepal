@@ -2,6 +2,8 @@ import "./globals.css";
 import Header from "./Header";
 import styles from "@/styles/header.module.scss";
 import { Inter_Tight } from "@next/font/google";
+import CookieFooter from "./CookieFooter";
+import { cookies } from "next/headers";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter_Tight({
@@ -16,6 +18,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  //check tnc cookie
+  const nextCookies = cookies();
+  const cookie = nextCookies.get("tncCookie");
   return (
     <html className={inter.className} lang="en">
       {/*
@@ -25,7 +30,10 @@ export default function RootLayout({
       <head />
       <body>
         <Header />
-        <div className={styles.container}>{children}</div>
+        <div className={styles.container}>
+          {children}
+          {cookie?.value ? null : <CookieFooter />}
+        </div>
       </body>
     </html>
   );

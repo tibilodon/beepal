@@ -2,6 +2,8 @@
 import React from "react";
 import Button from "@/components/Button";
 import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+
 export const dynamic = "force-dynamic";
 
 interface CheckoutProps {
@@ -9,8 +11,11 @@ interface CheckoutProps {
 }
 
 const Checkout: React.FC<CheckoutProps> = () => {
+  const router = useRouter();
+
   const clearBasket = () => {
-    deleteCookie("acacia");
+    deleteCookie("cookie");
+    router.refresh();
   };
   return (
     <div>
