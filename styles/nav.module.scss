@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @include test();
+  // @include test();
   .buttonWrap {
     gap: 1em;
     padding: 0.2em;
@@ -31,7 +31,7 @@
     }
   }
 }
-.active {
-  outline: 2px solid $activeCol;
-  border-radius: 4px;
-}
+// .active {
+//   outline: 2px solid $activeCol;
+//   border-radius: 4px;
+// }

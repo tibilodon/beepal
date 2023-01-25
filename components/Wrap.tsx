@@ -1,7 +1,7 @@
 "use client";
-import styles from "@/styles/nav.module.scss";
+import styles from "@/styles/wrap.module.scss";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 interface WrapProps {
   children: any;

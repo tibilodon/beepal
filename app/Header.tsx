@@ -24,9 +24,11 @@ const Header = () => {
         </Link>
         <Navbar />
         <Link href={"/checkout"}>
-          <Wrap checkPath={"/checkout"}>
-            <Basket />
-          </Wrap>
+          <div className={styles.cart}>
+            <Wrap checkPath={"/checkout"}>
+              <Basket />
+            </Wrap>
+          </div>
         </Link>
       </div>
     </>

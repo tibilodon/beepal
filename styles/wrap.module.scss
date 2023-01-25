@@ -1,0 +1,7 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.active {
+  outline: 2px solid $activeCol;
+  border-radius: 4px;
+}
