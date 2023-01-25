@@ -5,6 +5,7 @@ import img from "@/assets/acacia.png";
 import tasteIcon from "@/assets/taste.svg";
 import benefitsIcon from "@/assets/benefits.svg";
 import test from "@/assets/benefits2.png";
+import Select from "@/components/Select";
 
 const Acacia: React.FC<any> = () => {
   return (
@@ -15,8 +16,8 @@ const Acacia: React.FC<any> = () => {
         </div>
         <div className={styles.item}>
           <div>
-            <h1>Akác méz</h1>
             <h4>3000 Ft / kg</h4>
+            <h1>Akác méz</h1>
           </div>
           <div className={styles.icon}>
             <div>
@@ -42,6 +43,9 @@ const Acacia: React.FC<any> = () => {
             kiválóan édesít úgy, hogy az étel vagy ital aromája és íze nem
             változik.
           </p>
+          <div className={styles.cart}>
+            <Select />
+          </div>
         </div>
       </div>
     </>

@@ -4,15 +4,25 @@ import styles from "@/styles/nav.module.scss";
 import Basket from "@/components/Basket";
 import DropdownButton from "@/components/dropdown/DropdownButton";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
-const Navbar: React.FC<any> = () => {
+// export const dynamic = "force-dynamic";
+
+const Navbar = () => {
   const pathName = usePathname();
+  const router = useRouter();
+  const refreshData = () => {
+    router.refresh();
+  };
+
   const activeClass = (path: string): any => {
     let res;
     pathName === path ? (res = styles.active) : (res = null);
     return res;
   };
+
+  const [zuState, setZustate] = useState(true);
 
   return (
     <nav className={styles.wrap}>
@@ -38,9 +48,7 @@ const Navbar: React.FC<any> = () => {
       </div>
       <div className={styles.basket}>
         <Link href={"/checkout"}>
-          <div className={activeClass("/checkout")}>
-            <Basket quantity={2} amount={4590} />
-          </div>
+          <div className={activeClass("/checkout")}>{/* <Basket /> */}</div>
         </Link>
       </div>
     </nav>

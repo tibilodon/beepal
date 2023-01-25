@@ -3,6 +3,8 @@ import styles from "@/styles/header.module.scss";
 import Image from "next/image";
 import logo from "@/assets/beepalogo5.png";
 import Link from "next/link";
+import Basket from "@/components/Basket";
+// export const dynamic = "force-dynamic";
 
 const Header = () => {
   return (
@@ -19,6 +21,7 @@ const Header = () => {
           />
         </Link>
         <Navbar />
+        <Basket />
       </div>
     </>
   );

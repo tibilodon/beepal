@@ -1,0 +1,9 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  @include test();
+  button {
+    @include mix.button($honeyCol, 20em);
+  }
+}
