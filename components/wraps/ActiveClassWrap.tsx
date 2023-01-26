@@ -1,13 +1,16 @@
 "use client";
-import styles from "@/styles/wrap.module.scss";
+import styles from "@/styles/wraps/activeClassWrap.module.scss";
 
 import { usePathname } from "next/navigation";
 
-interface WrapProps {
+interface ActiveClassWrapProps {
   children: any;
   checkPath: string;
 }
-const Wrap: React.FC<WrapProps> = ({ children, checkPath }) => {
+const ActiveClassWrap: React.FC<ActiveClassWrapProps> = ({
+  children,
+  checkPath,
+}) => {
   const pathName = usePathname();
 
   const activeClass = (path: string): any => {
@@ -18,4 +21,4 @@ const Wrap: React.FC<WrapProps> = ({ children, checkPath }) => {
   return <div className={activeClass(checkPath)}>{children}</div>;
 };
 
-export default Wrap;
+export default ActiveClassWrap;

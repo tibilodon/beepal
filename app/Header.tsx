@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "@/assets/beepalogo5.png";
 import Link from "next/link";
 import Basket from "@/components/Basket";
-import Wrap from "@/components/Wrap";
+import ActiveClassWrap from "@/components/wraps/ActiveClassWrap";
 // export const dynamic = "force-dynamic";
 
 const Header = () => {
@@ -25,9 +25,9 @@ const Header = () => {
         <Navbar />
         <Link href={"/checkout"}>
           <div className={styles.cart}>
-            <Wrap checkPath={"/checkout"}>
+            <ActiveClassWrap checkPath={"/checkout"}>
               <Basket />
-            </Wrap>
+            </ActiveClassWrap>
           </div>
         </Link>
       </div>

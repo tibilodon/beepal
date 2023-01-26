@@ -5,7 +5,7 @@ import styles from "@/styles/nav.module.scss";
 import DropdownButton from "@/components/dropdown/DropdownButton";
 import Link from "next/link";
 // import { usePathname, useRouter } from "next/navigation";
-import Wrap from "@/components/Wrap";
+import ActiveClassWrap from "@/components/wraps/ActiveClassWrap";
 
 // export const dynamic = "force-dynamic";
 
@@ -25,29 +25,29 @@ const Navbar: React.FC<any> = () => {
   return (
     <nav className={styles.wrap}>
       <div className={styles.buttonWrap}>
-        <Wrap checkPath="/products">
+        <ActiveClassWrap checkPath="/products">
           <DropdownButton />
-        </Wrap>
+        </ActiveClassWrap>
         {/* <div className={activeClass("/products")}> */}
         {/* </div> */}
         <Link href={"/about"}>
           {/* <div className={activeClass("/about")}> */}
-          <Wrap checkPath="/about">
+          <ActiveClassWrap checkPath="/about">
             <Button text="Rólunk" />
-          </Wrap>
+          </ActiveClassWrap>
           {/* </div> */}
         </Link>
         <Link href={"/blog"}>
-          <Wrap checkPath="/blog">
+          <ActiveClassWrap checkPath="/blog">
             <Button text="Blog" />
-          </Wrap>
+          </ActiveClassWrap>
           {/* <div className={activeClass("/blog")}> */}
           {/* </div> */}
         </Link>
         <Link href={"/contact"}>
-          <Wrap checkPath="/contact">
+          <ActiveClassWrap checkPath="/contact">
             <Button text="Kapcsolat" />
-          </Wrap>
+          </ActiveClassWrap>
           {/* <div className={activeClass("/contact")}> */}
           {/* </div> */}
         </Link>

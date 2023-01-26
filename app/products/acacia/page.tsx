@@ -3,8 +3,8 @@ import styles from "@/styles/products/item.module.scss";
 import Image from "next/image";
 import img from "@/assets/acacia.png";
 import tasteIcon from "@/assets/taste.svg";
-import benefitsIcon from "@/assets/benefits.svg";
-import test from "@/assets/benefits2.png";
+// import benefitsIcon from "@/assets/benefits.svg";
+import benefitsIcon from "@/assets/benefits2.png";
 import Select from "@/components/Select";
 
 const Acacia: React.FC<any> = () => {
@@ -29,7 +29,7 @@ const Acacia: React.FC<any> = () => {
               <h5>Torokfájás és légúti megbetegedések enyhítésére</h5>
             </div> */}
             <div>
-              <Image alt="test icon" src={test} />
+              <Image alt="test icon" src={benefitsIcon} />
               <h5>Torokfájás és légúti megbetegedések enyhítésére</h5>
             </div>
           </div>
