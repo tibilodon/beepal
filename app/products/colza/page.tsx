@@ -20,6 +20,8 @@ const Colza: React.FC<any> = () => {
         productName={productName}
         productPrice={productPrice}
         taste={taste}
+        stockAmount={3}
+
       />
     </>
   );

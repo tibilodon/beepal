@@ -10,10 +10,11 @@ export const dynamic = "force-dynamic";
 
 interface SelectProps {
   name: string;
+  amount: number;
 }
 
-const Select: React.FC<SelectProps> = ({ name }) => {
-  const amount = 10;
+const Select: React.FC<SelectProps> = ({ name, amount }) => {
+  // const amount = 10;
   //amount to array
   let valArr: any = [];
   for (let index = 1; index <= amount; index++) {

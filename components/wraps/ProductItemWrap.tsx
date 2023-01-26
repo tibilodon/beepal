@@ -13,6 +13,7 @@ interface ProductItemWrapProps {
   taste: string;
   benefits: string;
   description: string;
+  stockAmount: number;
 }
 
 const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
@@ -23,6 +24,7 @@ const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
   taste,
   benefits,
   description,
+  stockAmount,
 }) => {
   return (
     <>
@@ -46,7 +48,7 @@ const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
             </div>
           </div>
           <p>{description}</p>
-          <Select name={selectName} />
+          <Select amount={stockAmount} name={selectName} />
         </div>
       </div>
     </>
