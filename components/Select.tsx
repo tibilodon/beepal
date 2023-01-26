@@ -8,7 +8,11 @@ import { setCookie } from "cookies-next";
 
 export const dynamic = "force-dynamic";
 
-const Select: React.FC<any> = () => {
+interface SelectProps {
+  name: string;
+}
+
+const Select: React.FC<SelectProps> = ({ name }) => {
   const amount = 10;
   //amount to array
   let valArr: any = [];
@@ -24,7 +28,7 @@ const Select: React.FC<any> = () => {
   const router = useRouter();
 
   const handleSubmit = () => {
-    setCookie("acacia", selectedValue);
+    setCookie(name, selectedValue);
     // window.location.reload();
     router.refresh();
   };

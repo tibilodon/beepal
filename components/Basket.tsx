@@ -14,9 +14,12 @@ interface BasketProps {
 const Basket: React.FC<BasketProps> = () => {
   const nextCookies = cookies();
 
-  const vals = nextCookies.get("acacia");
+  const vals: any = nextCookies.get("acacia");
 
-  const amount = Number(vals.value) * 3000;
+  let amount;
+  if (vals) {
+    amount = Number(vals.value) * 3000;
+  }
 
   return (
     <>

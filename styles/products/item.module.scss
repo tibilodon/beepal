@@ -30,13 +30,15 @@
     // @include test();
     justify-content: space-around;
     h1 {
-      width: 4.5em;
-      // // @include test();
-      margin: 0.2em 0 0 1em;
+      width: fit-content;
+      // width: 4.5em;
+      // @include test();
+      margin-bottom: 0.2em;
       font-size: 3em;
       // outline: 1px solid black;
       border-bottom: 0.5px solid $blackCol;
-      outline-offset: 1px;
+      // outline-offset: 1px;
+      // text-decoration: 1px underline;
     }
     .icon {
       display: flex;

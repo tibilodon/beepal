@@ -16,8 +16,8 @@ const Acacia: React.FC<any> = () => {
         </div>
         <div className={styles.item}>
           <div>
-            <h4>3000 Ft / kg</h4>
             <h1>Akác méz</h1>
+            <h4>3000 Ft / kg</h4>
           </div>
           <div className={styles.icon}>
             <div className={styles.taste}>
@@ -44,7 +44,7 @@ const Acacia: React.FC<any> = () => {
             változik.
           </p>
           {/* <div className={styles.select}> */}
-          <Select />
+          <Select name="acacia" />
           {/* </div> */}
         </div>
       </div>
