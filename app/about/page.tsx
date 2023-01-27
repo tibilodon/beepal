@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import img from "@/assets/test2.jpg";
 import styles from "@/styles/about.module.scss";
+import logo from "@/assets/beepalogo5.png";
 
 const About = () => {
   return (
@@ -22,8 +23,10 @@ const About = () => {
           alt="picture of a beekeeper surrounded by hives"
           src={img}
           className={styles.img}
+          priority
         />
       </div>
+      <Image priority className={styles.logo} alt="logo" src={logo} />
     </div>
   );
 };

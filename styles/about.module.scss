@@ -2,29 +2,51 @@
 @use "./vars" as *;
 
 .wrap {
-  position: relative;
+  // position: relative;
   width: 100%;
   // @include rtest();
   height: 100vh;
-  background-image: url("../assets/test.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-around;
+  .logo {
+    // @include test();
+  }
+  // background-image: url("../assets/test.jpg");
+  // background-size: contain 50%;
+  // background-repeat: no-repeat;
   // background-position-y: 70%;
-  background-position: right;
+  // background-position: right;
   .content {
-    @include rtest();
+    gap: 1em;
+    display: flex;
+    flex-direction: column;
+    // @include rtest();
     height: 100%;
-    width: 45%;
-  }
-  .img {
-    position: relative;
-    left: 70%;
-    // max-width: 30%;
     width: 50%;
-    height: fit-content;
-    object-fit: contain;
-    @include test();
+    padding: 0.5em;
+    span {
+      color: $honeyCol;
+    }
+    p {
+      // @include gtest();
+      line-break: strict;
+      // padding: 2em;
+      // line-clamp: 2;
+      // word-spacing: 1.5px;
+      // width: 100%;
+    }
+    .img {
+      align-self: flex-end;
+      // position: relative;
+      // left: 70%;
+      // max-width: 30%;
+      width: 60%;
+      height: fit-content;
+      object-fit: contain;
+      // @include test();
+    }
   }
+
   // background-position: bottom 10px right 10px;
   // background-position: revert-layer;
   // img {
