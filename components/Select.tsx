@@ -11,11 +11,10 @@ export const dynamic = "force-dynamic";
 interface SelectProps {
   name: string;
   amount: number;
+  cookieProp: number;
 }
 
-const Select: React.FC<SelectProps> = ({ name, amount }) => {
-  // const amount = 10;
-  //amount to array
+const Select: React.FC<SelectProps> = ({ name, amount, cookieProp }) => {
   let valArr: any = [];
   for (let index = 1; index <= amount; index++) {
     valArr.push(index);
@@ -23,14 +22,14 @@ const Select: React.FC<SelectProps> = ({ name, amount }) => {
 
   const [selectedValue, setSelectedValue] = useState(1);
   const handleChange = (e: any): void => {
-    setSelectedValue(e.target.value);
+    setSelectedValue(Number(e.currentTarget.value));
   };
 
   const router = useRouter();
 
   const handleSubmit = () => {
-    setCookie(name, selectedValue);
-    // window.location.reload();
+    let res = selectedValue + cookieProp;
+    setCookie(name, res);
     router.refresh();
   };
 

@@ -1,8 +1,17 @@
 import React from "react";
 import ProductItemWrap from "@/components/wraps/ProductItemWrap";
 import img from "@/assets/acacia.png";
+import { cookies } from "next/headers";
 
 const Acacia: React.FC<any> = () => {
+  const nextCookies = cookies();
+
+  const acacia: any = nextCookies.get("acacia");
+  let acaciaValue: number = 0;
+  if (acacia) {
+    acaciaValue = Number(acacia.value);
+  }
+
   const selectName = "acacia";
   const productName = "Akác Méz";
   const productPrice = "4000 Ft / kg";
@@ -21,6 +30,7 @@ const Acacia: React.FC<any> = () => {
       <ProductItemWrap
         img={img}
         selectName={selectName}
+        selectCookieProp={acaciaValue}
         benefits={benefits}
         description={description}
         productName={productName}

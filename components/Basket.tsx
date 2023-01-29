@@ -18,31 +18,48 @@ const Basket: React.FC<BasketProps> = () => {
   const colza: any = nextCookies.get("colza");
   const mixed: any = nextCookies.get("mixed");
 
-  const quantity = (acacia: any, colza: any, mixed: any): void => {
-    let amount;
-    if (acacia) amount = Number(acacia.value);
-  };
-
-  const vals: any = nextCookies.get("acacia");
-
-  let amount;
-  if (vals) {
-    amount = Number(vals.value) * 3000;
+  //all items in cart
+  let cartItems: number = 0;
+  let acaciaValue: number = 0;
+  let colzaValue: number = 0;
+  let mixedValue: number = 0;
+  if (acacia) {
+    acaciaValue = Number(acacia.value);
   }
+  if (colza) {
+    colzaValue = Number(colza.value);
+  }
+  if (mixed) {
+    mixedValue = Number(mixed.value);
+  }
+  //value presented @cart
+  cartItems = acaciaValue + colzaValue + mixedValue;
+  // console.log("ITEMS", cartItems);
+
+  //value of all items
+  let acaciaAmount = acaciaValue * 4000;
+  let colzaAmount = colzaValue * 3500;
+  let mixedAmount = mixedValue * 3000;
+  let allValue = acaciaAmount + colzaAmount + mixedAmount;
+
+  // const vals: any = nextCookies.get("acacia");
+
+  // let amount;
+  // if (vals) {
+  //   amount = Number(vals.value) * 3000;
+  // }
 
   return (
     <>
       <button className={styles.wrap}>
         <Image alt="cart icon" src={icon} />
 
-        {vals && Number(vals.value) >= 1 ? (
-          <p className={styles.quantity}>{Number(vals.value) || 1}</p>
+        {cartItems >= 1 ? (
+          <p className={styles.quantity}>{cartItems}</p>
         ) : (
           <p>Kosár</p>
         )}
-        {vals && Number(vals.value) >= 1 && (
-          <p className={styles.amount}>{amount} Ft</p>
-        )}
+        {allValue >= 1 && <p className={styles.amount}>{allValue} Ft</p>}
       </button>
     </>
   );
