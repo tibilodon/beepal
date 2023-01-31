@@ -25,7 +25,7 @@ const Navbar: React.FC<any> = () => {
   return (
     <nav className={styles.wrap}>
       <div className={styles.buttonWrap}>
-        <ActiveClassWrap checkPath="/products">
+        <ActiveClassWrap checkPath={"/products"}>
           <DropdownButton />
         </ActiveClassWrap>
         {/* <div className={activeClass("/products")}> */}

@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 
 const Mixed: React.FC<any> = () => {
   const nextCookies = cookies();
-
   const mixed: any = nextCookies.get("mixed");
   let mixedValue: number = 0;
   if (mixed) {

@@ -12,6 +12,7 @@ interface SelectProps {
   name: string;
   amount: number;
   cookieProp: number;
+  strict: any;
 }
 
 const Select: React.FC<SelectProps> = ({ name, amount, cookieProp }) => {
@@ -29,7 +30,7 @@ const Select: React.FC<SelectProps> = ({ name, amount, cookieProp }) => {
 
   const handleSubmit = () => {
     let res = selectedValue + cookieProp;
-    setCookie(name, res, true);
+    setCookie(name, res);
     router.refresh();
   };
 

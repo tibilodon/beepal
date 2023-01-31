@@ -23,13 +23,13 @@ const Header = () => {
           />
         </Link>
         <Navbar />
-        <Link href={"/checkout"}>
-          <div className={styles.cart}>
-            <ActiveClassWrap checkPath={"/checkout"}>
+        <div className={styles.cart}>
+          <ActiveClassWrap refresh={true} checkPath={"/checkout"}>
+            <Link href={"/checkout"}>
               <Basket />
-            </ActiveClassWrap>
-          </div>
-        </Link>
+            </Link>
+          </ActiveClassWrap>
+        </div>
       </div>
     </>
   );

@@ -17,6 +17,8 @@ const Basket: React.FC<BasketProps> = () => {
   const acacia: any = nextCookies.get("acacia");
   const colza: any = nextCookies.get("colza");
   const mixed: any = nextCookies.get("mixed");
+  // const all = nextCookies.getAll();
+  // console.log(all);
 
   //all items in cart
   let cartItems: number = 0;
