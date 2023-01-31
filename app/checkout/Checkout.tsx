@@ -6,9 +6,13 @@ import React from "react";
 import Clearer from "./Clearer";
 import { cookies } from "next/headers";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
-const Checkout: React.FC<any> = ({ test }) => {
+const Checkout: React.FC<any> = (
+  {
+    // test
+  }
+) => {
   const nextCookies = cookies();
 
   // const all = nextCookies.getAll();
@@ -16,10 +20,10 @@ const Checkout: React.FC<any> = ({ test }) => {
   const colza: any = nextCookies.get("colza");
   const mixed: any = nextCookies.get("mixed");
   // console.log(all);
-  let anotherCheck;
-  if (acacia) {
-    anotherCheck = acacia.value;
-  }
+  // let anotherCheck;
+  // if (acacia) {
+  //   anotherCheck = acacia.value;
+  // }
   // const router = useRouter();
 
   // const clearBasket = () => {
@@ -36,19 +40,19 @@ const Checkout: React.FC<any> = ({ test }) => {
           <h2>value: {acacia.value * 3500} Ft</h2>
         </>
       )}
-      {test && (
+      {/* {test && (
         <>
           <h1>Props</h1>
           <h2>Acacia :{test.value}</h2>
           <h2>value: {test.value * 3500} Ft</h2>
         </>
-      )}
-      {anotherCheck && (
+      )} */}
+      {/* {anotherCheck && (
         <>
           <h1>another check</h1>
           <h2>{anotherCheck}</h2>
         </>
-      )}
+      )} */}
       <Clearer />
     </div>
   );
