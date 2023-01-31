@@ -32,23 +32,12 @@ const Basket: React.FC<BasketProps> = () => {
   if (mixed) {
     mixedValue = Number(mixed.value);
   }
-  //value presented @cart
   cartItems = acaciaValue + colzaValue + mixedValue;
-  // console.log("ITEMS", cartItems);
-
-  //value of all items
+  //value of those items
   let acaciaAmount = acaciaValue * 4000;
   let colzaAmount = colzaValue * 3500;
   let mixedAmount = mixedValue * 3000;
   let allValue = acaciaAmount + colzaAmount + mixedAmount;
-
-  // const vals: any = nextCookies.get("acacia");
-
-  // let amount;
-  // if (vals) {
-  //   amount = Number(vals.value) * 3000;
-  // }
-
   return (
     <>
       <button className={styles.wrap}>

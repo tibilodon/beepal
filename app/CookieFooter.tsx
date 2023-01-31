@@ -13,7 +13,7 @@ const CookieFooter = () => {
   const router = useRouter();
 
   const acceptCookie = () => {
-    setCookie("tncCookie", 1);
+    setCookie("tncCookie", 1, true);
     router.refresh();
   };
   return (
