@@ -1,0 +1,14 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  img {
+    @include test();
+    width: 3em;
+    height: fit-content;
+  }
+  div {
+    display: flex;
+    gap: 1em;
+  }
+}

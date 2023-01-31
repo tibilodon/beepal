@@ -1,58 +1,51 @@
-// "use client";
 import React from "react";
-// import Button from "@/components/Button";
-// import { deleteCookie } from "cookies-next";
-// import { useRouter } from "next/navigation";
 import Clearer from "./Clearer";
 import { cookies } from "next/headers";
+import styles from "@/styles/checkoutProducts.module.scss";
+import Image from "next/image";
+//images
+import acaciaImg from "@/assets/acacia.png";
+import mixedImg from "@/assets/mixed.png";
+import colzaImg from "@/assets/prod.jpg";
 
-// export const dynamic = "force-dynamic";
-
-const Checkout: React.FC<any> = (
-  {
-    // test
-  }
-) => {
+const Checkout: React.FC<any> = () => {
   const nextCookies = cookies();
 
-  // const all = nextCookies.getAll();
   const acacia: any = nextCookies.get("acacia");
   const colza: any = nextCookies.get("colza");
   const mixed: any = nextCookies.get("mixed");
-  // console.log(all);
-  // let anotherCheck;
-  // if (acacia) {
-  //   anotherCheck = acacia.value;
-  // }
-  // const router = useRouter();
-
-  // const clearBasket = () => {
-  //   deleteCookie("acacia");
-  //   router.refresh();
-  // };
   return (
-    <div>
+    <div className={styles.wrap}>
       <h1>Kosár</h1>
       {acacia && (
         <>
-          <h1>server again</h1>
-          <h2>Acacia :{acacia.value}</h2>
-          <h2>value: {acacia.value * 3500} Ft</h2>
+          <div>
+            <Image alt="a jar of acacia honey" src={acaciaImg} />
+            <h2>Acacia :{acacia.value}</h2>
+            <h2>value: {acacia.value * 4000} Ft</h2>
+          </div>
         </>
       )}
-      {/* {test && (
+      {mixed && (
         <>
-          <h1>Props</h1>
-          <h2>Acacia :{test.value}</h2>
-          <h2>value: {test.value * 3500} Ft</h2>
+          <div>
+            <Image alt="a jar of acacia honey" src={mixedImg} />
+
+            <h2>mixed :{mixed.value}</h2>
+            <h2>value: {mixed.value * 3000} Ft</h2>
+          </div>
         </>
-      )} */}
-      {/* {anotherCheck && (
+      )}{" "}
+      {colza && (
         <>
-          <h1>another check</h1>
-          <h2>{anotherCheck}</h2>
+          <div>
+            <Image alt="a jar of acacia honey" src={colzaImg} />
+
+            <h2>colza :{colza.value}</h2>
+            <h2>value: {colza.value * 3500} Ft</h2>
+          </div>
         </>
-      )} */}
+      )}
       <Clearer />
     </div>
   );
