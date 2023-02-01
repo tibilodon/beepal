@@ -3,6 +3,9 @@ import icon from "@/assets/emptyCart.svg";
 import Image from "next/image";
 import { cookies } from "next/headers";
 
+// export const dynamic = "force-dynamic";
+// export const revalidate = 5;
+
 interface BasketProps {
   vals?: {
     name: string;
@@ -28,6 +31,7 @@ const Basket: React.FC<BasketProps> = () => {
   if (acacia) {
     acaciaValue = Number(acacia.value);
   }
+
   if (colza) {
     colzaValue = Number(colza.value);
   }

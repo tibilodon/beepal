@@ -31,6 +31,7 @@ const Select: React.FC<SelectProps> = ({ name, amount, cookieProp }) => {
   const handleSubmit = () => {
     let res = selectedValue + cookieProp;
     setCookie(name, res);
+    setSelectedValue(1);
     router.refresh();
   };
 

@@ -1,0 +1,26 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  display: flex;
+  align-items: center;
+
+  @include test();
+  .content {
+    display: flex;
+    flex-direction: column;
+    @include gtest();
+    // width: 3em;
+    // justify-content: center;
+    align-items: center;
+    div {
+      display: flex;
+      img {
+        cursor: pointer;
+        width: 2em;
+        height: 2em;
+        // border: none;
+      }
+    }
+  }
+}

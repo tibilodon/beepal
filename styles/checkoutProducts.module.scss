@@ -2,13 +2,15 @@
 @use "./vars" as *;
 
 .wrap {
-  img {
-    @include test();
-    width: 3em;
-    height: fit-content;
-  }
-  div {
+  .content {
     display: flex;
     gap: 1em;
+    height: 100%;
+    @include rtest(); // align-items: center;
+    .img {
+      @include test();
+      width: 4em;
+      height: fit-content;
+    }
   }
 }

@@ -17,7 +17,7 @@ const ServerWrap = () => {
   // console.log(acacia);
   return (
     <div className={styles.wrap}>
-      <h1>ServerWrap</h1>
+      {/* <h1>ServerWrap</h1> */}
       {/* <Wrap> */}
       <Checkout
       // test={acacia}
