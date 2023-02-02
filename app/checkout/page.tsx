@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import arrow from "@/assets/backArrowIcon.svg";
 import styles from "@/styles/checkout.module.scss";
+import Finish from "./Finish";
+import Continue from "./Continue";
 // import { cookies } from "next/headers";
 
 // export const dynamic = "force-dynamic";
@@ -23,12 +25,14 @@ const ServerWrap = () => {
       // test={acacia}
       />
       {/* </Wrap> */}
-      <Link href={"/products"}>
+      {/* <Link href={"/products"}>
         <div className={styles.continue}>
           <Image className={styles.img} alt="back arrow icon" src={arrow} />
           <h3>Vásárlás folytatása</h3>
         </div>
-      </Link>
+      </Link> */}
+      <Continue />
+      <Finish />
     </div>
   );
 };

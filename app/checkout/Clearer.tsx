@@ -1,28 +1,30 @@
 "use client";
 import React from "react";
-import Button from "@/components/Button";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import deleteIcon from "@/assets/deleteIcon.svg";
+import Image from "next/image";
 
-const Clearer: React.FC<any> = () => {
+interface ClearerProps {
+  cookieName: string;
+}
+const Clearer: React.FC<ClearerProps> = ({ cookieName }) => {
   const router = useRouter();
 
-  const clearBasket = () => {
-    deleteCookie("acacia");
-    deleteCookie("mixed");
-    deleteCookie("colza");
+  const clearHandler = (name: string): any => {
+    deleteCookie(name);
+    // deleteCookie("mixed");
+    // deleteCookie("colza");
     // router.push("/checkout");
     router.refresh();
     location.reload();
   };
   return (
-    <div>
-      <h1>CLEAR COMP</h1>
-      {/* <Link href={"/checkout"}> */}
-      <Button text="CLEAR BASKET" onClick={clearBasket} />
-      {/* </Link> */}
-    </div>
+    <>
+      <button onClick={() => clearHandler(cookieName)}>
+        <Image alt="Delete Icon" src={deleteIcon} />
+      </button>
+    </>
   );
 };
 

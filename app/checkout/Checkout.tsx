@@ -33,6 +33,8 @@ const Checkout: React.FC<any> = () => {
               amount={Number(acacia.value)}
               value={4000}
             />
+            <Clearer cookieName="acacia" />
+
             {/* <h2>value: {acacia.value * 4000} Ft</h2> */}
           </div>
         </>
@@ -52,6 +54,7 @@ const Checkout: React.FC<any> = () => {
               amount={Number(mixed.value)}
               value={3000}
             />
+            <Clearer cookieName="mixed" />
 
             {/* <h2>value: {mixed.value * 3000} Ft</h2> */}
           </div>
@@ -72,12 +75,12 @@ const Checkout: React.FC<any> = () => {
               amount={Number(colza.value)}
               value={3500}
             />
+            <Clearer cookieName="colza" />
 
             {/* <h2>value: {colza.value * 3500} Ft</h2> */}
           </div>
         </>
       )}
-      <Clearer />
     </div>
   );
 };

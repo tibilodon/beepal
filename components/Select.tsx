@@ -12,7 +12,6 @@ interface SelectProps {
   name: string;
   amount: number;
   cookieProp: number;
-  strict: any;
 }
 
 const Select: React.FC<SelectProps> = ({ name, amount, cookieProp }) => {
