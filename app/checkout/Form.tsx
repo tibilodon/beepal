@@ -34,17 +34,17 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
     setCookie("orderNo", form.orderNo);
     // console.log("TEST", test);
   }, [acacia, mixed, colza, form.orderNo]);
-  // console.log("TEST", form);
+  // console.log("TEST", form.acaciaVal.value);
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log("SUBMITTED AS:", form);
     deleteCookie("acacia");
     deleteCookie("mixed");
     deleteCookie("colza");
     // console.log("LOOK AT THIS:", set);
-    router.refresh();
-    router.push("/done");
+    // router.refresh();
+    // router.push("/done");
     // location.reload();
   };
 
@@ -53,21 +53,45 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
       <div>
         <h3>form</h3>
 
-        <form className={styles.wrap} onSubmit={handleSubmit}>
+        <form
+          action="https://formsubmit.co/tibilodondev@gmail.com"
+          method="POST"
+          className={styles.wrap}
+          onSubmit={handleSubmit}
+        >
+          {/*TODO:*/}
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_subject" value="test" />
+          <input type="hidden" name="orderNumber" value={form.orderNo} />
+          <input type="hidden" name="acacia" value={form.acaciaVal?.value} />
+          <input type="hidden" name="mixed" value={form.mixedVal?.value} />
+          <input type="hidden" name="colza" value={form.colzaVal?.value} />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="http://localhost:3000/done"
+          ></input>
+          {/*TODO:*/}
           <input
             onChange={e => setForm({ ...form, name: e.currentTarget.value })}
             type="text"
+            name="name"
             placeholder="név"
+            required
           />
           <input
             onChange={e => setForm({ ...form, tel: e.currentTarget.value })}
             type="tel"
             placeholder="telefonszám"
+            required
           />
           <input
             onChange={e => setForm({ ...form, address: e.currentTarget.value })}
-            type="text"
-            placeholder="cím"
+            type="email"
+            name="email"
+            placeholder="e-mail cím"
+            required
           />
           {/* <Link href={"/done"}> */}
           <button
