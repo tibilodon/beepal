@@ -8,20 +8,21 @@
   justify-content: space-between;
   // flex-direction: column;
 
-  .item {
+  .content {
     // border: 4px solid greenyellow;
 
     max-width: 50%;
     display: flex;
     flex-direction: column;
-    .content {
+    .item {
       display: flex;
-      gap: 1em;
+      align-items: center;
+      // gap: 1em;
       height: 100%;
       @include rtest(); // align-items: center;
       .img {
         @include test();
-        width: 4em;
+        width: 12%;
         height: fit-content;
       }
     }

@@ -5,9 +5,37 @@ import styles from "@/styles/form.module.scss";
 import { useRouter } from "next/navigation";
 import { setCookie, deleteCookie } from "cookies-next";
 interface FormProps {
-  acacia: object;
-  mixed: object;
-  colza: object;
+  acacia: {
+    name: string;
+    value: any;
+  };
+  mixed: {
+    name: string;
+    value: any;
+  };
+  colza: {
+    name: string;
+    value: any;
+  };
+}
+
+interface Form {
+  acaciaVal: {
+    name: string;
+    value: any;
+  };
+  mixedVal: {
+    name: string;
+    value: any;
+  };
+  colzaVal: {
+    name: string;
+    value: any;
+  };
+  name: string;
+  tel: string;
+  address: string;
+  orderNo: number;
 }
 
 const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
@@ -15,7 +43,7 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
   // console.log(orderNo);
   // const [set, setSet] = useState("");
   const router = useRouter();
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<Form>({
     acaciaVal: acacia,
     mixedVal: mixed,
     colzaVal: colza,
@@ -36,16 +64,12 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
   }, [acacia, mixed, colza, form.orderNo]);
   // console.log("TEST", form.acaciaVal.value);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = () => {
     // e.preventDefault();
     console.log("SUBMITTED AS:", form);
     deleteCookie("acacia");
     deleteCookie("mixed");
     deleteCookie("colza");
-    // console.log("LOOK AT THIS:", set);
-    // router.refresh();
-    // router.push("/done");
-    // location.reload();
   };
 
   return (
@@ -59,18 +83,18 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
           className={styles.wrap}
           onSubmit={handleSubmit}
         >
-          {/*TODO:*/}
+          {/*TODO: for email alert*/}
+          <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_subject" value="test" />
           <input type="hidden" name="orderNumber" value={form.orderNo} />
           <input type="hidden" name="acacia" value={form.acaciaVal?.value} />
           <input type="hidden" name="mixed" value={form.mixedVal?.value} />
           <input type="hidden" name="colza" value={form.colzaVal?.value} />
-          <input type="hidden" name="_template" value="table" />
           <input
             type="hidden"
             name="_next"
-            value="http://localhost:3000/done"
+            value="http://localhost:3000/order"
           ></input>
           {/*TODO:*/}
           <input
@@ -96,7 +120,7 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
           {/* <Link href={"/done"}> */}
           <button
             onClick={() =>
-              setForm({ ...form, orderNo: Math.floor(Math.random() * 100) })
+              setForm({ ...form, orderNo: Math.floor(Math.random() * 1000) })
             }
             type="submit"
           >
