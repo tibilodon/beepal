@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "@/styles/form.module.scss";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { setCookie } from "cookies-next";
+import { setCookie, deleteCookie } from "cookies-next";
 interface FormProps {
   acacia: object;
   mixed: object;
@@ -39,8 +39,13 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("SUBMITTED AS:", form);
+    deleteCookie("acacia");
+    deleteCookie("mixed");
+    deleteCookie("colza");
     // console.log("LOOK AT THIS:", set);
+    router.refresh();
     router.push("/done");
+    // location.reload();
   };
 
   return (

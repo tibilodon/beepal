@@ -1,7 +1,7 @@
 import React from "react";
 import { cookies } from "next/headers";
 
-const page = () => {
+const Done = () => {
   const nextCookies = cookies();
   const orderNoCookie = nextCookies.get("orderNo");
   const orderNo: number = Number(orderNoCookie?.value);
@@ -13,4 +13,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Done;

@@ -22,7 +22,7 @@ const Checkout: React.FC<any> = () => {
       <h1>Kosár</h1>
       <div className={styles.wrap}>
         <div className={styles.item}>
-          {acacia && (
+          {acacia ? (
             <>
               <div className={styles.content}>
                 <Image
@@ -41,8 +41,8 @@ const Checkout: React.FC<any> = () => {
                 {/* <h2>value: {acacia.value * 4000} Ft</h2> */}
               </div>
             </>
-          )}
-          {mixed && (
+          ) : null}
+          {mixed ? (
             <>
               <div className={styles.content}>
                 <Image
@@ -62,8 +62,8 @@ const Checkout: React.FC<any> = () => {
                 {/* <h2>value: {mixed.value * 3000} Ft</h2> */}
               </div>
             </>
-          )}{" "}
-          {colza && (
+          ) : null}{" "}
+          {colza ? (
             <>
               <div className={styles.content}>
                 <Image
@@ -83,7 +83,8 @@ const Checkout: React.FC<any> = () => {
                 {/* <h2>value: {colza.value * 3500} Ft</h2> */}
               </div>
             </>
-          )}
+          ) : null}
+          {!acacia && !colza && !mixed && <h1>Üres</h1>}
         </div>
         <Form acacia={acacia} mixed={mixed} colza={colza} />
       </div>
