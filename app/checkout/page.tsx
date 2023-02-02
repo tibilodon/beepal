@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import arrow from "@/assets/backArrowIcon.svg";
 import styles from "@/styles/checkout.module.scss";
-import Finish from "./Finish";
 import Continue from "./Continue";
 // import { cookies } from "next/headers";
 
@@ -19,20 +18,9 @@ const ServerWrap = () => {
   // console.log(acacia);
   return (
     <div className={styles.wrap}>
-      {/* <h1>ServerWrap</h1> */}
-      {/* <Wrap> */}
-      <Checkout
-      // test={acacia}
-      />
-      {/* </Wrap> */}
-      {/* <Link href={"/products"}>
-        <div className={styles.continue}>
-          <Image className={styles.img} alt="back arrow icon" src={arrow} />
-          <h3>Vásárlás folytatása</h3>
-        </div>
-      </Link> */}
+      <Checkout />
+
       <Continue />
-      <Finish />
     </div>
   );
 };
