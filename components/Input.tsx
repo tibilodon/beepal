@@ -12,14 +12,16 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({ type, placeholder, onChange, name }) => {
   return (
     <>
+      {/* <div className={styles.wrap}> */}
       <input
-        className={styles.wrap}
+        className={styles.content}
         type={type}
         placeholder={placeholder}
         onChange={onChange}
         name={name}
         required
       />
+      {/* </div> */}
     </>
   );
 };

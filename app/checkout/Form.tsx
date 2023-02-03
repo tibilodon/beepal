@@ -37,7 +37,11 @@ interface Form {
   name: string;
   tel: string;
   email: string;
-  address: string;
+  address: {
+    postCode: number;
+    street: string;
+    city: string;
+  };
   orderNo: number;
 }
 
@@ -54,7 +58,11 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
     name: "",
     tel: "",
     email: "",
-    address: "",
+    address: {
+      postCode: 0,
+      street: "",
+      city: "",
+    },
     orderNo: 0,
   });
   useEffect(() => {
@@ -81,7 +89,7 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
   return (
     <>
       <div className={styles.wrap}>
-        <h3>form</h3>
+        <h3>Megrendelő adatai</h3>
         <form
           action="https://formsubmit.co/tibilodondev@gmail.com"
           method="POST"
@@ -151,12 +159,42 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
             placeholder="szállítási cím"
             required
           /> */}
-          <Input
-            name="address"
-            onChange={e => setForm({ ...form, address: e.currentTarget.value })}
-            placeholder="szállítási cím"
-            type="text"
-          />
+          <div className={styles.item}>
+            <h4>Cím</h4>
+            <Input
+              name="postCode"
+              onChange={e =>
+                setForm({
+                  ...form,
+                  address: { ...form.address, postCode: e.currentTarget.value },
+                })
+              }
+              placeholder="irányítószám"
+              type="number"
+            />{" "}
+            <Input
+              name="street"
+              onChange={e =>
+                setForm({
+                  ...form,
+                  address: { ...form.address, street: e.currentTarget.value },
+                })
+              }
+              placeholder="utca, házszám"
+              type="text"
+            />{" "}
+            <Input
+              name="city"
+              onChange={e =>
+                setForm({
+                  ...form,
+                  address: { ...form.address, city: e.currentTarget.value },
+                })
+              }
+              placeholder="település"
+              type="text"
+            />
+          </div>
           <Button
             text="Rendelés"
             onClick={() =>

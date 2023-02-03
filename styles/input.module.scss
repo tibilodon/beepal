@@ -1,12 +1,23 @@
 @use "./mixins" as mix;
 @use "./vars" as *;
 
-.wrap {
-  // @include test();
-  padding: 0.5em;
+// .wrap {
+//   width: 100%;
+//   // @include test();
+//   padding: 0.5em;
+//   // border: none;
 
-  // column-fill: auto;
+//   // column-fill: auto;
+// }
+.content {
+  padding: 0.6em;
+  width: 100%;
+  border: 1px solid $dBgCol;
+  border-radius: 7px;
 }
-.wrap:focus {
+
+.content:focus {
+  outline-style: solid;
+  outline-width: 2px;
   outline-color: $honeyCol;
 }

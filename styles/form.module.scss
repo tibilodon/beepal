@@ -2,15 +2,29 @@
 @use "./vars" as *;
 
 .wrap {
+  background-color: $dBgCol;
   display: flex;
   flex-direction: column;
   width: 100%; // max-width: 30%;
   height: 100%;
   @include test();
   padding: 0.3em;
+  h3 {
+    padding: 0.7em 0 1em 0;
+    text-align: center;
+  }
   .content {
     gap: 4em;
     display: flex;
     flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    .item {
+      @include test();
+      width: 100%;
+    }
+  }
+  button {
+    @include mix.button($honeyCol, 20em);
   }
 }
