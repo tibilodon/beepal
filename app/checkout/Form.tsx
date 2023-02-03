@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react";
 import styles from "@/styles/form.module.scss";
 // import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { setCookie, deleteCookie } from "cookies-next";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import Acacia from "../products/acacia/page";
 interface FormProps {
   acacia: {
     name: string;
@@ -46,11 +46,9 @@ interface Form {
 }
 
 const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
-  // const orderNo: number = Math.floor(Math.random() * 100);
-  // console.log(orderNo);
-  // const [set, setSet] = useState("");
-  const router = useRouter();
-  const [isDisabled, setIsDisabled] = useState(false);
+  // console.log(typeof acacia.value);
+  const [finalValue, setFinalValue] = useState<number>(0);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [form, setForm] = useState<Form>({
     acaciaVal: acacia,
     mixedVal: mixed,
@@ -72,20 +70,41 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
       mixedVal: mixed,
       colzaVal: colza,
     });
+    // setFinalValue(
+    //   Number(acacia.value) + Number(mixed.value) + Number(colza.value)
+    // );
     setCookie("orderNo", form.orderNo);
-    // console.log("TEST", test);
   }, [acacia, mixed, colza, form.orderNo]);
-  // console.log("TEST", form.acaciaVal.value);
 
+  useEffect(() => {
+    const quantitySetter = () => {
+      let acaciaVal = acacia ? acacia.value : 0;
+      let mixedVal = mixed ? mixed.value : 0;
+      let colzaVal = colza ? colza.value : 0;
+      setFinalValue(
+        Number(acaciaVal * 4000) +
+          Number(mixedVal * 3000) +
+          Number(colzaVal * 3500)
+      );
+    };
+    quantitySetter();
+    // if (allsh.includes("acacia")) {
+    //   setFinalValue(acacia.value);
+    // }
+
+    // console.log(finalValue);
+
+    // setFinalValue(typeof colza === "undefined" ? 0 : colza.value);
+  }, [acacia, mixed, colza]);
+
+  console.log(finalValue);
   const handleSubmit = () => {
-    // e.preventDefault();
     console.log("SUBMITTED AS:", form);
     deleteCookie("acacia");
     deleteCookie("mixed");
     deleteCookie("colza");
     setIsDisabled(true);
   };
-  // console.log(+form.acaciaVal?.value > 1 && "rr");
   return (
     <>
       <div className={styles.wrap}>
@@ -114,64 +133,56 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
             value="http://localhost:3000/order"
           ></input>
           {/*TODO:*/}
-          {/* <input
-            onChange={e => setForm({ ...form, name: e.currentTarget.value })}
-            type="text"
-            name="name"
-            placeholder="név"
-            required
-          /> */}
           <Input
             name="name"
             onChange={e => setForm({ ...form, name: e.currentTarget.value })}
             placeholder="név"
             type="text"
           />
-          {/* <input
-            onChange={e => setForm({ ...form, tel: e.currentTarget.value })}
-            type="tel"
-            placeholder="telefonszám"
-            required
-          /> */}
           <Input
             name="phone"
             onChange={e => setForm({ ...form, tel: e.currentTarget.value })}
             placeholder="telefonszám"
             type="tel"
           />
-          {/* <input
-            onChange={e => setForm({ ...form, email: e.currentTarget.value })}
-            type="email"
-            name="email"
-            placeholder="e-mail cím"
-            required
-          />{" "} */}
           <Input
             name="email"
             onChange={e => setForm({ ...form, email: e.currentTarget.value })}
             placeholder="e-mail cím"
             type="email"
           />
-          {/* <input
-            onChange={e => setForm({ ...form, address: e.currentTarget.value })}
-            type="text"
-            name="address"
-            placeholder="szállítási cím"
-            required
-          /> */}
+          {/*TODO:address*/}
           <div className={styles.item}>
-            <h4>Cím</h4>
-            <Input
-              name="postCode"
-              onChange={e =>
-                setForm({
-                  ...form,
-                  address: { ...form.address, postCode: e.currentTarget.value },
-                })
-              }
-              placeholder="irányítószám"
-              type="number"
-            />{" "}
+            <h3>Cím</h3>
+            <div className={styles.post}>
+              <div className={styles.postItem}>
+                <Input
+                  name="postCode"
+                  onChange={e =>
+                    setForm({
+                      ...form,
+                      address: {
+                        ...form.address,
+                        postCode: e.currentTarget.value,
+                      },
+                    })
+                  }
+                  placeholder="irányítószám"
+                  type="number"
+                />{" "}
+              </div>
+              <Input
+                name="city"
+                onChange={e =>
+                  setForm({
+                    ...form,
+                    address: { ...form.address, city: e.currentTarget.value },
+                  })
+                }
+                placeholder="település"
+                type="text"
+              />
+            </div>
             <Input
               name="street"
               onChange={e =>
@@ -183,34 +194,16 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
               placeholder="utca, házszám"
               type="text"
             />{" "}
-            <Input
-              name="city"
-              onChange={e =>
-                setForm({
-                  ...form,
-                  address: { ...form.address, city: e.currentTarget.value },
-                })
-              }
-              placeholder="település"
-              type="text"
-            />
           </div>
+          <h2>Összesen: {finalValue}</h2>
           <Button
+            disabled={isDisabled}
             text="Rendelés"
             onClick={() =>
               setForm({ ...form, orderNo: Math.floor(Math.random() * 1000) })
             }
             type="submit"
           />
-          {/* <button
-            disabled={isDisabled}
-            onClick={() =>
-              setForm({ ...form, orderNo: Math.floor(Math.random() * 1000) })
-            }
-            type="submit"
-          >
-            Rendelés
-          </button> */}
         </form>
       </div>
     </>

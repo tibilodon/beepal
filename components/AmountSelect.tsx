@@ -26,6 +26,7 @@ const AmountSelect: React.FC<AmountSelectProps> = ({ amount, value, name }) => {
     if (selectedAmount >= 2) {
       setSelectedAmount(selectedAmount - 1);
       setCookie(name, selectedAmount - 1);
+
       router.refresh();
     }
   };

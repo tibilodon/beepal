@@ -14,9 +14,11 @@ import Loader from "@/components/loader/Loader";
 const Checkout: React.FC<any> = () => {
   const nextCookies = cookies();
 
-  const acacia: any = nextCookies.get("acacia");
-  const colza: any = nextCookies.get("colza");
-  const mixed: any = nextCookies.get("mixed");
+  const acacia: any = nextCookies.get("acacia") || 0;
+  const colza: any = nextCookies.get("colza") || 0;
+  const mixed: any = nextCookies.get("mixed") || 0;
+  const allsh = nextCookies.getAll();
+  // console.log(colza);
   return (
     <>
       <h1>Kosár</h1>
@@ -82,9 +84,13 @@ const Checkout: React.FC<any> = () => {
         )} */}
         {/*TODO:for testing use the one below, otherwise opposite*/}
         <div className={styles.formWrap}>
-          <Suspense fallback={<Loader />}>
-            <Form acacia={acacia} mixed={mixed} colza={colza} />
-          </Suspense>
+          {/* <Suspense fallback={<Loader />}> */}
+          <Form
+            acacia={acacia ? acacia : null}
+            mixed={mixed ? mixed : null}
+            colza={colza ? colza : null}
+          />
+          {/* </Suspense> */}
         </div>
       </div>
     </>
