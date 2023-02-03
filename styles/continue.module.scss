@@ -2,17 +2,27 @@
 @use "./vars" as *;
 
 .wrap {
-  @include rtest();
+  // @include rtest();
   display: flex;
   align-items: center;
-  width: fit-content;
+  width: 100%;
   // height: 100%;
   // height: 2em;
-  .img {
-    width: 30px;
-    height: 30px;
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .img {
+      width: 30px;
+      height: 30px;
+    }
   }
   // h3 {
   font-size: 1.5em;
   // }
+  button {
+    padding: 0.2em; // display: flex;
+    @include mix.button($honeyCol, 20em);
+    // width: fit-content;
+  }
 }

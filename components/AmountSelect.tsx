@@ -41,11 +41,19 @@ const AmountSelect: React.FC<AmountSelectProps> = ({ amount, value, name }) => {
         <h4>Mennyiség (db): </h4>
         <div className={styles.content}>
           <div onClick={addHandler}>
-            <Image alt="Keyboard Arrow Up" src={upIcon} />
+            <Image
+              className={styles.img}
+              alt="Keyboard Arrow Up"
+              src={upIcon}
+            />
           </div>
           <span>{selectedAmount}</span>
           <div onClick={removeHandler}>
-            <Image alt="Keyboard Arrow Down" src={downIcon} />
+            <Image
+              className={styles.img}
+              alt="Keyboard Arrow Down"
+              src={downIcon}
+            />
           </div>
         </div>
         <h4>Egységár: {selectedAmount * selectedValue} Ft</h4>

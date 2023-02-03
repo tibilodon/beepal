@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import deleteIcon from "@/assets/deleteIcon.svg";
 import Image from "next/image";
 import styles from "@/styles/clearer.module.scss";
+import Button from "@/components/Button";
 
 interface ClearerProps {
   cookieName: string;
@@ -22,14 +23,26 @@ const Clearer: React.FC<ClearerProps> = ({ cookieName }) => {
   };
   return (
     <>
-      {/* <div className={styles.wrap} onClick={() => clearHandler(cookieName)}> */}
-      <Image
+      <div className={styles.wrap}>
+        <Button
+          text={
+            <Image
+              onClick={() => clearHandler(cookieName)}
+              className={styles.content}
+              alt="Delete Icon"
+              src={deleteIcon}
+            />
+          }
+        />
+        {/* <div className={styles.wrap} onClick={() => clearHandler(cookieName)}> */}
+        {/* <Image
         onClick={() => clearHandler(cookieName)}
         className={styles.wrap}
         alt="Delete Icon"
         src={deleteIcon}
-      />
-      {/* </div> */}
+      /> */}
+        {/* </div> */}
+      </div>
     </>
   );
 };

@@ -2,16 +2,21 @@
 @use "./vars" as *;
 
 //for layout / children
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: calc(100vh - 5em);
-  // height: 100vh;
-  // padding-top: 5em;
-  // border: 4px solid red;
-  // top: 5em;
-  margin-top: 5em;
+.mobile {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 5em);
+    // height: 100vh;
+    // padding-top: 5em;
+    // border: 4px solid red;
+    // top: 5em;
+    // margin-top: 5em;
+  }
+  .mobileProt {
+    display: none;
+  }
 }
 
 .wrap {
@@ -80,3 +85,20 @@
 //     }
 //   }
 // }
+@media (max-width: 904px) {
+  .mobile {
+    display: none;
+  }
+  .mobileProt {
+    // color: black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    // z-index: 3;
+    // position: relative;
+    @include rtest();
+  }
+}

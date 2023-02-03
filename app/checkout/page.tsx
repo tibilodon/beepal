@@ -19,8 +19,9 @@ const ServerWrap = () => {
   return (
     <div className={styles.wrap}>
       <Checkout />
-
-      <Continue />
+      <div className={styles.content}>
+        <Continue />
+      </div>
     </div>
   );
 };

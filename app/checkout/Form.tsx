@@ -1,11 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import styles from "@/styles/form.module.scss";
-// import Link from "next/link";
 import { setCookie, deleteCookie } from "cookies-next";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-import Acacia from "../products/acacia/page";
 interface FormProps {
   acacia: {
     name: string;
@@ -46,7 +44,6 @@ interface Form {
 }
 
 const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
-  // console.log(typeof acacia.value);
   const [finalValue, setFinalValue] = useState<number>(0);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [form, setForm] = useState<Form>({
@@ -70,9 +67,6 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
       mixedVal: mixed,
       colzaVal: colza,
     });
-    // setFinalValue(
-    //   Number(acacia.value) + Number(mixed.value) + Number(colza.value)
-    // );
     setCookie("orderNo", form.orderNo);
   }, [acacia, mixed, colza, form.orderNo]);
 
@@ -88,13 +82,6 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
       );
     };
     quantitySetter();
-    // if (allsh.includes("acacia")) {
-    //   setFinalValue(acacia.value);
-    // }
-
-    // console.log(finalValue);
-
-    // setFinalValue(typeof colza === "undefined" ? 0 : colza.value);
   }, [acacia, mixed, colza]);
 
   console.log(finalValue);
@@ -108,7 +95,6 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
   return (
     <>
       <div className={styles.wrap}>
-        <h3>Megrendelő adatai</h3>
         <form
           action="https://formsubmit.co/tibilodondev@gmail.com"
           method="POST"
@@ -133,24 +119,34 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
             value="http://localhost:3000/order"
           ></input>
           {/*TODO:*/}
-          <Input
-            name="name"
-            onChange={e => setForm({ ...form, name: e.currentTarget.value })}
-            placeholder="név"
-            type="text"
-          />
-          <Input
-            name="phone"
-            onChange={e => setForm({ ...form, tel: e.currentTarget.value })}
-            placeholder="telefonszám"
-            type="tel"
-          />
-          <Input
-            name="email"
-            onChange={e => setForm({ ...form, email: e.currentTarget.value })}
-            placeholder="e-mail cím"
-            type="email"
-          />
+          <div className={styles.item}>
+            <h3>Megrendelő adatai</h3>
+            <div className={styles.personal}>
+              <Input
+                name="name"
+                onChange={e =>
+                  setForm({ ...form, name: e.currentTarget.value })
+                }
+                placeholder="név"
+                type="text"
+              />
+              <Input
+                name="phone"
+                onChange={e => setForm({ ...form, tel: e.currentTarget.value })}
+                placeholder="telefonszám"
+                type="tel"
+              />
+              <Input
+                name="email"
+                onChange={e =>
+                  setForm({ ...form, email: e.currentTarget.value })
+                }
+                placeholder="e-mail cím"
+                type="email"
+              />
+            </div>
+          </div>
+
           {/*TODO:address*/}
           <div className={styles.item}>
             <h3>Cím</h3>
@@ -195,15 +191,17 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
               type="text"
             />{" "}
           </div>
-          <h2>Összesen: {finalValue}</h2>
-          <Button
-            disabled={isDisabled}
-            text="Rendelés"
-            onClick={() =>
-              setForm({ ...form, orderNo: Math.floor(Math.random() * 1000) })
-            }
-            type="submit"
-          />
+          <div className={styles.price}>
+            <h2>Összesen: {finalValue} Ft</h2>
+            <Button
+              disabled={isDisabled}
+              text="Rendelés"
+              onClick={() =>
+                setForm({ ...form, orderNo: Math.floor(Math.random() * 1000) })
+              }
+              type="submit"
+            />
+          </div>
         </form>
       </div>
     </>

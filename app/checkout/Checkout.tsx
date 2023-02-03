@@ -80,17 +80,21 @@ const Checkout: React.FC<any> = () => {
         </div>
 
         {/* {!acacia && !colza && !mixed ? null : (
-          <Form acacia={acacia} mixed={mixed} colza={colza} />
+          <div className={styles.formWrap}>
+            <Form
+              acacia={acacia ? acacia : null}
+              mixed={mixed ? mixed : null}
+              colza={colza ? colza : null}
+            />
+          </div>
         )} */}
         {/*TODO:for testing use the one below, otherwise opposite*/}
         <div className={styles.formWrap}>
-          {/* <Suspense fallback={<Loader />}> */}
           <Form
             acacia={acacia ? acacia : null}
             mixed={mixed ? mixed : null}
             colza={colza ? colza : null}
           />
-          {/* </Suspense> */}
         </div>
       </div>
     </>
