@@ -1,4 +1,4 @@
-import React from "react";
+import { Suspense } from "react";
 import Clearer from "./Clearer";
 import { cookies } from "next/headers";
 import styles from "@/styles/checkoutProducts.module.scss";
@@ -9,6 +9,7 @@ import mixedImg from "@/assets/mixed.png";
 import colzaImg from "@/assets/prod.jpg";
 import AmountSelect from "@/components/AmountSelect";
 import Form from "./Form";
+import Loader from "@/components/loader/Loader";
 
 const Checkout: React.FC<any> = () => {
   const nextCookies = cookies();
@@ -80,7 +81,11 @@ const Checkout: React.FC<any> = () => {
           <Form acacia={acacia} mixed={mixed} colza={colza} />
         )} */}
         {/*TODO:for testing use the one below, otherwise opposite*/}
-        <Form acacia={acacia} mixed={mixed} colza={colza} />
+        <div className={styles.formWrap}>
+          <Suspense fallback={<Loader />}>
+            <Form acacia={acacia} mixed={mixed} colza={colza} />
+          </Suspense>
+        </div>
       </div>
     </>
   );

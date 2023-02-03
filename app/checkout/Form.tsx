@@ -4,6 +4,8 @@ import styles from "@/styles/form.module.scss";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { setCookie, deleteCookie } from "cookies-next";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
 interface FormProps {
   acacia: {
     name: string;
@@ -34,6 +36,7 @@ interface Form {
   };
   name: string;
   tel: string;
+  email: string;
   address: string;
   orderNo: number;
 }
@@ -43,12 +46,14 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
   // console.log(orderNo);
   // const [set, setSet] = useState("");
   const router = useRouter();
+  const [isDisabled, setIsDisabled] = useState(false);
   const [form, setForm] = useState<Form>({
     acaciaVal: acacia,
     mixedVal: mixed,
     colzaVal: colza,
     name: "",
     tel: "",
+    email: "",
     address: "",
     orderNo: 0,
   });
@@ -70,23 +75,27 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
     deleteCookie("acacia");
     deleteCookie("mixed");
     deleteCookie("colza");
+    setIsDisabled(true);
   };
-
+  // console.log(+form.acaciaVal?.value > 1 && "rr");
   return (
     <>
-      <div>
+      <div className={styles.wrap}>
         <h3>form</h3>
-
         <form
           action="https://formsubmit.co/tibilodondev@gmail.com"
           method="POST"
-          className={styles.wrap}
+          className={styles.content}
           onSubmit={handleSubmit}
         >
           {/*TODO: for email alert*/}
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_subject" value="test" />
+          <input
+            type="hidden"
+            name="_subject"
+            value={`New order: ${form.orderNo}`}
+          />
           <input type="hidden" name="orderNumber" value={form.orderNo} />
           <input type="hidden" name="acacia" value={form.acaciaVal?.value} />
           <input type="hidden" name="mixed" value={form.mixedVal?.value} />
@@ -97,36 +106,73 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
             value="http://localhost:3000/order"
           ></input>
           {/*TODO:*/}
-          <input
+          {/* <input
             onChange={e => setForm({ ...form, name: e.currentTarget.value })}
             type="text"
             name="name"
             placeholder="név"
             required
+          /> */}
+          <Input
+            name="name"
+            onChange={e => setForm({ ...form, name: e.currentTarget.value })}
+            placeholder="név"
+            type="text"
           />
-          <input
+          {/* <input
             onChange={e => setForm({ ...form, tel: e.currentTarget.value })}
             type="tel"
             placeholder="telefonszám"
             required
+          /> */}
+          <Input
+            name="phone"
+            onChange={e => setForm({ ...form, tel: e.currentTarget.value })}
+            placeholder="telefonszám"
+            type="tel"
           />
-          <input
-            onChange={e => setForm({ ...form, address: e.currentTarget.value })}
+          {/* <input
+            onChange={e => setForm({ ...form, email: e.currentTarget.value })}
             type="email"
             name="email"
             placeholder="e-mail cím"
             required
+          />{" "} */}
+          <Input
+            name="email"
+            onChange={e => setForm({ ...form, email: e.currentTarget.value })}
+            placeholder="e-mail cím"
+            type="email"
           />
-          {/* <Link href={"/done"}> */}
-          <button
+          {/* <input
+            onChange={e => setForm({ ...form, address: e.currentTarget.value })}
+            type="text"
+            name="address"
+            placeholder="szállítási cím"
+            required
+          /> */}
+          <Input
+            name="address"
+            onChange={e => setForm({ ...form, address: e.currentTarget.value })}
+            placeholder="szállítási cím"
+            type="text"
+          />
+          <Button
+            text="Rendelés"
+            onClick={() =>
+              setForm({ ...form, orderNo: Math.floor(Math.random() * 1000) })
+            }
+            type="submit"
+          />
+          {/* <button
+            disabled={isDisabled}
             onClick={() =>
               setForm({ ...form, orderNo: Math.floor(Math.random() * 1000) })
             }
             type="submit"
           >
             Rendelés
-          </button>
-          {/* </Link> */}
+          </button> */}
         </form>
       </div>
     </>

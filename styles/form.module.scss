@@ -4,5 +4,13 @@
 .wrap {
   display: flex;
   flex-direction: column;
-  max-width: 50%;
+  width: 100%; // max-width: 30%;
+  height: 100%;
+  @include test();
+  padding: 0.3em;
+  .content {
+    gap: 4em;
+    display: flex;
+    flex-direction: column;
+  }
 }

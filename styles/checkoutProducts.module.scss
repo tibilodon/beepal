@@ -11,7 +11,7 @@
   .content {
     // border: 4px solid greenyellow;
 
-    max-width: 50%;
+    max-width: 70%;
     display: flex;
     flex-direction: column;
     .item {
@@ -26,5 +26,9 @@
         height: fit-content;
       }
     }
+  }
+  .formWrap {
+    @include gtest();
+    width: 30%;
   }
 }

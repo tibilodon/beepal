@@ -1,0 +1,12 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  // @include test();
+  padding: 0.5em;
+
+  // column-fill: auto;
+}
+.wrap:focus {
+  outline-color: $honeyCol;
+}
