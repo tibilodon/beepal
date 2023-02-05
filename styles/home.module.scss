@@ -38,3 +38,33 @@
     }
   }
 }
+@media (max-width: 910px) {
+  .wrap {
+    background-position: center;
+    // background-position-y: -3.2em;
+    // background-size: 63%;
+    // background-blend-mode: darken;
+    .content {
+      justify-content: flex-start;
+      // @include test();
+      width: 100%;
+      text-align: center;
+      padding-top: 1em;
+      // gap: 2em;
+    }
+  }
+}
+@media (max-width: 1219px) {
+  .wrap {
+    background-size: 63%;
+    background-position: bottom center;
+    .content {
+      justify-content: flex-start;
+      // @include test();
+      width: 100%;
+      text-align: center;
+      padding-top: 1em;
+      // gap: 2em;
+    }
+  }
+}

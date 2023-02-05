@@ -29,18 +29,18 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <h1 className={styles.mobileProt}>
+        {/* <h1 className={styles.mobileProt}>
           Az oldal fejlesztés alatt. Használatához (jelenleg), minimum 905*650px
           felbontású készülék szükséges.
         </h1>
-        <div className={styles.mobile}>
-          <Header />
+        <div className={styles.mobile}> */}
+        <Header />
 
-          <div className={styles.container}>
-            {children}
-            {cookie?.value ? null : <CookieFooter />}
-          </div>
+        <div className={styles.container}>
+          {children}
+          {cookie?.value ? null : <CookieFooter />}
         </div>
+        {/* </div> */}
       </body>
     </html>
   );
