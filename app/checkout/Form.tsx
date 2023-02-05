@@ -4,6 +4,7 @@ import styles from "@/styles/form.module.scss";
 import { setCookie, deleteCookie } from "cookies-next";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 interface FormProps {
   acacia: {
     name: string;
@@ -44,6 +45,7 @@ interface Form {
 }
 
 const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
+  const router = useRouter();
   const [finalValue, setFinalValue] = useState<number>(0);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [form, setForm] = useState<Form>({
@@ -91,6 +93,8 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
     deleteCookie("mixed");
     deleteCookie("colza");
     setIsDisabled(true);
+    router.refresh();
+    router.push("/order");
   };
   return (
     <>
@@ -117,7 +121,7 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
             type="hidden"
             name="_next"
             value="http://localhost:3000/order"
-          ></input>
+          />
           {/*TODO:*/}
           <div className={styles.item}>
             <h3>Megrendelő adatai</h3>
