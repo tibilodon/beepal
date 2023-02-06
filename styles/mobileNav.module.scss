@@ -1,0 +1,21 @@
+@use "./mixins" as mix;
+@use "./vars" as *;
+
+.wrap {
+  display: none;
+}
+.content {
+  display: none;
+}
+@media (max-width: 544px) {
+  .wrap {
+    display: flex;
+    margin: 0.5em;
+    background-color: $bgCol;
+    // @include gtest();
+    border-radius: 999px;
+  }
+  .contentActive {
+    display: flex;
+  }
+}

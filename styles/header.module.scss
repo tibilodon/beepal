@@ -45,6 +45,7 @@
   // overflow: hidden;
   position: fixed;
   width: 100%;
+  // overflow: hidden;
   .logo {
     // @include test();
     width: 80px;
@@ -112,5 +113,11 @@
     // z-index: 3;
     // position: relative;
     @include rtest();
+  }
+}
+@media (max-width: 544px) {
+  .wrap {
+    // @include test();
+    justify-content: space-between;
   }
 }
