@@ -38,32 +38,47 @@
     }
   }
 }
-@media (max-width: 910px) {
+@media (min-width: 375px) and (max-width: 530px) {
   .wrap {
-    background-position: center;
+    background-position: center bottom;
+    // background-size: cover;
     // background-position-y: -3.2em;
-    // background-size: 63%;
+    // background-size: 120%;
     // background-blend-mode: darken;
     .content {
       justify-content: flex-start;
       // @include test();
       width: 100%;
       text-align: center;
-      padding-top: 1em;
+      padding-top: 5em;
       // gap: 2em;
     }
   }
 }
-@media (max-width: 1219px) {
+@media (min-width: 531px) and (max-width: 845px) {
   .wrap {
-    background-size: 63%;
+    background-size: 73%;
     background-position: bottom center;
     .content {
       justify-content: flex-start;
       // @include test();
       width: 100%;
       text-align: center;
-      padding-top: 1em;
+      padding-top: 5em;
+      // gap: 2em;
+    }
+  }
+}
+@media (min-width: 846px) and (max-width: 1180px) {
+  .wrap {
+    background-size: 53%;
+    background-position: bottom center;
+    .content {
+      justify-content: flex-start;
+      // @include test();
+      width: 100%;
+      text-align: center;
+      padding-top: 5em;
       // gap: 2em;
     }
   }

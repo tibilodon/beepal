@@ -50,3 +50,12 @@
     @include mix.button($honeyCol, 20em);
   }
 }
+@media (max-height: 680px) {
+  .wrap {
+    // @include test();
+    justify-content: center;
+    height: 78vh;
+
+    // height: 50%;
+  }
+}

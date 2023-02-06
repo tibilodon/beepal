@@ -2,8 +2,9 @@
 @use "../vars" as *;
 
 .wrap {
-  height: calc(100vh - 5em);
+  // height: calc(100vh - 5em);
   // @include rtest();
+  padding-top: 0.2em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,5 +24,15 @@
     padding: 1em;
     // padding-bottom: 1em;
     // height: 100vh;
+  }
+}
+@media (max-height: 680px) {
+  .wrap {
+    // height: 100%;
+    .content {
+      flex-direction: column;
+      height: 100%;
+      // @include rtest();
+    }
   }
 }
