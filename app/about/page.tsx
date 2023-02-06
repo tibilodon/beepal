@@ -10,14 +10,15 @@ const About = () => {
       <div className={styles.content}>
         <h1>Rólunk</h1>
         <p>
-          A <span>Hingyi Méhészet</span> egy hobbinak indult. A méhek
+          "A <span>Hingyi Méhészet</span> egy hobbinak indult. A méhek
           együttműködése és annak gyümölcse azonban mára már több embert is
           képes ellátni mint a tulajdonost és családját, barátait. 2021-ben
           Méhészmesterré váltam, így az eddig is első helyen álló, fenntartható
           fejlődés még nagyobb tudatossággal segíthető. Minden "pergetés" előtt
           figyelembe vesszük az időjárást és az adott évszakot, ezzel is
-          minimalizálva a méhek terhelését. Hingyi Pál, a Hingyi Méhészet
-          tulajdonosa
+          minimalizálva a méhek terhelését."
+          <br />
+          <h5> Hingyi Pál, a Hingyi Méhészet tulajdonosa</h5>
         </p>
         <Image
           alt="picture of a beekeeper surrounded by hives"

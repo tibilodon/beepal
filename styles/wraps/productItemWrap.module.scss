@@ -2,11 +2,12 @@
 @use "../mixins" as mix;
 
 .wrap {
-  // @include rtest();
   height: calc(100vh - 5em);
   display: flex;
   align-items: center;
   width: 100%;
+  // height: 100%;
+  // height: 100vh;
   .content {
     // @include gtest();
     height: 100%;
@@ -77,5 +78,31 @@
       // // @include test();
       padding: 1em;
     }
+  }
+}
+@media (max-width: 400px) {
+  .wrap {
+    max-width: 100%;
+    padding-top: 8em;
+    // overflow: hidden;
+    @include rtest();
+    height: 100%;
+    .content {
+      // @include rtest();
+      // height: fit-content;
+    }
+    .item {
+      .icon {
+        .taste {
+        }
+        .benefits {
+        }
+      }
+    }
+  }
+}
+@media (min-width: 401px) and (max-width: 500px) {
+  .wrap {
+    padding-top: 18%;
   }
 }

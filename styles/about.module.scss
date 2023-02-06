@@ -4,7 +4,7 @@
 .wrap {
   // position: relative;
   width: 100%;
-  // @include rtest();
+  @include rtest();
   height: 100vh;
   display: flex;
   justify-content: space-around;
@@ -56,4 +56,18 @@
   //   object-fit: contain;
   //   // object-position: center;
   // }
+}
+@media (max-width: 680px) {
+  .wrap {
+    flex-direction: column;
+
+    .content {
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .logo {
+    display: none;
+  }
 }

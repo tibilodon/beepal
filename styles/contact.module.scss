@@ -46,3 +46,19 @@
     }
   }
 }
+@media (max-width: 970px) {
+  .wrap {
+    background-image: none;
+    align-items: center;
+    .content {
+      // gap: 1em;
+      margin: 0;
+      width: 100%;
+      padding: 1em;
+      // @include test();
+      iframe {
+        width: 80%;
+      }
+    }
+  }
+}
