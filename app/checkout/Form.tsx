@@ -120,7 +120,7 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
           <input
             type="hidden"
             name="_next"
-            value="http://localhost:3000/order"
+            value="https://hingyi-meheszet.vercel.app/order"
           />
           {/*TODO:*/}
           <div className={styles.item}>

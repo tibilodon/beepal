@@ -32,7 +32,7 @@ const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
     <>
       <div className={styles.wrap}>
         <div className={styles.content}>
-          <Image alt="product image" src={img} />
+          <Image alt="product image" src={img} priority />
         </div>
         <div className={styles.item}>
           <div>

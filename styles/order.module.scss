@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   background-color: $dBgCol;
-  @include test();
+  // @include test();
   .content {
     padding: 0.2em;
     width: 80%;
