@@ -21,80 +21,82 @@ const Checkout: React.FC<any> = () => {
   // console.log(colza);
   return (
     <>
-      <h1>Kosár</h1>
-      <div className={styles.wrap}>
-        <div className={styles.content}>
-          {acacia ? (
-            <>
-              <div className={styles.item}>
-                <Image
-                  className={styles.img}
-                  alt="a jar of acacia honey"
-                  src={acaciaImg}
-                />
-                <AmountSelect
-                  name="acacia"
-                  amount={Number(acacia.value)}
-                  value={4000}
-                />
-                <Clearer cookieName="acacia" />
-              </div>
-            </>
-          ) : null}
-          {mixed ? (
-            <>
-              <div className={styles.item}>
-                <Image
-                  className={styles.img}
-                  alt="a jar of acacia honey"
-                  src={mixedImg}
-                />
-                <AmountSelect
-                  name="mixed"
-                  amount={Number(mixed.value)}
-                  value={3000}
-                />
-                <Clearer cookieName="mixed" />
-              </div>
-            </>
-          ) : null}{" "}
-          {colza ? (
-            <>
-              <div className={styles.item}>
-                <Image
-                  className={styles.img}
-                  alt="a jar of acacia honey"
-                  src={colzaImg}
-                />
-                {/*  */}
-                <AmountSelect
-                  name="colza"
-                  amount={Number(colza.value)}
-                  value={3500}
-                />
-                <Clearer cookieName="colza" />
-              </div>
-            </>
-          ) : null}
-          {!acacia && !colza && !mixed && <h1>Üres</h1>}
-        </div>
+      <div className={styles.fullWrap}>
+        <h1 className={styles.h1}>Kosár</h1>
+        <div className={styles.wrap}>
+          <div className={styles.content}>
+            {acacia ? (
+              <>
+                <div className={styles.item}>
+                  <Image
+                    className={styles.img}
+                    alt="a jar of acacia honey"
+                    src={acaciaImg}
+                  />
+                  <AmountSelect
+                    name="acacia"
+                    amount={Number(acacia.value)}
+                    value={4000}
+                  />
+                  <Clearer cookieName="acacia" />
+                </div>
+              </>
+            ) : null}
+            {mixed ? (
+              <>
+                <div className={styles.item}>
+                  <Image
+                    className={styles.img}
+                    alt="a jar of acacia honey"
+                    src={mixedImg}
+                  />
+                  <AmountSelect
+                    name="mixed"
+                    amount={Number(mixed.value)}
+                    value={3000}
+                  />
+                  <Clearer cookieName="mixed" />
+                </div>
+              </>
+            ) : null}{" "}
+            {colza ? (
+              <>
+                <div className={styles.item}>
+                  <Image
+                    className={styles.img}
+                    alt="a jar of acacia honey"
+                    src={colzaImg}
+                  />
+                  {/*  */}
+                  <AmountSelect
+                    name="colza"
+                    amount={Number(colza.value)}
+                    value={3500}
+                  />
+                  <Clearer cookieName="colza" />
+                </div>
+              </>
+            ) : null}
+            {!acacia && !colza && !mixed && <h1>Üres</h1>}
+          </div>
 
-        {/* {!acacia && !colza && !mixed ? null : (
-          <div className={styles.formWrap}>
+          {!acacia && !colza && !mixed ? null : (
+            <div className={styles.formWrap}>
+              <Form
+                acacia={acacia ? acacia : null}
+                mixed={mixed ? mixed : null}
+                colza={colza ? colza : null}
+              />
+            </div>
+          )}
+          {/*TODO:for testing use the one below, otherwise opposite*/}
+          {/* <div className={styles.formWrap}>
             <Form
               acacia={acacia ? acacia : null}
               mixed={mixed ? mixed : null}
               colza={colza ? colza : null}
             />
-          </div>
-        )} */}
-        {/*TODO:for testing use the one below, otherwise opposite*/}
-        <div className={styles.formWrap}>
-          <Form
-            acacia={acacia ? acacia : null}
-            mixed={mixed ? mixed : null}
-            colza={colza ? colza : null}
-          />
+          </div> */}
         </div>
       </div>
     </>

@@ -34,7 +34,9 @@ export default function RootLayout({
           felbontású készülék szükséges.
         </h1>
         <div className={styles.mobile}> */}
-        <Header />
+        <div className={styles.fixed}>
+          <Header />
+        </div>
 
         <div className={styles.container}>
           {children}

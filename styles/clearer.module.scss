@@ -4,6 +4,9 @@
 .wrap {
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+  button {
+    padding: 0;
+  }
   .content {
     outline: solid;
     // outline-color: $dBgCol;

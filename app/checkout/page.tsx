@@ -1,5 +1,4 @@
 import React from "react";
-import Wrap from "./Wrap";
 import Checkout from "./Checkout";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,7 +17,9 @@ const ServerWrap = () => {
   // console.log(acacia);
   return (
     <div className={styles.wrap}>
-      <Checkout />
+      <div>
+        <Checkout />
+      </div>
       <div className={styles.content}>
         <Continue />
       </div>
