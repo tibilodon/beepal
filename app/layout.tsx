@@ -29,11 +29,6 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        {/* <h1 className={styles.mobileProt}>
-          Az oldal fejlesztés alatt. Használatához (jelenleg), minimum 905*650px
-          felbontású készülék szükséges.
-        </h1>
-        <div className={styles.mobile}> */}
         <div className={styles.fixed}>
           <Header />
         </div>

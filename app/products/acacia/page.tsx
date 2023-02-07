@@ -16,7 +16,7 @@ const Acacia: React.FC<any> = () => {
   const productName = "Akác Méz";
   const productPrice = "4000 Ft / kg";
   const taste = "Kellemes, tavaszi érzést keltő ízélmény";
-  const benefits = "Torokfájás és légúti megbetegedések enyhítésére";
+  const benefits = "Torokfájás és légúti panaszok enyhítésére";
   const description = `Az akácméz világos és tiszta színű, amely az akácvirágzás gyümölcse.
             Különös odafigyelés és előkészület gondoskodik arról, hogy a
             kitermelés során az akácméz nem keveredik más virágok nektárjával.

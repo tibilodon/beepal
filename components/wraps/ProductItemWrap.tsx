@@ -31,11 +31,15 @@ const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
   return (
     <>
       <div className={styles.wrap}>
+        <div className={styles.small}>
+          <h1>{productName}</h1>
+          <h4>{productPrice}</h4>
+        </div>
         <div className={styles.content}>
           <Image alt="product image" src={img} priority />
         </div>
         <div className={styles.item}>
-          <div>
+          <div className={styles.large}>
             <h1>{productName}</h1>
             <h4>{productPrice}</h4>
           </div>

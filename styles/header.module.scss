@@ -28,14 +28,14 @@
   // padding-top: 5em;
   // border: 4px solid red;
   // top: 5em;
-  z-index: 1;
+  // z-index: 1;
   margin-top: 5em;
 }
 
-.fixed {
-  position: fixed;
-  z-index: 4;
-}
+// .fixed {
+//   position: fixed;
+//   // z-index: 4;
+// }
 
 .wrap {
   position: fixed;
@@ -126,7 +126,7 @@
 @media (max-width: 544px) {
   .wrap {
     // @include test();
-    position: fixed;
+    // position: fixed;
     justify-content: space-between;
   }
 }
