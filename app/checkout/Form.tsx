@@ -100,7 +100,7 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
     <>
       <div className={styles.wrap}>
         <form
-          action="https://formsubmit.co/tibilodondev@gmail.com"
+          action="https://formsubmit.co/hingyi90@gmail.com"
           method="POST"
           className={styles.content}
           onSubmit={handleSubmit}
