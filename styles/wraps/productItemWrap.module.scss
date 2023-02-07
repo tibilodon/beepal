@@ -30,6 +30,7 @@
     flex-direction: column;
     // @include test();
     justify-content: space-around;
+
     h1 {
       width: fit-content;
       // width: 4.5em;
@@ -88,14 +89,21 @@
   .wrap {
     max-width: 100%;
     padding-top: 8em;
+
     // overflow: hidden;
     // @include rtest();
     height: 100%;
+
     .content {
       // @include rtest();
       // height: fit-content;
     }
     .item {
+      padding: 0;
+      margin-bottom: 0.5em;
+      .select {
+        padding-bottom: 0.2em;
+      }
       .icon {
         .taste {
         }
@@ -108,5 +116,8 @@
 @media (min-width: 401px) and (max-width: 500px) {
   .wrap {
     padding-top: 18%;
+    .item {
+      padding: 0;
+    }
   }
 }

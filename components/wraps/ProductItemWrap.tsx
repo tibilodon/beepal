@@ -50,11 +50,13 @@ const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
             </div>
           </div>
           <p>{description}</p>
-          <Select
-            cookieProp={selectCookieProp}
-            amount={stockAmount}
-            name={selectName}
-          />
+          <div className={styles.select}>
+            <Select
+              cookieProp={selectCookieProp}
+              amount={stockAmount}
+              name={selectName}
+            />
+          </div>
         </div>
       </div>
     </>
