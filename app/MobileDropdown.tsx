@@ -1,7 +1,7 @@
+import Link from "next/link";
 import React from "react";
 import styles from "@/styles/mobileDropdown.module.scss";
 import arrowDownIcon from "@/assets/arrow_drop_down.svg";
-import Link from "next/link";
 import Image from "next/image";
 
 const MobileDropdown = () => {

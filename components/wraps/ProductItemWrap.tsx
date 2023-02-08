@@ -4,6 +4,7 @@ import Image from "next/image";
 import tasteIcon from "@/assets/taste.svg";
 import benefitsIcon from "@/assets/benefits2.png";
 import Select from "../Select";
+import ForceScrollOnTop from "../ForceSrollOnTop";
 
 interface ProductItemWrapProps {
   img: any;
@@ -30,6 +31,8 @@ const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
 }) => {
   return (
     <>
+      <ForceScrollOnTop />
+
       <div className={styles.wrap}>
         <div className={styles.small}>
           <h1>{productName}</h1>

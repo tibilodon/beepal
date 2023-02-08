@@ -28,11 +28,14 @@ const Checkout: React.FC<any> = () => {
             {acacia ? (
               <>
                 <div className={styles.item}>
-                  <Image
-                    className={styles.img}
-                    alt="a jar of acacia honey"
-                    src={acaciaImg}
-                  />
+                  <div className={styles.product}>
+                    <h2>Akác Méz</h2>
+                    <Image
+                      className={styles.img}
+                      alt="a jar of acacia honey"
+                      src={acaciaImg}
+                    />
+                  </div>
                   <AmountSelect
                     name="acacia"
                     amount={Number(acacia.value)}
@@ -45,11 +48,14 @@ const Checkout: React.FC<any> = () => {
             {mixed ? (
               <>
                 <div className={styles.item}>
-                  <Image
-                    className={styles.img}
-                    alt="a jar of acacia honey"
-                    src={mixedImg}
-                  />
+                  <div className={styles.product}>
+                    <h2>Vegyes méz</h2>
+                    <Image
+                      className={styles.img}
+                      alt="a jar of mixed honey"
+                      src={mixedImg}
+                    />
+                  </div>
                   <AmountSelect
                     name="mixed"
                     amount={Number(mixed.value)}
@@ -62,11 +68,14 @@ const Checkout: React.FC<any> = () => {
             {colza ? (
               <>
                 <div className={styles.item}>
-                  <Image
-                    className={styles.img}
-                    alt="a jar of acacia honey"
-                    src={colzaImg}
-                  />
+                  <div className={styles.product}>
+                    <h2>Repce Méz</h2>
+                    <Image
+                      className={styles.img}
+                      alt="a jar of colza honey"
+                      src={colzaImg}
+                    />
+                  </div>
                   {/*  */}
                   <AmountSelect
                     name="colza"

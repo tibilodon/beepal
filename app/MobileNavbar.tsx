@@ -3,7 +3,6 @@ import { useState } from "react";
 import icon from "@/assets/menuIcon.svg";
 import Image from "next/image";
 import styles from "@/styles/mobileNav.module.scss";
-import Link from "next/link";
 import MobileDropdown from "./MobileDropdown";
 
 const MobileNavbar: React.FC<any> = () => {
