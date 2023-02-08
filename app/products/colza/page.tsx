@@ -16,8 +16,8 @@ const Colza: React.FC<any> = () => {
   const productPrice = "3500 Ft / kg";
   const taste = "Kellemesen krémes, sejmes íz a repce enyhe savasságával";
   const benefits = "Immunerősítő, gyomorbántalmakra különösen pozitív hatású";
-  const description =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, quaerat, eaque voluptate error vitae corporis culpa quod impedit voluptatibus recusandae neque sunt illum. Adipisci, commodi nobis debitis animi voluptate tenetur.";
+  const description = `A frissen pergetett repce méz: halványsárga színű, enyhe zamatú, édes illatú méz. Erősen hajlamos kristályosodásra, ilyenkor kifehéredik és nagyon finom szemcsés állagot kap. A kristályosodás gyorsasága függ a hőmérséklettől, illetve a szűréshez felmelegített repce, sokkal nehezebben kristályosodik vissza. Lúgos kémhatása miatt a legalkalmasabb méhészeti termék a gyomorproblémákkal küzdők körében.
+Kísérletek bizonyítják, hogy a repceméz magas szőlőcukortartalma serkenti a gondolkodást, javítja a memóriát, segíti az információk rögzülését, vagyis a tanulást.`;
   return (
     <>
       <ProductItemWrap
