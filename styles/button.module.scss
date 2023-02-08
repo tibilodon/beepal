@@ -13,3 +13,7 @@
 // .wrap:focus {
 //   @include mix.buttonFocus();
 // }
+.wrap:disabled,
+.wrap[disabled] {
+  opacity: 0.4;
+}

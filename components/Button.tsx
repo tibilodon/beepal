@@ -12,7 +12,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ onClick, text, type, disabled }) => {
   return (
     <>
-      <button className={styles.wrap} onClick={onClick}>
+      <button disabled={disabled} className={styles.wrap} onClick={onClick}>
         {text}
       </button>
     </>

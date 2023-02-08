@@ -6,6 +6,7 @@ import prod2 from "@/assets/prod2.jpg";
 import prod3 from "@/assets/prod3.jpg";
 import prod from "@/assets/acacia.png";
 import test from "@/assets/test.png";
+import oosColza from "@/assets/oosColza.jpg";
 
 interface ProductsProps {
   props: any;
@@ -30,7 +31,7 @@ const Products: React.FC<ProductsProps> = () => {
           <Card
             title="Repce Méz"
             value={3500}
-            src={prod1}
+            src={oosColza}
             path="/products/colza"
           />
           {/* </div>

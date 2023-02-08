@@ -12,9 +12,10 @@ interface SelectProps {
   name: string;
   amount: number;
   cookieProp: number;
+  oos?: boolean;
 }
 
-const Select: React.FC<SelectProps> = ({ name, amount, cookieProp }) => {
+const Select: React.FC<SelectProps> = ({ name, amount, cookieProp, oos }) => {
   let valArr: any = [];
   for (let index = 1; index <= amount; index++) {
     valArr.push(index);
@@ -46,7 +47,7 @@ const Select: React.FC<SelectProps> = ({ name, amount, cookieProp }) => {
             );
           })}
       </select>
-      <Button text="Kosárba" onClick={handleSubmit} />
+      <Button text="Kosárba" onClick={handleSubmit} disabled={oos} />
     </div>
   );
 };

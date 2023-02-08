@@ -1,6 +1,7 @@
 import React from "react";
 import ProductItemWrap from "@/components/wraps/ProductItemWrap";
 import img from "@/assets/prod.jpg";
+import oosImg from "@/assets/oosColza.jpg";
 import { cookies } from "next/headers";
 
 const Colza: React.FC<any> = () => {
@@ -11,6 +12,7 @@ const Colza: React.FC<any> = () => {
   if (colza) {
     colzaValue = Number(colza.value);
   }
+  const oos = true;
   const selectName = "colza";
   const productName = "Repce Méz";
   const productPrice = "3500 Ft / kg";
@@ -21,7 +23,7 @@ Kísérletek bizonyítják, hogy a repceméz magas szőlőcukortartalma serkenti
   return (
     <>
       <ProductItemWrap
-        img={img}
+        img={oosImg}
         selectName={selectName}
         selectCookieProp={colzaValue}
         benefits={benefits}
@@ -30,6 +32,7 @@ Kísérletek bizonyítják, hogy a repceméz magas szőlőcukortartalma serkenti
         productPrice={productPrice}
         taste={taste}
         stockAmount={3}
+        oos={oos}
       />
     </>
   );

@@ -16,6 +16,7 @@ interface ProductItemWrapProps {
   description: string;
   stockAmount: number;
   selectCookieProp: number;
+  oos?: boolean;
 }
 
 const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
@@ -28,6 +29,7 @@ const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
   description,
   stockAmount,
   selectCookieProp,
+  oos,
 }) => {
   return (
     <>
@@ -62,6 +64,7 @@ const ProductItemWrap: React.FC<ProductItemWrapProps> = ({
               cookieProp={selectCookieProp}
               amount={stockAmount}
               name={selectName}
+              oos={oos}
             />
           </div>
         </div>
