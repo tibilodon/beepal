@@ -3,13 +3,11 @@
 
 .wrap {
   position: fixed;
-  // top: 90vh;
   bottom: 0;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  // @include test();
   outline: 1px solid $blackCol;
   padding: 0.2em 3em;
   background-color: $dBgCol;

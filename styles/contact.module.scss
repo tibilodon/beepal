@@ -4,7 +4,6 @@
 .h1 {
   text-align: center;
   padding: 0.4em;
-  // text-decoration: underline;
 }
 .wrap {
   background-image: url("../assets/beepalogo5.png");
@@ -14,14 +13,10 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  // align-items: center;
   justify-content: center;
-  // @include test();
-
   .content {
     margin: 0 0 1em 5%;
     display: flex;
-    // @include rtest();
     width: 50%;
     height: 100%;
     h4 {
@@ -38,11 +33,9 @@
       border: none;
     }
     .item {
-      // @include gtest();
       display: flex;
       flex-direction: column;
       justify-content: center;
-      // align-items: center;
     }
   }
 }
@@ -51,11 +44,9 @@
     background-image: none;
     align-items: center;
     .content {
-      // gap: 1em;
       margin: 0;
       width: 100%;
       padding: 1em;
-      // @include test();
       iframe {
         width: 80%;
       }

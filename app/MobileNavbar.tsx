@@ -15,7 +15,6 @@ const MobileNavbar: React.FC<any> = () => {
   return (
     <>
       <div onClick={activeHandler} className={styles.wrap}>
-        {/* <h1>Menu</h1> */}
         <Image alt="home icon" src={icon} />
       </div>
       <div

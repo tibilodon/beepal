@@ -26,14 +26,9 @@ const AmountSelect: React.FC<AmountSelectProps> = ({ amount, value, name }) => {
     if (selectedAmount >= 2) {
       setSelectedAmount(selectedAmount - 1);
       setCookie(name, selectedAmount - 1);
-
       router.refresh();
     }
   };
-  // const onClickHandler = () => {
-  //   setCookie("acacia", 5);
-  //   router.refresh();
-  // };
 
   return (
     <>
@@ -57,7 +52,6 @@ const AmountSelect: React.FC<AmountSelectProps> = ({ amount, value, name }) => {
           </div>
         </div>
         <h4>Egységár: {selectedAmount * selectedValue} Ft</h4>
-        {/* <button onClick={onClickHandler}>test acacia set to 2</button> */}
       </div>
     </>
   );

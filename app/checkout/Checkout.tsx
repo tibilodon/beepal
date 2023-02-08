@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Clearer from "./Clearer";
 import { cookies } from "next/headers";
 import styles from "@/styles/checkoutProducts.module.scss";
@@ -9,7 +8,6 @@ import mixedImg from "@/assets/mixed.png";
 import colzaImg from "@/assets/prod.jpg";
 import AmountSelect from "@/components/AmountSelect";
 import Form from "./Form";
-import Loader from "@/components/loader/Loader";
 
 const Checkout: React.FC<any> = () => {
   const nextCookies = cookies();
@@ -17,8 +15,6 @@ const Checkout: React.FC<any> = () => {
   const acacia: any = nextCookies.get("acacia") || 0;
   const colza: any = nextCookies.get("colza") || 0;
   const mixed: any = nextCookies.get("mixed") || 0;
-  const allsh = nextCookies.getAll();
-  // console.log(colza);
   return (
     <>
       <div className={styles.fullWrap}>
@@ -98,14 +94,6 @@ const Checkout: React.FC<any> = () => {
               />
             </div>
           )}
-          {/*TODO:for testing use the one below, otherwise opposite*/}
-          {/* <div className={styles.formWrap}>
-            <Form
-              acacia={acacia ? acacia : null}
-              mixed={mixed ? mixed : null}
-              colza={colza ? colza : null}
-            />
-          </div> */}
         </div>
       </div>
     </>

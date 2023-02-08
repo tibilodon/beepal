@@ -2,13 +2,10 @@
 @use "./vars" as *;
 
 .wrap {
-  // @include test();
   @include mix.button($bgCol, 8em);
   display: flex;
   align-items: center;
   position: relative;
-  // margin-right: 1em;
-  // right: 1em;
 
   .quantity {
     border: 1px solid $blackCol;
@@ -27,6 +24,3 @@
 .wrap:hover {
   @include mix.buttonHover();
 }
-// .wrap:focus {
-//   @include mix.buttonFocus();
-// }

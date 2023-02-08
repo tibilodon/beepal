@@ -37,7 +37,6 @@ export default function RootLayout({
           {children}
           {cookie?.value ? null : <CookieFooter />}
         </div>
-        {/* </div> */}
       </body>
     </html>
   );

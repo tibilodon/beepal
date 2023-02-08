@@ -9,18 +9,15 @@
   align-items: center;
   justify-content: center;
   background-color: $dBgCol;
-  // @include test();
   .content {
     padding: 0.2em;
     width: 80%;
     height: 70%;
-    // @include rtest();
     background-color: $bgCol;
     span {
       color: $honeyCol;
     }
     .img {
-      // @include gtest();
       width: 16em;
       height: 16em;
     }

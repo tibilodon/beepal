@@ -5,68 +5,46 @@
   background-color: $dBgCol;
   display: flex;
   flex-direction: column;
-  width: 100%; // max-width: 30%;
+  width: 100%;
   height: 100%;
-  // @include test();
   padding: 0.3em;
   .price {
-    // @include test();
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    // align-self: flex-end;
   }
   h3 {
     padding: 0.7em 0 0.7em 0.2em;
     text-decoration: underline;
     text-align: left;
   }
-
   h2 {
     padding: 0.3em;
     text-align: right;
     width: 100%;
   }
   .content {
-    // @include rtest();
     height: 100%;
     width: 100%;
-    // gap: 0.2em;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
     justify-content: space-between;
     .item {
-      // padding: 1em;
-      // gap: 1em;
       width: 100%;
-      // height: 100%;
-      // padding: 0.2em;
-      // gap: 0.2em;
-      // @include test();
       width: 100%;
-
       .personal {
         padding: 0.2em 0 0.2em 0;
-        // padding: 1em;
-
-        // @include rtest();
         display: flex;
         flex-direction: column;
         gap: 0.2em;
       }
       .post {
         padding: 0.2em 0 0.2em 0;
-        // padding: 1em;
-
-        // @include rtest();
         display: flex;
         gap: 0.2em;
         .postItem {
-          // @include rtest();
           width: 48%;
         }
       }

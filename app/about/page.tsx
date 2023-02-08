@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import img from "@/assets/test2.jpg";
+import img from "@/assets/aboutImg.jpg";
 import styles from "@/styles/about.module.scss";
 import logo from "@/assets/beepalogo5.png";
 

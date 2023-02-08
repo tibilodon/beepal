@@ -86,7 +86,6 @@ const Form: React.FC<FormProps> = ({ acacia, mixed, colza }) => {
     quantitySetter();
   }, [acacia, mixed, colza]);
 
-  // console.log(finalValue);
   const handleSubmit = () => {
     console.log("SUBMITTED AS:", form);
     deleteCookie("acacia");

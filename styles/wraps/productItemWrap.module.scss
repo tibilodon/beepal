@@ -2,24 +2,20 @@
 @use "../mixins" as mix;
 
 .wrap {
-  // height: calc(100vh - 5em);
   display: flex;
   align-items: center;
   width: 100%;
   height: 100%;
-  // height: 100vh;
   .small {
     display: none;
   }
   .content {
-    // @include gtest();
     height: 100%;
     min-width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
     img {
-      // @include test();
       display: block;
       object-fit: contain;
       max-width: 100%;
@@ -31,30 +27,21 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    // @include test();
     justify-content: space-around;
 
     h1 {
       width: fit-content;
-      // width: 4.5em;
-      // @include test();
       margin-bottom: 0.2em;
       font-size: 3em;
-      // outline: 1px solid black;
       border-bottom: 0.5px solid $blackCol;
-      // outline-offset: 1px;
-      // text-decoration: 1px underline;
     }
     .icon {
       display: flex;
       justify-content: space-around;
-      // align-items: center;
       text-align: center;
       width: 100%;
       padding: 1em;
-      gap: 1em; // margin: 1em;
-      // @include rtest();
-      // max-height: 2em;
+      gap: 1em;
       .taste,
       .benefits {
         max-width: 50%;
@@ -64,14 +51,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        // @include rtest();
         gap: 0.1em;
         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-        // padding: auto;
-        // margin: 0.5em;
-        // border-right: 0.5px solid $blackCol;
         h5 {
-          // @include rtest();
           margin: 0.4em;
         }
       }
@@ -80,10 +62,8 @@
         width: 2em;
         max-height: 2em;
       }
-      // }
     }
     p {
-      // // @include test();
       padding: 1em;
     }
   }
@@ -91,89 +71,52 @@
 @media (max-width: 400px) {
   .wrap {
     flex-direction: column;
-    // height: calc(100vh - 5em);
     margin-top: 8em;
-
-    // display: grid;
-    // grid-template-rows: 2;
-    // max-width: 100%;
-    // padding-top: 8em;
-    // height: fit-content;
-    // overflow: hidden;
     justify-content: space-around;
-    // @include rtest();
-    // min-height: 100%;
-    // @include test();
-
-    // z-index: -1;
     .small {
       display: flex;
       flex-direction: column;
-      // // @include gtest();
       h1 {
         width: fit-content;
-        // width: 4.5em;
-        // // @include test();
         margin-bottom: 0.2em;
         font-size: 3em;
-        // outline: 1px solid black;
         border-bottom: 0.5px solid $blackCol;
-        // outline-offset: 1px;
-        // text-decoration: 1px underline;
       }
     }
     .content {
       height: 30%;
       width: 50%;
-      // // @include rtest();
-      // height: fit-content;
       img {
-        // @include test();
       }
     }
     .item {
       min-height: 100%;
-      // height: 80%;
       padding: 0;
       margin: 0;
-      // margin-bottom: 0.5em;
-      // @include rtest();
-      // width: 70%;
       .large {
         display: none;
       }
       h1 {
-        // // @include rtest();
       }
       .select {
         padding: 1em;
-        // padding-bottom: 0.2em;
       }
       .icon {
         align-items: center;
-        // @include rtest();
         width: 100%;
         padding: 0;
         gap: 0;
         margin: 0;
         .benefits {
           height: 100%;
-          // padding: 0;
-          // gap: 0;
-          // margin: 0;
           img {
-            // // @include rtest();
           }
           h5 {
-            // // @include test();
             height: 100%;
             max-width: none;
             width: 100%;
             margin: 0;
             line-break: strict;
-            // width: 60%;
-            // padding: 1em;
-            // margin: 1em;
           }
         }
         .taste {
@@ -184,8 +127,6 @@
 }
 @media (min-width: 401px) and (max-width: 500px) {
   .wrap {
-    // // @include gtest();
-    // padding-top: 18%;
     .item {
       padding: 0;
     }

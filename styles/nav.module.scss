@@ -2,13 +2,10 @@
 @use "./vars" as *;
 
 .wrap {
-  // @include test();
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // position: fixed;
-  // @include test();
   .buttonWrap {
     gap: 1em;
     padding: 0.2em;
@@ -17,7 +14,6 @@
   }
   .basket {
     margin-right: 1em;
-    // @include rtest();
   }
 }
 @media (max-width: 668px) {
@@ -25,17 +21,12 @@
     .buttonWrap {
       gap: 0;
       flex-wrap: wrap;
-      // justify-content: center;
     }
     .basket {
       margin: 0.2em;
     }
   }
 }
-// .active {
-//   outline: 2px solid $activeCol;
-//   border-radius: 4px;
-// }
 @media (max-width: 544px) {
   .wrap {
     display: none;

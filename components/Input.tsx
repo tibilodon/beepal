@@ -12,7 +12,6 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({ type, placeholder, onChange, name }) => {
   return (
     <>
-      {/* <div className={styles.wrap}> */}
       <input
         className={styles.content}
         type={type}
@@ -21,7 +20,6 @@ const Input: React.FC<InputProps> = ({ type, placeholder, onChange, name }) => {
         name={name}
         required
       />
-      {/* </div> */}
     </>
   );
 };

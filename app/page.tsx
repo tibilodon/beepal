@@ -16,7 +16,6 @@ const Home: React.FC<any> = () => {
             <Button text="Vásárlás" />
           </Link>
         </div>
-        {/* <CookieFooter /> */}
       </div>
     </>
   );

@@ -6,10 +6,8 @@ import Link from "next/link";
 import Basket from "@/components/Basket";
 import ActiveClassWrap from "@/components/wraps/ActiveClassWrap";
 import MobileNavbar from "./MobileNavbar";
-// export const dynamic = "force-dynamic";
 
 const Header = () => {
-  // const link = Link();
   return (
     <>
       <div className={styles.wrap}>
@@ -25,7 +23,6 @@ const Header = () => {
             src={logo}
           />
         </Link>
-        {/*breaking point: 544px*/}
         <Navbar />
         <div className={styles.cart}>
           <ActiveClassWrap refresh={true} checkPath={"/checkout"}>

@@ -2,7 +2,6 @@
 @use "./vars" as *;
 
 .wrap {
-  // @include test();
   gap: 1em;
   display: flex;
   button {

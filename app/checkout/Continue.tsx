@@ -5,7 +5,6 @@ import styles from "@/styles/continue.module.scss";
 import arrow from "@/assets/backArrowIcon.svg";
 import Button from "@/components/Button";
 
-//TODO: ----add  location.reload() if state/fetch is struggling
 
 const Continue = () => {
   return (

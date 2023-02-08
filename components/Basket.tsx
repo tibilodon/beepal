@@ -3,15 +3,11 @@ import icon from "@/assets/emptyCart.svg";
 import Image from "next/image";
 import { cookies } from "next/headers";
 
-// export const dynamic = "force-dynamic";
-// export const revalidate = 5;
-
 interface BasketProps {
   vals?: {
     name: string;
     value: any;
   };
-  // quantity: any;
 }
 
 const Basket: React.FC<BasketProps> = () => {
@@ -20,8 +16,6 @@ const Basket: React.FC<BasketProps> = () => {
   const acacia: any = nextCookies.get("acacia");
   const colza: any = nextCookies.get("colza");
   const mixed: any = nextCookies.get("mixed");
-  // const all = nextCookies.getAll();
-  // console.log(all);
 
   //all items in cart
   let cartItems: number = 0;
@@ -39,7 +33,7 @@ const Basket: React.FC<BasketProps> = () => {
     mixedValue = Number(mixed.value);
   }
   cartItems = acaciaValue + colzaValue + mixedValue;
-  //value of those items
+  //price of those items
   let acaciaAmount = acaciaValue * 4000;
   let colzaAmount = colzaValue * 3500;
   let mixedAmount = mixedValue * 3000;

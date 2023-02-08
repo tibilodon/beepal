@@ -1,14 +1,6 @@
 @use "./mixins" as mix;
 @use "./vars" as *;
 
-// .wrap {
-//   width: 100%;
-//   // @include test();
-//   padding: 0.5em;
-//   // border: none;
-
-//   // column-fill: auto;
-// }
 .content {
   padding: 0.6em;
   width: 100%;

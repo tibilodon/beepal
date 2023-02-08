@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   background-color: $bgCol;
-  // display: flex;
   background-image: url("../assets/homeImg.jpg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -13,26 +12,20 @@
   width: 100%;
   height: 100%;
   background-blend-mode: darken;
-  // gap: 10em;
-  // @include rtest();
 
   button {
     @include mix.button($honeyCol, 8em);
   }
   span {
-    // color: $honeyCol;
   }
   .content {
-    // padding-top: 5em;
     height: 100%;
     width: 50%;
     gap: 1em;
-    // padding-left: 5em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // @include test();
     .h2 {
       color: $honeyCol;
     }
@@ -41,17 +34,11 @@
 @media (max-width: 530px) {
   .wrap {
     background-position: center bottom;
-    // background-size: cover;
-    // background-position-y: -3.2em;
-    // background-size: 120%;
-    // background-blend-mode: darken;
     .content {
       justify-content: flex-start;
-      // @include test();
       width: 100%;
       text-align: center;
       padding-top: 5em;
-      // gap: 2em;
     }
   }
 }
@@ -61,11 +48,9 @@
     background-position: bottom center;
     .content {
       justify-content: flex-start;
-      // @include test();
       width: 100%;
       text-align: center;
       padding-top: 5em;
-      // gap: 2em;
     }
   }
 }
@@ -75,11 +60,9 @@
     background-position: bottom center;
     .content {
       justify-content: flex-start;
-      // @include test();
       width: 100%;
       text-align: center;
       padding-top: 5em;
-      // gap: 2em;
     }
   }
 }

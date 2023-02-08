@@ -4,9 +4,6 @@
 .wrap {
   display: flex;
   align-items: center;
-
-  // @include test();
-
   .content {
     border-radius: 99px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
@@ -14,9 +11,6 @@
     display: flex;
     flex-direction: column;
     margin: 0.3em;
-    // @include gtest();
-    // width: 3em;
-    // justify-content: center;
     align-items: center;
     div {
       display: flex;
@@ -24,7 +18,6 @@
         cursor: pointer;
         width: 2em;
         height: 2em;
-        // border: none;
       }
       .img:hover {
         filter: invert(29%) sepia(77%) saturate(1903%) hue-rotate(347deg)

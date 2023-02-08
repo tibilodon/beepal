@@ -1,4 +1,5 @@
 "use client";
+//solution to nexts Link component's scrolling behaviour
 
 import { useEffect } from "react";
 

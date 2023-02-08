@@ -1,13 +1,11 @@
 @use "../vars" as var;
 
 @mixin button($bgCol, $width) {
-  // cursor: pointer;
   background-color: $bgCol;
   border: 1px solid $bgCol;
   border-radius: 4px;
   color: var.$blackCol;
   font-family: arial, sans-serif;
-  // font-size: 1em;
   height: 2.5em;
   line-height: 1em;
   max-width: $width;
@@ -22,6 +20,5 @@
 @mixin buttonHover() {
   border-color: #dadce0;
   box-shadow: rgba(0, 0, 0, 0.3) 0 2px 3px;
-  // box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
   color: var.$blackCol;
 }

@@ -1,6 +1,5 @@
 "use client";
 import { setCookie } from "cookies-next";
-
 import React from "react";
 import styles from "@/styles/cookie.module.scss";
 import Button from "@/components/Button";

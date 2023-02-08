@@ -15,9 +15,6 @@ const Clearer: React.FC<ClearerProps> = ({ cookieName }) => {
 
   const clearHandler = (name: string): any => {
     deleteCookie(name);
-    // deleteCookie("mixed");
-    // deleteCookie("colza");
-    // router.push("/checkout");
     router.refresh();
     location.reload();
   };
@@ -34,14 +31,6 @@ const Clearer: React.FC<ClearerProps> = ({ cookieName }) => {
             />
           }
         />
-        {/* <div className={styles.wrap} onClick={() => clearHandler(cookieName)}> */}
-        {/* <Image
-        onClick={() => clearHandler(cookieName)}
-        className={styles.wrap}
-        alt="Delete Icon"
-        src={deleteIcon}
-      /> */}
-        {/* </div> */}
       </div>
     </>
   );
