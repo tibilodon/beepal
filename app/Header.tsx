@@ -12,7 +12,6 @@ const Header = () => {
     <>
       <div className={styles.wrap}>
         <MobileNavbar />
-
         <Link href={"/"}>
           <Image
             width={100}

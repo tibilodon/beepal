@@ -16,12 +16,12 @@ const MobileNavbar: React.FC<any> = () => {
     <>
       <div onClick={activeHandler} className={styles.wrap}>
         <Image alt="home icon" src={icon} />
-      </div>
-      <div
-        onClick={activeHandler}
-        className={isActive ? styles.contentActive : styles.content}
-      >
-        <MobileDropdown />
+        <div
+          onClick={activeHandler}
+          className={isActive ? styles.contentActive : styles.content}
+        >
+          <MobileDropdown />
+        </div>
       </div>
     </>
   );
