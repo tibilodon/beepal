@@ -94,7 +94,7 @@ function Register() {
                         <div className="form-floating mb-3">
                             <input id="confirmPassword" type="password" className="form-control" aria-required="true" placeholder="confirm password" onChange={onChangeHandler} />
                             <label htmlFor="confirmPassword">Confirm Password</label>
-                            {validationErrors.ConfirmPassword && <span className="text-danger">{validationErrors.ConfirmPassword[0]||validationErrors.ConfirmPassword[description]}</span>}
+                            {validationErrors.ConfirmPassword && <span className="text-danger">{validationErrors.ConfirmPassword[0]}</span>}
                         </div>
                         <button type="submit" className="w-100 btn btn-lg btn-primary">Register</button>
                     </form>

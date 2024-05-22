@@ -2,13 +2,6 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
-import Test from './pages/Test.tsx';
-import Register from './pages/Account/Register.tsx';
-import ConfirmEmail from './pages/Account/ConfirmEmail.tsx';
 import AppContextProvider from './Context/AppContext.tsx';
 
 // Bootstrap CSS
