@@ -12,4 +12,7 @@
     <Folder Include="src\Components\utils\" />
     <Folder Include="src\Context\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include=".vscode\launch.json" />
+  </ItemGroup>
 </Project>
