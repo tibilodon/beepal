@@ -23,6 +23,8 @@ type AppContextProviderType = {
     setSideNav: Dispatch<SetStateAction<boolean>>;
     showLogin: boolean;
     setShowLogin: Dispatch<SetStateAction<boolean>>;
+    showRegister: boolean;
+    setShowRegister: Dispatch<SetStateAction<boolean>>;
 };
 export const initialUserDto = {
     id: "",
@@ -39,6 +41,8 @@ const AppContext = createContext<AppContextProviderType>({
     setSideNav: () => { },
     showLogin: false,
     setShowLogin: () => { },
+    showRegister: false,
+    setShowRegister: () => { },
 });
 export const useAppProvider = () => {
     return useContext(AppContext);
@@ -53,6 +57,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
     const [userDto, setUserDto] = useState<UserDto>(initialUserDto);
     const [sideNav, setSideNav] = useState<boolean>(false);
     const [showLogin, setShowLogin] = useState<boolean>(false);
+    const [showRegister, setShowRegister] = useState<boolean>(false);
 
     useEffect(() => {
        checkUser();
@@ -79,7 +84,9 @@ export default function AppContextProvider({ children }: ProviderProps) {
                 sideNav,
                 setSideNav,
                 showLogin,
-                setShowLogin
+                setShowLogin,
+                showRegister,
+                setShowRegister
             }}
         >
             <>{children}</>

@@ -1,12 +1,12 @@
-﻿import styles from "./login.module.css";
+﻿import styles from "./accountPublic.module.css";
 import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useAppProvider } from "../../../Context/AppContext"
 import Input from "../../../Components/form/input/Input";
-
-import icon from "../../../assets/icons/close.svg"
-import visibilityIcon from "../../../assets/icons/visibility.svg"
+import icon from "../../../assets/icons/close.svg";
 import ButtonA from "../../../Components/buttons/ButtonA";
+import Register from "./Register";
+
 
 interface LoginData {
     email: string,
@@ -20,7 +20,7 @@ type ValidationErrors = {
     Password: string
 }
 function Login() {
-    const { checkUser, showLogin, setShowLogin } = useAppProvider();
+    const { checkUser, showLogin, setShowLogin, sideNav, setSideNav, showRegister, setShowRegister } = useAppProvider();
     const navigate = useNavigate();
     const initialFormData: LoginData = {
         email: "",
@@ -72,11 +72,18 @@ function Login() {
         }));
     };
 
-    const[showPassword,setShowPassword]=useState<boolean>(false)
+    const handleShowRegistration = () => {
+        setShowLogin(false);
+        if (sideNav) {
+            setSideNav(false)
+        };
+        setShowRegister(true)
+    }
 
     const handleClose = () => { setShowLogin(false) }
     return (
         <>
+            {showRegister&& <Register/>}
             <div className={showLogin ? styles.wrap : styles.hide}>
                 <section className={styles.heroSection}>
                     <img onClick={handleClose} className={styles.icon} src={icon}></img>
@@ -84,27 +91,27 @@ function Login() {
                     <h1>Bejelentkezés</h1>
                     {validationErrors.Error && <span >{validationErrors.Error[0]}</span>}
                     <form method="post" onSubmit={handleSubmit} className="">
-                        <div className={ styles.content}>
+                        <div className={styles.content}>
                             <hr />
                             <div className={styles.inputs}>
                                 <Input id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
                                 {validationErrors.Email && <span >{validationErrors.Email[0]}</span>}
                                 <Input id="password" placeholder="jelszó" type="password" onChangeHandler={onChangeHandler} />
                                 {validationErrors.Password && <span >{validationErrors.Password[0]}</span>}
-                          
+
                             </div>
                             <div className={styles.rememberMe} >
                                 <input className={styles.checkboxInput} id="rememberMe" type="checkbox" onChange={onChangeHandler} />
                                 <h6 >Remember me</h6>
                             </div>
-                                <Link className={styles.links} to={"/account/forgotPassword"}>Elfelejtetted a jelszavad?</Link>
+                    {/*        <Link className={styles.links} to={"/account/forgotPassword"}>Elfelejtetted a jelszavad?</Link>*/}
                             <div>
                                 <ButtonA label="Tovább" type="submit" disabled={!formData.email || !formData.password} />
                             </div>
-                            <div className={ styles.bottomLinks}>
-                                    <Link className={styles.links} to={"/account/register"}>Regisztráció</Link>
-                                    <Link className={styles.links} to={"/account/resendEmailConfirmation"}>E-mail cím megerősítő újraküldése</Link>
-                            </div>
+                            <ul className={styles.bottomLinks}>
+                                <li onClick={ handleShowRegistration} className={styles.links}>Regisztráció</li>
+                                <li className={styles.links}>E-mail cím megerősítő újraküldése</li>
+                            </ul>
                         </div>
                     </form>
 

@@ -21,6 +21,7 @@
     .wrap * {
         font-size: 20px;
         font-weight: 500;
+        text-decoration: none;
     }
 
 .hide {
@@ -50,7 +51,6 @@
     .close:hover,
     .close:focus {
         color: black;
-        text-decoration: none;
         cursor: pointer;
     }
 
@@ -81,10 +81,11 @@
 .links {
     font-size: 15px;
     color: var(--black-color);
+list-style-type:none;
 }
 
 .bottomLinks {
     display: flex;
     flex-direction: column;
-    gap:0.2em;
+    gap: 0.2em;
 }

@@ -10,7 +10,6 @@ import logo from "../../assets/images/logo.png"
 import Loader from "../Loader/Loader";
 
 import close from "../../assets/icons/close.svg";
-import Login from "../../pages/Account/login/Login";
 
 function NavMenu() {
     const { checkUser, userDto, sideNav, setSideNav, showLogin, setShowLogin } = useAppProvider();

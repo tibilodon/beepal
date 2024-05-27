@@ -1,8 +1,11 @@
 ﻿import styles from "./home.module.css";
 import image from "../../assets/images/home-image.jpg";
 import ButtonA from "../../Components/buttons/ButtonA";
+import { useAppProvider } from "../../Context/AppContext";
 
 function Home() {
+    const { showRegister, setShowRegister } = useAppProvider();
+
     return (
         <>
             <div className={styles.wrap}>
@@ -16,7 +19,7 @@ function Home() {
                  
                 </section>
                     <span className={styles.btn}>
-                        <ButtonA label="Vásárlás" />
+                    <ButtonA label="Vásárlás" onClick={ ()=>console.log(showRegister)} />
                     </span>
             </div>
         </>
