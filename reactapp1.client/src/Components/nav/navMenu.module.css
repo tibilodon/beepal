@@ -86,3 +86,14 @@
     cursor:pointer
     /*border:3px solid black;*/
 }
+
+.navLinkMain {
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--white-color);
+    text-shadow: var(--subtle-text-shadow);
+}
+
+.active {
+    color: var(--green-color);
+}

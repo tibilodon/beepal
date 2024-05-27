@@ -58,22 +58,22 @@ function NavMenu() {
                     <img className={styles.navIcon} src={close}></img>
                 </button>
                 <section className={styles.navLinks}>
-                    <div className="nav-item px-3">
-                        <NavLink onClick={() => setSideNav(!sideNav)} to={"/"} className={({ isActive }) => isActive ? "nav-link-main active" : "nav-link-main"}>
-                            <span className="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                    <div className="">
+                        <NavLink onClick={() => setSideNav(!sideNav)} to={"/"} className={({ isActive }) => isActive ? `${styles.navLinkMain} ${styles.active}` : styles.navLinkMain}>
+                            <span className="" aria-hidden="true"></span> Home
                         </NavLink>
                     </div>
 
                     <ProtectedRoute>
-                        <div className="nav-item px-3">
-                            <NavLink onClick={() => setSideNav(!sideNav)} className={({ isActive }) => isActive ? "nav-link-main active" : "nav-link-main"} to={"Account/Manage"}>
-                                <span className="bi bi-person-fill-nav-menu" aria-hidden="true"></span>{userDto.nickName ?? userDto.userName}
+                        <div className="">
+                            <NavLink onClick={() => setSideNav(!sideNav)} className={({ isActive }) => isActive ? `${styles.navLinkMain} ${styles.active}` : styles.navLinkMain} to={"Account/Manage"}>
+                                <span className="" aria-hidden="true"></span>{userDto.nickName ?? userDto.userName}
                             </NavLink>
                         </div>
-                        <div className="nav-item px-3">
+                        <div className="">
                             <form onSubmit={handleLogout}>
                                 <button type="submit" className="nav-link-main">
-                                    <span className="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
+                                    <span className="" aria-hidden="true"></span> Logout
                                 </button>
                             </form>
                         </div>

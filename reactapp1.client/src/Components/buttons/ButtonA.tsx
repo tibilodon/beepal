@@ -1,10 +1,12 @@
 import styles from "./button.module.css";
 
+
+
 interface ButtonAProps {
     //  TODO: optional in dev
     onClick?: () => void;
     label: string;
-    type?: string;
+    type?: 'submit' | 'reset' | 'button' | undefined;
     disabled?: boolean;
 };
 function ButtonA({ onClick, label, type, disabled }: ButtonAProps) {
