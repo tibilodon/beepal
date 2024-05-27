@@ -41,6 +41,10 @@
     border-radius: 15px;
 }
 
+.responseMessage {
+    text-align:center;
+}
+
 .close {
     color: #aaa;
     float: right;

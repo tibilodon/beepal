@@ -1,5 +1,11 @@
+﻿import styles from "./accountPublic.module.css";
+import Input from "../../../Components/form/input/Input";
+import icon from "../../../assets/icons/close.svg";
+import ButtonA from "../../../Components/buttons/ButtonA";
+
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
+import { useAppProvider } from "../../../Context/AppContext";
 
 interface ForgotPasswordData {
     email: string,
@@ -11,6 +17,10 @@ type ValidationError = {
 }
 
 function ForgotPassword() {
+    const { showForgotPassword, setShowForgotPassword } = useAppProvider();
+
+    const[responseState,setResponseState]=useState<null|string>(null)
+
     const navigate = useNavigate();
 
     const initialErrors = {
@@ -48,8 +58,8 @@ function ForgotPassword() {
                 body: JSON.stringify(formData),
             });
             if (response.ok) {
-                console.log(response)
-                navigate("/account/forgotPasswordConfirmation");
+                setResponseState("A jelszó-visszaállító email sikeresen elküldve!")
+                //navigate("/account/forgotPasswordConfirmation");
 
             } else {
                 const result = await response.json()
@@ -63,28 +73,48 @@ function ForgotPassword() {
         }
     }
 
+    const handleClose = () => { setShowForgotPassword(false) }
+
+
     return (
         <>
-            <h1>Forgot your password?</h1>
-            <h2>Enter your email.</h2>
-            <hr />
-            <div className="row">
-                <div className="col-md-4">
-                    <form method="post" onSubmit={submitHandler}>
-                        {/*<DataAnnotationsValidator />*/}
-                        {/*<ValidationSummary className="text-danger" role="alert" />*/}
-
-                        <div className="form-floating mb-3">
-                            <input id="email" type="email" className="form-control" aria-required="true" placeholder="name@example.com" onChange={onChangeHandler} />
-                            {/*<InputText @bind-Value="Input.Email" className="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />*/}
-                            <label htmlFor="email" className="form-label">Email</label>
-                            {validationErrors.Email && <span className="text-danger">{validationErrors.Email[0]}</span>}
-                            {/*<ValidationMessage For="() => Input.Email" className="text-danger" />*/}
-                        </div>
-                        <button type="submit" className="w-100 btn btn-lg btn-primary">Reset password</button>
-                    </form>
+            
+            {responseState ?
+                <div className={styles.wrap}>
+                    <section className={styles.heroSection}>
+                        <img onClick={handleClose} className={styles.icon} src={icon}></img>
+                        <p className={ styles.responseMessage}>{responseState}</p>
+                    </section>
                 </div>
-            </div>
+                :
+                <div className={showForgotPassword ? styles.wrap : styles.hide}>
+                    <section className={styles.heroSection}>
+                        <img onClick={handleClose} className={styles.icon} src={icon}></img>
+                        <h1>Elfelejtett jelszó</h1>
+                        <h6>
+                            Elvesztetted a jelszavad?
+                            <br />
+                            Kérjük, add meg felhasználóneved vagy e-mail címed. E-mailben pedig kapsz egy linket az új jelszó létrehozásához.
+                        </h6>
+                        {validationErrors.Error && <span >{validationErrors.Error[0]}</span>}
+                        <form method="post" onSubmit={submitHandler}>
+                            <div className={styles.content}>
+                                <hr />
+                                <div className={styles.inputs}>
+                                    <Input id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
+
+                                </div>
+
+                                <div>
+                                    <ButtonA label="Jelszó visszaállítása" type="submit" disabled={!formData.email} />
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </section>
+                </div>
+            }
         </>
     );
 }

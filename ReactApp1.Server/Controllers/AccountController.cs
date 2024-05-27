@@ -153,7 +153,7 @@ namespace ReactApp1.Server.Controllers
 
             string callbackUrlString = returnUrl + queryString.ToString();
             await _emailSender.SendPasswordResetLinkAsync(isUser, forgotPasswordData.Email, callbackUrlString);
-
+      
             return Ok("Recovery Email sent!");
         }
 

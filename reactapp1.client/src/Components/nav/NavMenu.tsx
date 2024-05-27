@@ -12,7 +12,7 @@ import Loader from "../Loader/Loader";
 import close from "../../assets/icons/close.svg";
 
 function NavMenu() {
-    const { checkUser, userDto, sideNav, setSideNav, showLogin, setShowLogin } = useAppProvider();
+    const { checkUser, userDto, sideNav, setSideNav, showLogin, setShowLogin,setShowRegister,setShowForgotPassword } = useAppProvider();
 
     const navigate = useNavigate();
     const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,6 +35,8 @@ function NavMenu() {
     }
     const handleLogin = () => {
         setSideNav(false);
+        setShowForgotPassword(false);
+        setShowRegister(false);
         setShowLogin(true);
     }
 
@@ -79,7 +81,7 @@ function NavMenu() {
 
                     <PublicRoute>
                         <span className={styles.loginBtn} onClick={handleLogin} aria-hidden="true">
-                            Login
+                            Profil
                         </span>
                     </PublicRoute>
 

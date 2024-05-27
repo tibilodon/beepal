@@ -23,6 +23,8 @@ type ValidationErrors = {
 };
 function Register() {
     const { showRegister, setShowRegister } = useAppProvider();
+    const [responseState, setResponseState] = useState<null | string>(null)
+
 
     const navigate = useNavigate();
 
@@ -59,7 +61,9 @@ function Register() {
                 body: JSON.stringify(formData),
             });
             if (response.ok) {
-                navigate("/account/registerConfirmation");
+                setResponseState("Regisztrációt megerősítő e-mail sikeresen elküldve. Kérjük ellenőrizze e-mail fiókját.")
+
+                //navigate("/account/registerConfirmation");
             }
             else {
                 const result = await response.json()
@@ -84,38 +88,45 @@ function Register() {
 
     return (
         <>
-    
+            {responseState ?
+                <div className={styles.wrap}>
+                    <section className={styles.heroSection}>
+                        <img onClick={handleClose} className={styles.icon} src={icon}></img>
+                        <p className={styles.responseMessage}>{responseState}</p>
+                    </section>
+                </div>
+                :
+                <div className={showRegister ? styles.wrap : styles.hide}>
+                    <section className={styles.heroSection}>
+                        <img onClick={handleClose} className={styles.icon} src={icon}></img>
 
-            <div className={showRegister ? styles.wrap : styles.hide}>
-                <section className={styles.heroSection}>
-                    <img onClick={handleClose} className={styles.icon} src={icon}></img>
+                        <h1>Regisztráció</h1>
+                        {validationErrors.Error && <span >{validationErrors.Error[0]}</span>}
+                        <form method="post" onSubmit={submitHandler} >
+                            <div className={styles.content}>
+                                <hr />
+                                <div className={styles.inputs}>
+                                    <Input id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
+                                    {validationErrors.Email && <span >{validationErrors.Email[0]}</span>}
+                                    <Input id="password" placeholder="jelszó" type="password" onChangeHandler={onChangeHandler} />
+                                    {validationErrors.Password && <span >{validationErrors.Password[0]}</span>}
+                                    <Input id="confirmPassword" placeholder="jelszó megerősítése" type="password" onChangeHandler={onChangeHandler} />
+                                    {validationErrors.Password && <span >{validationErrors.ConfirmPassword[0]}</span>}
 
-                    <h1>Regisztráció</h1>
-                    {validationErrors.Error && <span >{validationErrors.Error[0]}</span>}
-                    <form method="post" onSubmit={submitHandler} className="">
-                        <div className={styles.content}>
-                            <hr />
-                            <div className={styles.inputs}>
-                                <Input id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
-                                {validationErrors.Email && <span >{validationErrors.Email[0]}</span>}
-                                <Input id="password" placeholder="jelszó" type="password" onChangeHandler={onChangeHandler} />
-                                {validationErrors.Password && <span >{validationErrors.Password[0]}</span>}
-                                <Input id="confirmPassword" placeholder="jelszó megerősítése" type="password" onChangeHandler={onChangeHandler} />
-                                {validationErrors.Password && <span >{validationErrors.ConfirmPassword[0]}</span>}
+                                </div>
+
+
+                                <div>
+                                    <ButtonA label="Tovább" type="submit" disabled={!formData.email || !formData.password || !formData.confirmPassword} />
+                                </div>
 
                             </div>
-
-                           
-                            <div>
-                                <ButtonA label="Tovább" type="submit" disabled={!formData.email || !formData.password || !formData.confirmPassword} />
-                            </div>
-                          
-                        </div>
-                    </form>
+                        </form>
 
 
-                </section>
-            </div>
+                    </section>
+                </div>
+            }
         </>
     );
 }

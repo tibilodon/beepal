@@ -25,6 +25,10 @@ type AppContextProviderType = {
     setShowLogin: Dispatch<SetStateAction<boolean>>;
     showRegister: boolean;
     setShowRegister: Dispatch<SetStateAction<boolean>>;
+    showForgotPassword: boolean;
+    setShowForgotPassword: Dispatch<SetStateAction<boolean>>;
+    showResendEmailConfirmation: boolean;
+    setShowResendEmailConfirmation: Dispatch<SetStateAction<boolean>>;
 };
 export const initialUserDto = {
     id: "",
@@ -36,13 +40,17 @@ const AppContext = createContext<AppContextProviderType>({
     isLoggedIn: false,
     userDto: initialUserDto,
     setUserDto: () => { },
-    checkUser: async() => Promise<void>,
+    checkUser: async () => Promise<void>,
     sideNav: false,
     setSideNav: () => { },
     showLogin: false,
     setShowLogin: () => { },
     showRegister: false,
     setShowRegister: () => { },
+    showForgotPassword: false,
+    setShowForgotPassword: () => { },
+    showResendEmailConfirmation: false,
+    setShowResendEmailConfirmation: () => { },
 });
 export const useAppProvider = () => {
     return useContext(AppContext);
@@ -58,12 +66,14 @@ export default function AppContextProvider({ children }: ProviderProps) {
     const [sideNav, setSideNav] = useState<boolean>(false);
     const [showLogin, setShowLogin] = useState<boolean>(false);
     const [showRegister, setShowRegister] = useState<boolean>(false);
+    const [showForgotPassword, setShowForgotPassword] = useState<boolean>(false);
+    const [showResendEmailConfirmation, setShowResendEmailConfirmation] = useState<boolean>(false);
 
     useEffect(() => {
-       checkUser();
+        checkUser();
     }, [])
 
-    async function checkUser():Promise<void> {
+    async function checkUser(): Promise<void> {
         const response = await fetch("/api/user");
         const data = await response.json();
 
@@ -86,7 +96,11 @@ export default function AppContextProvider({ children }: ProviderProps) {
                 showLogin,
                 setShowLogin,
                 showRegister,
-                setShowRegister
+                setShowRegister,
+                showForgotPassword,
+                setShowForgotPassword,
+                showResendEmailConfirmation,
+                setShowResendEmailConfirmation
             }}
         >
             <>{children}</>
