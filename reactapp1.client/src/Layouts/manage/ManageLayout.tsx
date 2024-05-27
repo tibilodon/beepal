@@ -1,5 +1,7 @@
+import styles from "./manageLayout.module.css";
 import { Outlet } from "react-router-dom";
-import ManageNavMenu from "../pages/Account/Manage/ManageNavMenu";
+import ManageNavMenu from "../../pages/Account/Manage/ManageNavMenu";
+
 
 function ManageLayout() {
   return (

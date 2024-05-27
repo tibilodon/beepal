@@ -1,9 +1,9 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import RootLayout from "./Layouts/RootLayout";
-import Test from "./pages/Test";
-import Login from "./pages/Account/Login";
+import RootLayout from "./Layouts/root/RootLayout";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Account/login/Login";
 import Register from "./pages/Account/Register";
-import ManageLayout from "./Layouts/ManageLayout";
+import ManageLayout from "./Layouts/manage/ManageLayout";
 import Profile from "./pages/Account/Manage/Profile";
 import Email from "./pages/Account/Manage/Email";
 import ChangePassword from "./pages/Account/Manage/ChangePassword";
@@ -21,7 +21,12 @@ import ChangePasswordConfirmation from "./pages/Account/Manage/ChangePasswordCon
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-        <Route index element={<Test />} />
+        <Route index element={
+            <>
+                <Home />
+                <Login/>
+            </>
+        } />
 
         <Route path="account" element={<Login />} />
 

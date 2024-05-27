@@ -11,28 +11,34 @@ export type UserDto = {
     id: string,
     userName: string,
     nickName: string,
-    email:string
+    email: string
 }
 
 type AppContextProviderType = {
-    isLoggedIn: boolean,
-    userDto: UserDto,
-    setUserDto: Dispatch<SetStateAction<UserDto>>;
-    checkUser: () => {}
+    isLoggedIn: boolean;
+    userDto: UserDto;
+    setUserDto: Dispatch<SetStateAction<UserDto>>,
+    checkUser: () => {};
+    sideNav: boolean;
+    setSideNav: Dispatch<SetStateAction<boolean>>;
+    showLogin: boolean;
+    setShowLogin: Dispatch<SetStateAction<boolean>>;
 };
 export const initialUserDto = {
     id: "",
     userName: "",
     nickName: "",
-    email:""
+    email: ""
 }
 const AppContext = createContext<AppContextProviderType>({
     isLoggedIn: false,
     userDto: initialUserDto,
     setUserDto: () => { },
-    checkUser:()=>Promise<void>
-
-
+    checkUser: async() => Promise<void>,
+    sideNav: false,
+    setSideNav: () => { },
+    showLogin: false,
+    setShowLogin: () => { },
 });
 export const useAppProvider = () => {
     return useContext(AppContext);
@@ -40,27 +46,27 @@ export const useAppProvider = () => {
 
 type ProviderProps = {
     children: React.ReactNode;
-
 };
 
 export default function AppContextProvider({ children }: ProviderProps) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userDto, setUserDto] = useState<UserDto>(initialUserDto);
+    const [sideNav, setSideNav] = useState<boolean>(false);
+    const [showLogin, setShowLogin] = useState<boolean>(false);
 
-    useEffect(() => {   
-        checkUser();
+    useEffect(() => {
+       checkUser();
     }, [])
 
-    async function checkUser() {
+    async function checkUser():Promise<void> {
         const response = await fetch("/api/user");
         const data = await response.json();
-  
+
         setIsLoggedIn(data.isLoggedIn);
         if (data.userDto) {
             setUserDto(data.userDto);
-
         }
-    }
+    };
 
     return (
 
@@ -69,7 +75,11 @@ export default function AppContextProvider({ children }: ProviderProps) {
                 isLoggedIn,
                 userDto,
                 setUserDto,
-                checkUser
+                checkUser,
+                sideNav,
+                setSideNav,
+                showLogin,
+                setShowLogin
             }}
         >
             <>{children}</>

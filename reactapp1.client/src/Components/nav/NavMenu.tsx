@@ -1,11 +1,19 @@
+import styles from "./navMenu.module.css"
 import ProtectedRoute from '../utils/ProtectedRoute';
-import './navMenu.css'
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink, useNavigate, Link } from "react-router-dom"
 import { useAppProvider } from "../../Context/AppContext"
 import PublicRoute from '../utils/PublicRoute';
 
+import menuIcon from "../../assets/icons/menu.svg"
+import cart from "../../assets/icons/cart.svg"
+import logo from "../../assets/images/logo.png"
+import Loader from "../Loader/Loader";
+
+import close from "../../assets/icons/close.svg";
+import Login from "../../pages/Account/login/Login";
+
 function NavMenu() {
-    const { checkUser, userDto } = useAppProvider();
+    const { checkUser, userDto, sideNav, setSideNav, showLogin, setShowLogin } = useAppProvider();
 
     const navigate = useNavigate();
     const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,26 +34,39 @@ function NavMenu() {
             console.log(error);
         }
     }
+    const handleLogin = () => {
+        setSideNav(false);
+        setShowLogin(true);
+    }
+
     return (
         <>
-            <div className="top-row ps-3 navbar navbar-dark">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="">webapi auth</a>
-                </div>
-            </div>
-            <input type="checkbox" title="Navigation menu" className="navbar-toggler" />
-            <div className="nav-scrollable">
-                <nav className="flex-column">
+            
+
+            <nav className={styles.navbar}>
+                <img className={styles.navIcon} onClick={() => setSideNav(!sideNav)} src={menuIcon}></img>
+                <Link to={"/"}>
+                    <img className={styles.logo} src={logo}>
+                    </img>
+                </Link>
+                <img className={styles.navIcon} src={cart}></img>
+            </nav>
+
+            <div className={styles.sideNav} style={{ width: `${sideNav ? "210px" : "0"}` }}>
+                <button onClick={() => setSideNav(!sideNav)} className={styles.closebtn}>
+                    <img className={styles.navIcon} src={close}></img>
+                </button>
+                <section className={styles.navLinks}>
                     <div className="nav-item px-3">
-                        <NavLink to={"/"} className={({ isActive }) => isActive ? "nav-link-main active" : "nav-link-main"}>
+                        <NavLink onClick={() => setSideNav(!sideNav)} to={"/"} className={({ isActive }) => isActive ? "nav-link-main active" : "nav-link-main"}>
                             <span className="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
                         </NavLink>
                     </div>
 
                     <ProtectedRoute>
                         <div className="nav-item px-3">
-                            <NavLink className={({ isActive }) => isActive ? "nav-link-main active" : "nav-link-main"} to={"Account/Manage"}>
-                                <span className="bi bi-person-fill-nav-menu" aria-hidden="true"></span>{userDto.nickName ?? userDto.userName }
+                            <NavLink onClick={() => setSideNav(!sideNav)} className={({ isActive }) => isActive ? "nav-link-main active" : "nav-link-main"} to={"Account/Manage"}>
+                                <span className="bi bi-person-fill-nav-menu" aria-hidden="true"></span>{userDto.nickName ?? userDto.userName}
                             </NavLink>
                         </div>
                         <div className="nav-item px-3">
@@ -58,14 +79,18 @@ function NavMenu() {
                     </ProtectedRoute>
 
                     <PublicRoute>
-                        <div className="nav-item px-3">
-                            <NavLink to={"/account"} className={({ isActive }) => isActive ? "nav-link-main active" : "nav-link-main"}>
-                                <span className="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
-                            </NavLink>
-                        </div>
+                        <span className={styles.loginBtn} onClick={handleLogin} aria-hidden="true">
+                            Login
+                        </span>
                     </PublicRoute>
-                </nav>
+
+                </section>
+                <div className={styles.gimmick}>
+                    <Loader />
+                </div>
             </div>
+
+
         </>
 
     );

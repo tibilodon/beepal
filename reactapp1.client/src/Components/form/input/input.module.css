@@ -1,0 +1,42 @@
+.wrap {
+    width: 100%;
+    position: relative;
+    background-color: var(--white-color);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 10px;
+}
+
+.input {
+    margin:0.2em;
+    width: 88%;
+    border: none;
+    color: var(--black-color);
+    caret-color: var(--black-color);
+    padding: 0.5em;
+    box-shadow: none;
+}
+
+    .input::placeholder {
+        color: var(--black-color);
+    }
+
+.wrap :focus::-webkit-input-placeholder {
+    color: #929292;
+}
+
+.input:focus{
+    outline:none;
+}
+.wrap:focus-within {
+    /*width: 100%;*/
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 1px;
+    border-radius: 5px;
+}
+
+
+.wrap img {
+    top: 0.7em;
+    right: 0.2em;
+    position: absolute;
+}
