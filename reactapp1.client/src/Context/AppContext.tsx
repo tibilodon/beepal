@@ -19,6 +19,7 @@ type AppContextProviderType = {
     userDto: UserDto;
     setUserDto: Dispatch<SetStateAction<UserDto>>,
     checkUser: () => {};
+    resetShowStates: () => {};
     sideNav: boolean;
     setSideNav: Dispatch<SetStateAction<boolean>>;
     showLogin: boolean;
@@ -29,6 +30,8 @@ type AppContextProviderType = {
     setShowForgotPassword: Dispatch<SetStateAction<boolean>>;
     showResendEmailConfirmation: boolean;
     setShowResendEmailConfirmation: Dispatch<SetStateAction<boolean>>;
+    showManageUser: boolean;
+    setShowManageUser: Dispatch<SetStateAction<boolean>>;
 };
 export const initialUserDto = {
     id: "",
@@ -41,6 +44,7 @@ const AppContext = createContext<AppContextProviderType>({
     userDto: initialUserDto,
     setUserDto: () => { },
     checkUser: async () => Promise<void>,
+    resetShowStates: () => { },
     sideNav: false,
     setSideNav: () => { },
     showLogin: false,
@@ -51,6 +55,8 @@ const AppContext = createContext<AppContextProviderType>({
     setShowForgotPassword: () => { },
     showResendEmailConfirmation: false,
     setShowResendEmailConfirmation: () => { },
+    showManageUser: false,
+    setShowManageUser: () => { },
 });
 export const useAppProvider = () => {
     return useContext(AppContext);
@@ -68,6 +74,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
     const [showRegister, setShowRegister] = useState<boolean>(false);
     const [showForgotPassword, setShowForgotPassword] = useState<boolean>(false);
     const [showResendEmailConfirmation, setShowResendEmailConfirmation] = useState<boolean>(false);
+    const [showManageUser, setShowManageUser] = useState<boolean>(false);
 
     useEffect(() => {
         checkUser();
@@ -82,6 +89,15 @@ export default function AppContextProvider({ children }: ProviderProps) {
             setUserDto(data.userDto);
         }
     };
+
+    function resetShowStates(): void {
+        setSideNav(false);
+        setShowLogin(false);
+        setShowRegister(false);
+        setShowForgotPassword(false);
+        setShowResendEmailConfirmation(false);
+        setShowManageUser(false);
+    }
 
     return (
 
@@ -100,7 +116,10 @@ export default function AppContextProvider({ children }: ProviderProps) {
                 showForgotPassword,
                 setShowForgotPassword,
                 showResendEmailConfirmation,
-                setShowResendEmailConfirmation
+                setShowResendEmailConfirmation,
+                showManageUser,
+                setShowManageUser,
+                resetShowStates
             }}
         >
             <>{children}</>

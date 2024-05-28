@@ -1,4 +1,4 @@
-import styles from "./navMenu.module.css"
+﻿import styles from "./navMenu.module.css"
 import ProtectedRoute from '../utils/ProtectedRoute';
 import { NavLink, useNavigate, Link } from "react-router-dom"
 import { useAppProvider } from "../../Context/AppContext"
@@ -10,9 +10,11 @@ import logo from "../../assets/images/logo.png"
 import Loader from "../Loader/Loader";
 
 import close from "../../assets/icons/close.svg";
+import user from "../../assets/icons/user.svg";
+import ManageUser from "../popup/ManageUser/ManageUser";
 
 function NavMenu() {
-    const { checkUser, userDto, sideNav, setSideNav, showLogin, setShowLogin,setShowRegister,setShowForgotPassword } = useAppProvider();
+    const { checkUser, userDto, sideNav, setSideNav,  setShowLogin,setShowRegister,setShowForgotPassword } = useAppProvider();
 
     const navigate = useNavigate();
     const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -50,7 +52,11 @@ function NavMenu() {
                     <img className={styles.logo} src={logo}>
                     </img>
                 </Link>
+                <div className={ styles.user}>
+        
+                <ManageUser/>
                 <img className={styles.navIcon} src={cart}></img>
+                </div>
             </nav>
 
             <div className={styles.sideNav} style={{ width: `${sideNav ? "210px" : "0"}` }}>
@@ -65,23 +71,12 @@ function NavMenu() {
                     </div>
 
                     <ProtectedRoute>
-                        <div className="">
-                            <NavLink onClick={() => setSideNav(!sideNav)} className={({ isActive }) => isActive ? `${styles.navLinkMain} ${styles.active}` : styles.navLinkMain} to={"Account/Manage"}>
-                                <span className="" aria-hidden="true"></span>{userDto.nickName ?? userDto.userName}
-                            </NavLink>
-                        </div>
-                        <div className="">
-                            <form onSubmit={handleLogout}>
-                                <button type="submit" className="nav-link-main">
-                                    <span className="" aria-hidden="true"></span> Logout
-                                </button>
-                            </form>
-                        </div>
+               
                     </ProtectedRoute>
 
                     <PublicRoute>
                         <span className={styles.loginBtn} onClick={handleLogin} aria-hidden="true">
-                            Profil
+                            Belépés
                         </span>
                     </PublicRoute>
 

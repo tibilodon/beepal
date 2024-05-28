@@ -1,4 +1,5 @@
 .navbar {
+    top:0.3em;
     height: var(--navbar-height);
     width: 90%;
     position: fixed;
@@ -8,13 +9,13 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 30px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    box-shadow: var(--box-shadow);
     align-self: center;
 }
 
 .sideNav {
     border-radius: 0 30px 30px 0;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    box-shadow: var(--box-shadow);
     height: 100%;
     width: 0;
     position: fixed;
@@ -30,7 +31,6 @@
 }
 
 .navLinks {
-
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@
 
 .logo {
     position: absolute;
-    top: 0;
+    top: -5px;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -82,8 +82,9 @@
 .gimmick {
     margin: 2em;
 }
-.loginBtn{
-    cursor:pointer
+
+.loginBtn {
+    cursor: pointer
     /*border:3px solid black;*/
 }
 
@@ -96,4 +97,12 @@
 
 .active {
     color: var(--green-color);
+}
+
+.user {
+    display: flex;
+    /*border:2px solid black;*/
+    /*align-items:center;*/
+    /*justify-content:center;*/
+    gap: 1em;
 }

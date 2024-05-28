@@ -46,7 +46,7 @@
 }
 
 .close {
-    color: #aaa;
+    /*color:;*/
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -85,7 +85,6 @@
 .links {
     font-size: 15px;
     color: var(--black-color);
-list-style-type:none;
 }
 
 .bottomLinks {

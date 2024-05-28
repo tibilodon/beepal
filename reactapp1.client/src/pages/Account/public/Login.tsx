@@ -52,7 +52,7 @@ function Login() {
             });
             if (response.ok) {
                 await checkUser();
-                navigate("/")
+                setShowLogin(false);
             }
             else {
                 const result = await response.json()

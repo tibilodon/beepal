@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    list-style-type: none;
     --background-color: var(--background-color);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 25px;
@@ -11,16 +12,15 @@
 :root {
     --navbar-height: 2.5em;
     --page-height: calc(100vh - var(--rootLayout-content-padding-top));
-
     --rootLayout-content-padding-top: 3.6em;
-
     --honey-color: #fdb10b;
     --active-color: #ffa600;
     --black-color: #333;
     --white-color: #F8F8FF;
     --background-color: #d8d8d8;
     --green-color: #6B8E23;
-
     --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
     --subtle-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+
+    --box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
