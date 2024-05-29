@@ -19,7 +19,7 @@ type AppContextProviderType = {
     userDto: UserDto;
     setUserDto: Dispatch<SetStateAction<UserDto>>,
     checkUser: () => {};
-    resetShowStates: () => {};
+    resetShowStates: () => void;
     sideNav: boolean;
     setSideNav: Dispatch<SetStateAction<boolean>>;
     showLogin: boolean;
@@ -32,6 +32,8 @@ type AppContextProviderType = {
     setShowResendEmailConfirmation: Dispatch<SetStateAction<boolean>>;
     showManageUser: boolean;
     setShowManageUser: Dispatch<SetStateAction<boolean>>;
+    showUserProfile: boolean;
+    setShowUserProfile: Dispatch<SetStateAction<boolean>>;
 };
 export const initialUserDto = {
     id: "",
@@ -57,6 +59,8 @@ const AppContext = createContext<AppContextProviderType>({
     setShowResendEmailConfirmation: () => { },
     showManageUser: false,
     setShowManageUser: () => { },
+    showUserProfile: false,
+    setShowUserProfile: () => { },
 });
 export const useAppProvider = () => {
     return useContext(AppContext);
@@ -75,6 +79,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
     const [showForgotPassword, setShowForgotPassword] = useState<boolean>(false);
     const [showResendEmailConfirmation, setShowResendEmailConfirmation] = useState<boolean>(false);
     const [showManageUser, setShowManageUser] = useState<boolean>(false);
+    const [showUserProfile, setShowUserProfile] = useState<boolean>(false);
 
     useEffect(() => {
         checkUser();
@@ -90,7 +95,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
         }
     };
 
-    function resetShowStates(): void {
+    function resetShowStates():void {
         setSideNav(false);
         setShowLogin(false);
         setShowRegister(false);
@@ -107,6 +112,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
                 userDto,
                 setUserDto,
                 checkUser,
+                resetShowStates,
                 sideNav,
                 setSideNav,
                 showLogin,
@@ -119,7 +125,8 @@ export default function AppContextProvider({ children }: ProviderProps) {
                 setShowResendEmailConfirmation,
                 showManageUser,
                 setShowManageUser,
-                resetShowStates
+                showUserProfile,
+                setShowUserProfile,
             }}
         >
             <>{children}</>

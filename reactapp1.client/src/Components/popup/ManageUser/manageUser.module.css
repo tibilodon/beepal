@@ -1,6 +1,13 @@
-.wrap {
-    display: flex;
-    align-items: center;
+.userIcon{
+    cursor:pointer;
+}
+.content {
+    transition: 0.5s ease;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 1.7em;
+    right: 3em;
 }
 
 .popUp * {
@@ -8,19 +15,16 @@
 }
 
 .popUp {
-  /*max-width;*/
-  /*width:fit-content;*/
+
+    border: 2px solid red;
     background-color: var(--white-color);
     box-shadow: var(--box-shadow);
-    position: absolute;
-    top: 1.68em;
-    right: 3em;
-    /*left:0;*/
-    border-radius: 5px;
+
     padding: 1em;
-    display:flex;
-    flex-direction:column;
-    gap:0.3em;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
 }
 
     .popUp span {
@@ -28,8 +32,8 @@
         min-height: 35px;
         min-width: 35px;
         line-height: 35px;
-        -moz-border-radius: 50%; /* or 50% */
-        border-radius: 50%; /* or 50% */
+        -moz-border-radius: 50%; 
+        border-radius: 50%; 
 
         background-color: var(--green-color);
         color: white;
@@ -37,28 +41,26 @@
         font-size: 2em;
     }
 
-    .details{
-        display:flex;
-        flex-direction:column;
-        /*border:2px solid black;*/
- /*       height:70%;
-        width:70%;
-        */
-    }
-    .heroSection{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        gap:.3em;
-           
-    }
-        .heroSection ul li {
-            word-break: break-word;
-                /*font-size:10px;*/
-        }
+.details {
+    display: flex;
+    flex-direction: column;
 
-     @media(max-width:515px){
-         .popUp * {
-             font-size:13px;
-         }
-     }
+}
+
+.heroSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+}
+
+    .heroSection ul li {
+        word-break: break-word;
+        /*font-size:10px;*/
+    }
+
+@media(max-width:515px) {
+    .popUp * {
+        font-size: 13px;
+    }
+}

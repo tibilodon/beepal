@@ -1,6 +1,6 @@
 ﻿import styles from "./navMenu.module.css"
-import ProtectedRoute from '../utils/ProtectedRoute';
-import { NavLink, useNavigate, Link } from "react-router-dom"
+
+import { NavLink,  Link } from "react-router-dom"
 import { useAppProvider } from "../../Context/AppContext"
 import PublicRoute from '../utils/PublicRoute';
 
@@ -10,37 +10,20 @@ import logo from "../../assets/images/logo.png"
 import Loader from "../Loader/Loader";
 
 import close from "../../assets/icons/close.svg";
-import user from "../../assets/icons/user.svg";
+
 import ManageUser from "../popup/ManageUser/ManageUser";
 
 function NavMenu() {
-    const { checkUser, userDto, sideNav, setSideNav,  setShowLogin,setShowRegister,setShowForgotPassword } = useAppProvider();
+    const {  sideNav, setSideNav,  setShowLogin,setShowRegister,setShowForgotPassword, resetShowStates } = useAppProvider();
 
-    const navigate = useNavigate();
-    const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
 
-            const response = await fetch("/api/account/logout", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            if (response.ok) {
-                checkUser();
-                navigate("/")
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
+
     const handleLogin = () => {
         setSideNav(false);
         setShowForgotPassword(false);
         setShowRegister(false);
         setShowLogin(true);
-    }
+    };
 
     return (
         <>
@@ -48,7 +31,7 @@ function NavMenu() {
 
             <nav className={styles.navbar}>
                 <img className={styles.navIcon} onClick={() => setSideNav(!sideNav)} src={menuIcon}></img>
-                <Link to={"/"}>
+                <Link onClick={ resetShowStates} to={"/"}>
                     <img className={styles.logo} src={logo}>
                     </img>
                 </Link>
@@ -70,9 +53,7 @@ function NavMenu() {
                         </NavLink>
                     </div>
 
-                    <ProtectedRoute>
-               
-                    </ProtectedRoute>
+                 
 
                     <PublicRoute>
                         <span className={styles.loginBtn} onClick={handleLogin} aria-hidden="true">

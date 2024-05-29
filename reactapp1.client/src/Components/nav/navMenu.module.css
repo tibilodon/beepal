@@ -85,7 +85,6 @@
 
 .loginBtn {
     cursor: pointer
-    /*border:3px solid black;*/
 }
 
 .navLinkMain {
@@ -101,8 +100,5 @@
 
 .user {
     display: flex;
-    /*border:2px solid black;*/
-    /*align-items:center;*/
-    /*justify-content:center;*/
-    gap: 1em;
+    gap: 0.5em;
 }

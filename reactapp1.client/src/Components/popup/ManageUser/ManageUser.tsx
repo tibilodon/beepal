@@ -2,15 +2,12 @@
 import styles from "./manageUser.module.css";
 import user from "../../../assets/icons/user.svg";
 
-import { useState } from "react";
 import { useAppProvider } from "../../../Context/AppContext";
 import { useNavigate } from "react-router-dom";
 import ButtonA from "../../buttons/ButtonA";
 
 function ManageUser() {
     const navigate = useNavigate();
-
-
 
     const { checkUser, resetShowStates, userDto, showManageUser, setShowManageUser } = useAppProvider();
 
@@ -40,33 +37,37 @@ function ManageUser() {
         setShowManageUser(!showManageUser);
     };
 
+    function handleClick(){
+        setShowManageUser(false);
+        navigate("/account/manage");
+    };
+
+
+
     return (
-        <div className={styles.wrap}>
-            <ProtectedRoute>
-                <img onClick={handlePopUp} className={styles.userIcon} src={user}></img>
-                {showManageUser &&
-                    <div className={styles.popUp}>
-                        <section className={styles.heroSection}>
-                            <span>{Array.from(userName)[0]}</span>
-                            <ul className={styles.details}>
-                                <li>joseph.smiasdasdthysdasdasdasds@yahoo.co.uk</li>
-                                {/*<li>{userName}</li>*/}
-                                <li>{email}</li>
-                                <li>{nickName}</li>
-                            </ul>
-                        </section>
-                        <hr />
-                        <ButtonA type="button" label="Profilom" />
-                        <form onSubmit={handleLogout}>
+        <ProtectedRoute>
+            <img onClick={handlePopUp} className={styles.userIcon} src={user}></img>
 
-                            <ButtonA type="submit" label="Kijelentkezés" />
-                        </form>
+            <div className={styles.content} style={{ height: `${showManageUser ? "310px" : "0"}` }}>
+                <div className={styles.popUp}>
+                    <section className={styles.heroSection}>
+                        <span>{Array.from(userName)[0]}</span>
+                        <ul className={styles.details}>
+                            <li>joseph.smiasdasdthysdasdasdasds@yahoo.co.uk</li>
+                            {/*<li>{userName}</li>*/}
+                            <li>{email}</li>
+                            <li>{nickName}</li>
+                        </ul>
+                    </section>
+                    <hr />
+                    <ButtonA type="button" label="Adataim" onClick={handleClick} />
+                    <form onSubmit={handleLogout}>
+                        <ButtonA type="submit" label="Kijelentkezés" />
+                    </form>
 
-                    </div>
-                }
-            </ProtectedRoute>
-
-        </div>
+                </div>
+            </div>
+        </ProtectedRoute>
     );
 }
 
