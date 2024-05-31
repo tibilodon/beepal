@@ -1,6 +1,10 @@
-﻿import { useEffect, useState } from "react";
+﻿import styles from "./manage.module.css";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppProvider } from "../../../Context/AppContext";
+import SuccessNotification from "../../../Components/notification/SuccessNotification";
+import Input from "../../../Components/form/input/Input";
+import ButtonA from "../../../Components/buttons/ButtonA";
 
 
 interface ChangeEmailData {
@@ -10,36 +14,35 @@ interface ChangeEmailData {
 }
 
 type ValidationErrors = {
-    Error:string,
+    Error: string,
     Email: string,
     NewEmail: string
     returnUrl: string
 }
 
 function Email() {
+    const initialFormData: ChangeEmailData = {
+        email: "",
+        newEmail: "",
+        returnUrl: window.location.href
+    };
     const { userDto } = useAppProvider();
+    const [formData, setFormData] = useState<ChangeEmailData>(initialFormData);
+    const [notification, setNotification] = useState<boolean>(false);
 
     useEffect(() => {
         if (userDto.email != "") {
             setFormData((prevVals: ChangeEmailData) => ({
                 ...prevVals,
-              email:userDto.email
+                email: userDto.email
             }));
         }
     }, [userDto]);
 
     const navigate = useNavigate();
 
-    const initialFormData: ChangeEmailData = {
-        email: "",
-        newEmail: "",
-        returnUrl: window.location.href
-    };
-
-    const [formData, setFormData] = useState<ChangeEmailData>(initialFormData);
-
     const initialValidationErrors: ValidationErrors = {
-        Error:"",
+        Error: "",
         Email: "",
         NewEmail: "",
         returnUrl: ""
@@ -68,7 +71,9 @@ function Email() {
                 body: JSON.stringify(formData),
             });
             if (response.ok) {
-                navigate("/account/emailChangeConfirmation");
+                setNotification(true);
+
+                //navigate("/account/emailChangeConfirmation");
 
             } else {
                 const result = await response.json()
@@ -81,29 +86,43 @@ function Email() {
 
     return (
         <>
-            <h3>Manage email</h3>
+            <header>
+                <h3 className={styles.pageHeader}>E-mail cím szerkesztése</h3>
+            </header>
+            {notification &&
+                <p className="success">Megerősítő e-mail elküldve. Kérlek ellenőrizd az új e-mail címed!</p>
+            }
+
             {validationErrors.Error && <span className="text-danger">{validationErrors.Error[0]}</span>}
 
-            <div className="row">
-                <div className="col-md-6">
-                    <form method="post" onSubmit={submitHandler}>
-                        <div className="form-floating mb-3 input-group">
-                            <input id="email" type="email" className="form-control" placeholder="Please enter your email." disabled />
 
-                            <div className="input-group-append">
-                                <span className="h-100 input-group-text text-success font-weight-bold">✓</span>
-                            </div>
-                            <label htmlFor="email" className="form-label">{ formData.email}</label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input id="newEmail" className="form-control" aria-required="true" placeholder="Please enter new email." onChange={onChangeHandler} />
-                            <label htmlFor="newEmail" className="form-label">New email</label>
-                            {validationErrors.Email && <span className="text-danger">{validationErrors.Email[0]}</span>}
-                        </div>
-                        <button type="submit" className="w-100 btn btn-lg btn-primary">Change email</button>
-                    </form>
-                </div>
-            </div >
+            <div className={styles.wrap}>
+                <form method="post" onSubmit={submitHandler}>
+                    <div className={styles.inputs}>
+                        <span className={styles.inputWrap}>
+                            <h6>
+                                Jelenlegi e-mail cím:
+                            </h6>
+                            <span className={styles.flexWrap}>
+                                <p>{formData.email}</p>
+                                <p className={styles.verfified}>
+                                    ✓
+                                </p>
+                            </span>
+                        </span>
+
+                        <span className={styles.inputWrap}>
+                            <h6 className="">Új e-mail cím</h6>
+                            <Input type="text" value={formData.newEmail} id="newEmail" onChangeHandler={onChangeHandler} placeholder="Új E-mail cím" />
+                            {validationErrors.Email && <span className="danger">{validationErrors.Email[0]}</span>}
+                        </span>
+
+                    </div>
+                    <ButtonA label="Mentés" disabled={!formData.newEmail && true} type="submit" />
+
+                </form>
+            </div>
+
         </>
     );
 }

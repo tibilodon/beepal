@@ -9,14 +9,16 @@ type Props = {
         e: React.FormEvent<HTMLInputElement>
     ) => void;
     id: string;
+    value?: string | number | readonly string[] | undefined;
 };
 const Input: React.FunctionComponent<Props> = ({
     type,
     placeholder,
     onChangeHandler,
     id,
+    value
 }) => {
-    const [show, setShow] = useState(false);
+
     const [currentType, setCurrentType] = useState(type);
 
     const handleType = () => {
@@ -27,11 +29,12 @@ const Input: React.FunctionComponent<Props> = ({
             case "text":
                 setCurrentType("password");
                 break;
-      }
+        }
     }
     return (
         <div className={styles.wrap}>
-            <input className={ styles.input}
+            <input className={type === "password" ? `${styles.input} ${styles.passwordInput}` : styles.input}
+                value={value||""}
                 id={id}
                 type={currentType}
                 placeholder={placeholder}

@@ -4,13 +4,19 @@ import icon from "../../../assets/icons/close.svg";
 import ButtonA from "../../../Components/buttons/ButtonA";
 
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom"
 import { useAppProvider } from "../../../Context/AppContext";
 
 interface ResendEmailConfirmationData {
     email: string,
     returnUrl: string
 }
+
+type ValidationErrors = {
+    Error: string,
+    Email: string,
+    
+}
+
 function ResendEmailConfirmation() {
     const {showResendEmailConfirmation,setShowResendEmailConfirmation } = useAppProvider();
 
@@ -49,12 +55,23 @@ function ResendEmailConfirmation() {
             if (response.ok) {
                 setResponseState("Megerősítő e-mail újra elküldve.")
             }
+            else {
+                const result = await response.json()
+                setValidationErrors(result.errors);
+            }
         } catch (error) {
             console.log(error);
         }
     }
 
     const handleClose = () => { setShowResendEmailConfirmation(false) }
+
+    const initialValidationErrors = {
+        Error: "",
+        Email: "",
+
+    };
+    const [validationErrors, setValidationErrors] = useState<ValidationErrors>(initialValidationErrors);
 
     return (
         <>
@@ -72,6 +89,7 @@ function ResendEmailConfirmation() {
                     <section className={styles.heroSection}>
                         <img onClick={handleClose} className={styles.icon} src={icon}></img>
                         <h1>Elfelejtett jelszó</h1>
+                        {validationErrors.Error && <span className="danger" >{validationErrors.Error[0]}</span>}
                         <h6>
                             Kérjük, add meg e-mail címed amellyel korábban regisztráltál.
                         </h6>
@@ -80,7 +98,8 @@ function ResendEmailConfirmation() {
                             <div className={styles.content}>
                                 <hr />
                                 <div className={styles.inputs}>
-                                    <Input id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
+                                    <Input value={ formData.email} id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
+                                    {validationErrors.Email && <span className="danger">{validationErrors.Email[0]}</span>}
 
                                 </div>
 

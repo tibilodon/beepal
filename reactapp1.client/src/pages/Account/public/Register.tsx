@@ -1,7 +1,6 @@
 ﻿import styles from "./accountPublic.module.css";
 
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom"
 import { useAppProvider } from "../../../Context/AppContext";
 
 import Input from "../../../Components/form/input/Input";
@@ -24,9 +23,6 @@ type ValidationErrors = {
 function Register() {
     const { showRegister, setShowRegister } = useAppProvider();
     const [responseState, setResponseState] = useState<null | string>(null)
-
-
-    const navigate = useNavigate();
 
     const initialFormData: RegisterData = {
         email: "",
@@ -101,17 +97,17 @@ function Register() {
                         <img onClick={handleClose} className={styles.icon} src={icon}></img>
 
                         <h1>Regisztráció</h1>
-                        {validationErrors.Error && <span >{validationErrors.Error[0]}</span>}
+                        {validationErrors.Error && <span className="danger" >{validationErrors.Error[0]}</span>}
                         <form method="post" onSubmit={submitHandler} >
                             <div className={styles.content}>
                                 <hr />
                                 <div className={styles.inputs}>
-                                    <Input id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
-                                    {validationErrors.Email && <span >{validationErrors.Email[0]}</span>}
-                                    <Input id="password" placeholder="jelszó" type="password" onChangeHandler={onChangeHandler} />
-                                    {validationErrors.Password && <span >{validationErrors.Password[0]}</span>}
-                                    <Input id="confirmPassword" placeholder="jelszó megerősítése" type="password" onChangeHandler={onChangeHandler} />
-                                    {validationErrors.Password && <span >{validationErrors.ConfirmPassword[0]}</span>}
+                                    <Input value={ formData.email} id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
+                                    {validationErrors.Email && <span className="danger">{validationErrors.Email[0]}</span>}
+                                    <Input value={ formData.password} id="password" placeholder="jelszó" type="password" onChangeHandler={onChangeHandler} />
+                                    {validationErrors.Password && <span className="danger">{validationErrors.Password[0]}</span>}
+                                    <Input value={ formData.confirmPassword} id="confirmPassword" placeholder="jelszó megerősítése" type="password" onChangeHandler={onChangeHandler} />
+                                    {validationErrors.Password && <span className="danger">{validationErrors.ConfirmPassword[0]}</span>}
 
                                 </div>
 

@@ -4,7 +4,7 @@ import icon from "../../../assets/icons/close.svg";
 import ButtonA from "../../../Components/buttons/ButtonA";
 
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom"
+
 import { useAppProvider } from "../../../Context/AppContext";
 
 interface ForgotPasswordData {
@@ -13,17 +13,17 @@ interface ForgotPasswordData {
 }
 
 type ValidationError = {
+    Error: string,
     Email:string
 }
 
 function ForgotPassword() {
     const { showForgotPassword, setShowForgotPassword } = useAppProvider();
 
-    const[responseState,setResponseState]=useState<null|string>(null)
-
-    const navigate = useNavigate();
+    const [responseState, setResponseState] = useState<null | string>(null);
 
     const initialErrors = {
+        Error: "",
         Email: "",
     }
     const [validationErrors, setValidationErrors] = useState<ValidationError>(initialErrors)
@@ -96,12 +96,12 @@ function ForgotPassword() {
                             <br />
                             Kérjük, add meg felhasználóneved vagy e-mail címed. E-mailben pedig kapsz egy linket az új jelszó létrehozásához.
                         </h6>
-                        {validationErrors.Error && <span >{validationErrors.Error[0]}</span>}
+                        {validationErrors.Error && <span className="danger" >{validationErrors.Email[0]}</span>}
                         <form method="post" onSubmit={submitHandler}>
                             <div className={styles.content}>
                                 <hr />
                                 <div className={styles.inputs}>
-                                    <Input id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
+                                    <Input value={ formData.email} id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
 
                                 </div>
 

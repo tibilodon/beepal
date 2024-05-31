@@ -1,4 +1,8 @@
-import { useEffect, useState } from "react"
+﻿import { useEffect, useState } from "react"
+import {useNavigate } from "react-router-dom"
+import ButtonA from "../../../Components/buttons/ButtonA"
+import { useAppProvider } from "../../../Context/AppContext"
+import StatusMessage from "../../../Components/statusMessage/StatusMessage"
 
 type ValidationError = {
     Error: string,
@@ -7,7 +11,9 @@ type ValidationError = {
     UserId: string
 }
 function ConfirmEmailChange() {
+    const navigate = useNavigate();
     const [statusMessage, setStatusMessage] = useState()
+        const {  checkUser } = useAppProvider();
 
     // receives data in params, Post request to server, which in turn sends out link to confirm new email address
     useEffect(() => {
@@ -24,6 +30,7 @@ function ConfirmEmailChange() {
 
 
     async function populateData() {
+
         const urlParams = new URLSearchParams(window.location.search);
         const data = {
             Email: urlParams.get("email"),
@@ -42,8 +49,9 @@ function ConfirmEmailChange() {
                 body: JSON.stringify(data),
             });
             if (response.ok) {
+                await checkUser();
                 const result = await response.json()
-                setStatusMessage(result.statusMessage)
+                setStatusMessage("E-mail cím sikeresen módosítva!");
                 if (result.errors) {
                     setValidationErrors(result.errors);
                 }
@@ -66,12 +74,17 @@ function ConfirmEmailChange() {
                 <div>
                     {nonEmptyErrors.map((key) => {
                         return (
-                            <span key={key} className="text-danger">{validationErrors[key]}</span>
+                            <span key={key} className="danger">{validationErrors[key]}</span>
                         )
                     })}
                 </div>
             ) :
-                <h1>{statusMessage}</h1>
+                //    <section className="statusMessage">
+
+                //        <h1 className="success">{statusMessage}</h1>
+                //        <ButtonA label="Tovább a főoldalra" onClick={()=>navigate("/") } />
+                //</section>
+                <StatusMessage label="Tovább a főoldalra" onClickHandler={() => navigate("/")} statusMessage={ statusMessage} type="success"/>
 
             }
         </>

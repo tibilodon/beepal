@@ -1,2 +1,40 @@
-body {
+.wrap {
+    height: var(--page-height);
+    /*height:100vh;*/
+    margin-top: var(--rootLayout-content-padding-top);
+    /*border: 5px solid black;*/
+    display: flex;
+    flex-direction: column;
+    /*gap:0.5em;*/
+    /*justify-content: space-around;*/
+}
+
+.header {
+    /*border: 2px solid black;*/
+    text-align: center;
+    padding-bottom:0.3em;
+    /*padding:0.3em;*/
+}
+
+.content {
+    /*border: 2px solid green;*/
+    display:flex;
+
+    flex-grow:1;
+
+}
+
+.navbar {
+    height: 100%;
+    /*border: 2px solid black;*/
+}
+
+.outlet {
+    width:100%;
+    /*border: 8px solid black;*/
+}
+@media(max-width: 515px){
+    .content *{
+        font-size: var(--small-screen-font-size);
+    }
 }

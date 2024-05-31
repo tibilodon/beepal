@@ -85,6 +85,7 @@
 .links {
     font-size: 15px;
     color: var(--black-color);
+    cursor: pointer;
 }
 
 .bottomLinks {

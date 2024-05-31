@@ -18,8 +18,11 @@ import ResendEmailConfirmation from "./pages/Account/public/ResendEmailConfirmat
 import EmailChangeConfirmation from "./pages/Account/Manage/EmailChangeConfirmation";
 import ConfirmEmailChange from "./pages/Account/Manage/ConfirmEmailChange";
 import ChangePasswordConfirmation from "./pages/Account/Manage/ChangePasswordConfirmation";
+import ProtectedRoute from "./Components/utils/ProtectedRoute";
 
 const router = createBrowserRouter(createRoutesFromElements(
+    <>
+        <Route path="account/confirmEmailChange" element={<ConfirmEmailChange />} />
     <Route path="/" element={<RootLayout />}>
         <Route index element={
             <>
@@ -41,10 +44,8 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path="account/forgotPasswordConfirmation" element={<ForgotPasswordConfirmation />} />
 
         <Route path="account/emailChangeConfirmation" element={<EmailChangeConfirmation />} />
-        <Route path="account/confirmEmailChange" element={<ConfirmEmailChange />} />
 
         <Route path="account/changePasswordConfirmation" element={<ChangePasswordConfirmation />} />
-
 
         <Route path="account/manage" element={<ManageLayout />}>
             <Route index element={<Profile />} />
@@ -54,6 +55,7 @@ const router = createBrowserRouter(createRoutesFromElements(
 
         </Route>
     </Route>
+    </>
 ))
 
 function App() {

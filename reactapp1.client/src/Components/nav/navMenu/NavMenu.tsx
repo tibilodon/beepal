@@ -1,17 +1,21 @@
 ﻿import styles from "./navMenu.module.css"
 
 import { NavLink,  Link } from "react-router-dom"
-import { useAppProvider } from "../../Context/AppContext"
-import PublicRoute from '../utils/PublicRoute';
 
-import menuIcon from "../../assets/icons/menu.svg"
-import cart from "../../assets/icons/cart.svg"
-import logo from "../../assets/images/logo.png"
-import Loader from "../Loader/Loader";
 
-import close from "../../assets/icons/close.svg";
 
-import ManageUser from "../popup/ManageUser/ManageUser";
+
+import menuIcon from "../../../assets/icons/menu.svg"
+import cart from "../../../assets/icons/cart.svg"
+import logo from "../../../assets/images/logo.png"
+
+
+import close from "../../../assets/icons/close.svg";
+
+import { useAppProvider } from "../../../Context/AppContext";
+import ManageUser from "../../popup/ManageUser/ManageUser"
+import PublicRoute from "../../utils/PublicRoute"
+import Loader from "../../Loader/Loader"
 
 function NavMenu() {
     const {  sideNav, setSideNav,  setShowLogin,setShowRegister,setShowForgotPassword, resetShowStates } = useAppProvider();
@@ -48,7 +52,7 @@ function NavMenu() {
                 </button>
                 <section className={styles.navLinks}>
                     <div className="">
-                        <NavLink onClick={() => setSideNav(!sideNav)} to={"/"} className={({ isActive }) => isActive ? `${styles.navLinkMain} ${styles.active}` : styles.navLinkMain}>
+                        <NavLink onClick={() => setSideNav(!sideNav)} to={"/"} className={({ isActive }) => isActive ? "navLinkMain active" : "navLinkMain"}>
                             <span className="" aria-hidden="true"></span> Home
                         </NavLink>
                     </div>

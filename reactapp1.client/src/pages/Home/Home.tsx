@@ -4,7 +4,7 @@ import ButtonA from "../../Components/buttons/ButtonA";
 import { useAppProvider } from "../../Context/AppContext";
 
 function Home() {
-    const { showRegister, setShowRegister } = useAppProvider();
+    const { showRegister } = useAppProvider();
 
     return (
         <>

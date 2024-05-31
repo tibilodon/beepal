@@ -109,15 +109,15 @@ function Login() {
                     <img onClick={handleClose} className={styles.icon} src={icon}></img>
 
                     <h1>Bejelentkezés</h1>
-                    {validationErrors.Error && <span >{validationErrors.Error[0]}</span>}
+                    {validationErrors.Error && <span className="danger" >{validationErrors.Error[0]}</span>}
                     <form method="post" onSubmit={handleSubmit}>
                         <div className={styles.content}>
                             <hr />
                             <div className={styles.inputs}>
-                                <Input id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
-                                {validationErrors.Email && <span >{validationErrors.Email[0]}</span>}
-                                <Input id="password" placeholder="jelszó" type="password" onChangeHandler={onChangeHandler} />
-                                {validationErrors.Password && <span >{validationErrors.Password[0]}</span>}
+                                <Input value={ formData.email} id="email" placeholder="e-mail" type="email" onChangeHandler={onChangeHandler} />
+                                {validationErrors.Email && <span className="danger">{validationErrors.Email[0]}</span>}
+                                <Input value={ formData.password} id="password" placeholder="jelszó" type="password" onChangeHandler={onChangeHandler} />
+                                {validationErrors.Password && <span className="danger">{validationErrors.Password[0]}</span>}
 
                             </div>
                             <div className={styles.rememberMe} >

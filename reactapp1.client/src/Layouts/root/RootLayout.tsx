@@ -1,15 +1,14 @@
+import { Outlet } from "react-router-dom";
+import NavMenu from "../../Components/nav/navMenu/NavMenu";
 import styles from "./rootLayout.module.css"
 
-import { Outlet } from "react-router-dom";
-import NavMenu from "../../Components/nav/NavMenu";
-//import homeImg from "../../assets/images/home.jpg"
 
 function RootLayout() {
     return (
         <>
             <div className={styles.body}>
                 <div className={styles.navbar}>
-                    <NavMenu />
+                    <NavMenu/>
                     {/*<a className={styles.secondaryRow} href="https://learn.microsoft.com/aspnet/core/" target="_blank">check this out</a>*/}
                 </div>
                 <section className={styles.content}>

@@ -87,16 +87,16 @@
     cursor: pointer
 }
 
-.navLinkMain {
+/*.navLinkMain {
     font-weight: 800;
     text-decoration: none;
     color: var(--white-color);
     text-shadow: var(--subtle-text-shadow);
-}
+}*/
 
-.active {
+/*.active {
     color: var(--green-color);
-}
+}*/
 
 .user {
     display: flex;
