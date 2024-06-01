@@ -17,7 +17,6 @@ import ResetPasswordConfirmation from "./pages/Account/ResetPasswordConfirmation
 import ResendEmailConfirmation from "./pages/Account/public/ResendEmailConfirmation";
 import EmailChangeConfirmation from "./pages/Account/Manage/EmailChangeConfirmation";
 import ConfirmEmailChange from "./pages/Account/Manage/ConfirmEmailChange";
-import ChangePasswordConfirmation from "./pages/Account/Manage/ChangePasswordConfirmation";
 import ProtectedRoute from "./Components/utils/ProtectedRoute";
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -45,7 +44,6 @@ const router = createBrowserRouter(createRoutesFromElements(
 
         <Route path="account/emailChangeConfirmation" element={<EmailChangeConfirmation />} />
 
-        <Route path="account/changePasswordConfirmation" element={<ChangePasswordConfirmation />} />
 
         <Route path="account/manage" element={<ManageLayout />}>
             <Route index element={<Profile />} />

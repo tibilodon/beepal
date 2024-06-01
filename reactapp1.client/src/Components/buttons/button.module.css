@@ -1,4 +1,4 @@
-.wrap {
+.basic {
     align-items: center;
     background-color: var(--honey-color);
     border: 0;
@@ -7,7 +7,6 @@
     color: var(--white-color);
     cursor: pointer;
     display: inline-flex;
-    /*font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;*/
     font-size: 16px;
     font-weight: 600;
     justify-content: center;
@@ -27,19 +26,37 @@
     text-shadow: var(--text-shadow);
 }
 
-    .wrap:hover,
-    .wrap:focus {
+    .basic:hover,
+    .basic:focus {
         background-color: var(--green-color);
     }
 
-    .wrap:active {
+    .basic:active {
         background: var(--green-color);
-        color: rgb(255, 255, 255, .7);
+        color: rgb(255, 255, 255, 0.7);
     }
 
-    .wrap:disabled {
+    .danger:disabled, .success:disabled, .basic:disabled {
         cursor: not-allowed;
         /*background: rgba(0, 0, 0, .08);*/
         /*color: rgba(0, 0, 0, .3);*/
         filter: brightness(60%);
+    }
+
+.danger {
+    background-color: var(--danger-color);
+}
+
+    .danger:hover, .danger:focus {
+        background-color: var(--danger-color);
+        filter: brightness(80%)
+    }
+
+.success {
+    background-color: var(--green-color);
+}
+
+    .success:hover, .success:focus {
+        background-color: var(--green-color);
+        filter: brightness(80%)
     }

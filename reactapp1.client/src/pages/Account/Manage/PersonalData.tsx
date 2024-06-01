@@ -1,6 +1,8 @@
+﻿import styles from "./manage.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAppProvider } from "../../../Context/AppContext";
 import { useState } from "react";
+import ButtonA from "../../../Components/buttons/ButtonA";
 
 type ValidationErrors = {
     Errors: string
@@ -75,19 +77,24 @@ function PersonalData() {
 
     return (
         <>
-            <h3>Personal Data</h3>
-            {validationErrors.Errors && <span className="text-danger">{validationErrors.Errors[0]}</span>}
-            <div className="row">
-                <div className="col-md-6">
-                    <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
-                    <p>
-                        <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
-                    </p>
-                    <button className="btn btn-primary" type="button" onClick={handleDownload}>Download</button>
-                    <p className="pt-3">
-                        <button onClick={handleDelete} className="btn btn-danger">Delete</button>
-                    </p>
-                </div>
+
+
+
+            <header>
+                <h3 className={styles.pageHeader}>Személyes adatok</h3>
+                <h4 className={styles.pageHeader}>A profilod azokat az adatokat tartalmazza, amelyeket a részünkre bocsájtottál.
+                    <br />
+                    <br />
+                    Ezen az oldalon letöltheted vagy törölheted az adataid, illetve a profilod.
+                </h4>
+            </header>
+            {validationErrors.Error && <span className="danger">{validationErrors.Error[0]}</span>}
+            <div className={styles.wrap}>
+                <ButtonA label="Letöltés" type="button" onClick={handleDownload} color="success" />
+                <br />
+                <br />
+                <ButtonA label="Profilom törlése" type="button" onClick={handleDelete} color="danger" />
+
             </div>
         </>
     );

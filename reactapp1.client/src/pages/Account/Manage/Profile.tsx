@@ -73,7 +73,7 @@ function Profile() {
                 <h3 className={ styles.pageHeader}>Profilom</h3>
             </header>
             <SuccessNotification show={notification} />
-            {validationErrors.Error && <span className="text-danger">{validationErrors.Error[0]}</span>}
+            {validationErrors.Error && <span className="danger">{validationErrors.Error[0]}</span>}
 
             <div className={styles.wrap}>
 
