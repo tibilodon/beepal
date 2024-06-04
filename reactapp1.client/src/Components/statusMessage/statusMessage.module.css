@@ -1,14 +1,14 @@
 .statusMessage {
-    /*margin-top: var(--rootLayout-content-padding-top);*/
-    height: var(--page-height);
-    /*width:80%;*/
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  /*margin-top: var(--rootLayout-content-padding-top);*/
+  height: var(--page-height);
+  /*width:80%;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-    .statusMessage * {
-        font-size: 30px;
-    }
+.statusMessage * {
+  font-size: 30px;
+}

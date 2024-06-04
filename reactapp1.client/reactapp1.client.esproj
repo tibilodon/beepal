@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\Components\statusMessage\" />
-    <Folder Include="src\Components\notification\" />
     <Folder Include="src\Components\utils\" />
     <Folder Include="src\Context\" />
   </ItemGroup>

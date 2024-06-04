@@ -7,68 +7,72 @@ import { useNavigate } from "react-router-dom";
 import ButtonA from "../../buttons/ButtonA";
 
 function ManageUser() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const { checkUser, resetShowStates, userDto, showManageUser, setShowManageUser } = useAppProvider();
+  const {
+    checkUser,
+    resetShowStates,
+    userDto,
+    showManageUser,
+    setShowManageUser,
+  } = useAppProvider();
 
-    const { userName, email, nickName } = userDto
+  const { userName, email, nickName } = userDto;
 
-    const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
-
-            const response = await fetch("/api/account/logout", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            if (response.ok) {
-                await checkUser();
-                resetShowStates();
-                navigate("/")
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/account/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        await checkUser();
+        resetShowStates();
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    function handlePopUp() {
-        setShowManageUser(!showManageUser);
-    };
+  function handlePopUp() {
+    setShowManageUser(!showManageUser);
+  }
 
-    function handleClick(){
-        setShowManageUser(false);
-        navigate("/account/manage");
-    };
+  function handleClick() {
+    setShowManageUser(false);
+    navigate("/account/manage");
+  }
 
+  return (
+    <ProtectedRoute>
+      <img onClick={handlePopUp} className={styles.userIcon} src={user}></img>
 
-
-    return (
-        <ProtectedRoute>
-            <img onClick={handlePopUp} className={styles.userIcon} src={user}></img>
-
-            <div className={styles.content} style={{ height: `${showManageUser ? "310px" : "0"}` }}>
-                <div className={styles.popUp}>
-                    <section className={styles.heroSection}>
-                        <span>{Array.from(userName)[0]}</span>
-                        <ul className={styles.details}>
-                            <li>joseph.smiasdasdthysdasdasdasds@yahoo.co.uk</li>
-                            {/*<li>{userName}</li>*/}
-                            <li>{email}</li>
-                            <li>{nickName}</li>
-                        </ul>
-                    </section>
-                    <hr />
-                    <ButtonA type="button" label="Adataim" onClick={handleClick} />
-                    <form onSubmit={handleLogout}>
-                        <ButtonA type="submit" label="Kijelentkezés" />
-                    </form>
-
-                </div>
-            </div>
-        </ProtectedRoute>
-    );
+      <div
+        className={styles.content}
+        style={{ height: `${showManageUser ? "310px" : "0"}` }}
+      >
+        <div className={styles.popUp}>
+          <section className={styles.heroSection}>
+            <span>{Array.from(userName)[0]}</span>
+            <ul className={styles.details}>
+              {/*<li>{userName}</li>*/}
+              <li>{email}</li>
+              <li>{nickName}</li>
+            </ul>
+          </section>
+          <hr />
+          <ButtonA type="button" label="Adataim" onClick={handleClick} />
+          <form onSubmit={handleLogout}>
+            <ButtonA color="danger" type="submit" label="Kijelentkezés" />
+          </form>
+        </div>
+      </div>
+    </ProtectedRoute>
+  );
 }
 
 export default ManageUser;

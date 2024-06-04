@@ -1,12 +1,17 @@
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import StatusMessage from "../../Components/statusMessage/StatusMessage";
 function ResetPasswordConfirmation() {
-    return (
-        <>
-            <p>
-                Your password has been reset. Please <Link to={"/account"}>click here to log in</Link>.
-            </p>
-        </>
-    );
+  const navigate = useNavigate();
+  return (
+    <>
+      <StatusMessage
+        buttonLabel="Tovább a főoldalra"
+        onClickHandler={() => navigate("/")}
+        statusMessage="Jelszó sikeresen módosítva!"
+        type="success"
+      />
+    </>
+  );
 }
 
 export default ResetPasswordConfirmation;

@@ -1,6 +1,7 @@
-.userIcon{
-    cursor:pointer;
+.userIcon {
+    cursor: pointer;
 }
+
 .content {
     transition: 0.5s ease;
     height: 0;
@@ -15,11 +16,8 @@
 }
 
 .popUp {
-
-    border: 2px solid red;
     background-color: var(--white-color);
     box-shadow: var(--box-shadow);
-
     padding: 1em;
     border-radius: 5px;
     display: flex;
@@ -32,9 +30,8 @@
         min-height: 35px;
         min-width: 35px;
         line-height: 35px;
-        -moz-border-radius: 50%; 
-        border-radius: 50%; 
-
+        -moz-border-radius: 50%;
+        border-radius: 50%;
         background-color: var(--green-color);
         color: white;
         text-align: center;
@@ -44,7 +41,6 @@
 .details {
     display: flex;
     flex-direction: column;
-
 }
 
 .heroSection {

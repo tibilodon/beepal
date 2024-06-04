@@ -1,4 +1,9 @@
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import RootLayout from "./Layouts/root/RootLayout";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Account/public/Login";
@@ -8,61 +13,86 @@ import Profile from "./pages/Account/Manage/Profile";
 import Email from "./pages/Account/Manage/Email";
 import ChangePassword from "./pages/Account/Manage/ChangePassword";
 import PersonalData from "./pages/Account/Manage/PersonalData";
-import RegisterConfirmation from "./pages/Account/RegisterConfirmation";
 import ConfirmEmail from "./pages/Account/ConfirmEmail";
 import ForgotPassword from "./pages/Account/public/ForgotPassword";
 import ForgotPasswordConfirmation from "./pages/Account/ForgotPasswordConfirmation";
 import ResetPassword from "./pages/Account/ResetPassword";
 import ResetPasswordConfirmation from "./pages/Account/ResetPasswordConfirmation";
-import ResendEmailConfirmation from "./pages/Account/public/ResendEmailConfirmation";
-import EmailChangeConfirmation from "./pages/Account/Manage/EmailChangeConfirmation";
-import ConfirmEmailChange from "./pages/Account/Manage/ConfirmEmailChange";
-import ProtectedRoute from "./Components/utils/ProtectedRoute";
 
-const router = createBrowserRouter(createRoutesFromElements(
+import ConfirmEmailChange from "./pages/Account/Manage/ConfirmEmailChange";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
     <>
-        <Route path="account/confirmEmailChange" element={<ConfirmEmailChange />} />
-    <Route path="/" element={<RootLayout />}>
-        <Route index element={
+      <Route
+        path="account/confirmEmailChange"
+        element={<ConfirmEmailChange />}
+      />
+      <Route path="/" element={<RootLayout />}>
+        <Route
+          index
+          element={
             <>
-                <Home />
-                <Login/>
+              <Home />
+              <Login />
             </>
-        } />
+          }
+        />
 
         <Route path="account" element={<Login />} />
 
         <Route path="account/register" element={<Register />} />
-        <Route path="account/registerConfirmation" element={<RegisterConfirmation />} />
-        <Route path="account/confirmEmail" element={<ConfirmEmail />} />
-        <Route path="account/resendEmailConfirmation" element={<ResendEmailConfirmation />} />
+
+        <Route
+          path="account/confirmEmail"
+          element={
+            <>
+              <ConfirmEmail />
+              <Login />
+            </>
+          }
+        />
+        {/* <Route
+          path="account/resendEmailConfirmation"
+          element={<ResendEmailConfirmation />}
+        /> */}
 
         <Route path="account/forgotPassword" element={<ForgotPassword />} />
-        <Route path="account/resetPassword" element={<ResetPassword />} />
-        <Route path="account/resetPasswordConfirmation" element={<ResetPasswordConfirmation />} />
-        <Route path="account/forgotPasswordConfirmation" element={<ForgotPasswordConfirmation />} />
-
-        <Route path="account/emailChangeConfirmation" element={<EmailChangeConfirmation />} />
-
+        <Route
+          path="account/resetPassword"
+          element={
+            <>
+              <Login />
+              <ResetPassword />
+            </>
+          }
+        />
+        <Route
+          path="account/resetPasswordConfirmation"
+          element={<ResetPasswordConfirmation />}
+        />
+        <Route
+          path="account/forgotPasswordConfirmation"
+          element={<ForgotPasswordConfirmation />}
+        />
 
         <Route path="account/manage" element={<ManageLayout />}>
-            <Route index element={<Profile />} />
-            <Route path="email" element={<Email />} />
-            <Route path="changePassword" element={<ChangePassword />} />
-            <Route path="personalData" element={<PersonalData />} />
-
+          <Route index element={<Profile />} />
+          <Route path="email" element={<Email />} />
+          <Route path="changePassword" element={<ChangePassword />} />
+          <Route path="personalData" element={<PersonalData />} />
         </Route>
-    </Route>
+      </Route>
     </>
-))
+  )
+);
 
 function App() {
-
-    return (
-        <>
-            <RouterProvider router={router} />
-        </>
-    )
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;
