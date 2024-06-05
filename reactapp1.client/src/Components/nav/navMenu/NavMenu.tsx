@@ -1,33 +1,16 @@
 ﻿import styles from "./navMenu.module.css";
-
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import menuIcon from "../../../assets/icons/menu.svg";
-import cart from "../../../assets/icons/cart.svg";
 import logo from "../../../assets/images/logo.png";
-import close from "../../../assets/icons/close.svg";
 
 import { useAppProvider } from "../../../Context/AppContext";
 import ManageUser from "../../popup/ManageUser/ManageUser";
-import PublicRoute from "../../utils/PublicRoute";
-import Loader from "../../Loader/Loader";
+import CartNavIcon from "../../cart/navIcon/CartNavIcon";
+import Sidebar from "../../sidebar/Sidebar";
 
 function NavMenu() {
-  const {
-    sideNav,
-    setSideNav,
-    setShowLogin,
-    setShowRegister,
-    setShowForgotPassword,
-    resetShowStates,
-  } = useAppProvider();
-
-  const handleLogin = () => {
-    setSideNav(false);
-    setShowForgotPassword(false);
-    setShowRegister(false);
-    setShowLogin(true);
-  };
+  const { sideNav, setSideNav, resetShowStates } = useAppProvider();
 
   return (
     <>
@@ -42,47 +25,10 @@ function NavMenu() {
         </Link>
         <div className={styles.user}>
           <ManageUser />
-          <img className={styles.navIcon} src={cart}></img>
+          <CartNavIcon />
         </div>
       </nav>
-
-      <div
-        className={styles.sideNav}
-        style={{ width: `${sideNav ? "210px" : "0"}` }}
-      >
-        <button
-          onClick={() => setSideNav(!sideNav)}
-          className={styles.closebtn}
-        >
-          <img className={styles.navIcon} src={close}></img>
-        </button>
-        <section className={styles.navLinks}>
-          <div className="">
-            <NavLink
-              onClick={() => setSideNav(!sideNav)}
-              to={"/"}
-              className={({ isActive }) =>
-                isActive ? "navLinkMain active" : "navLinkMain"
-              }
-            >
-              <span className="" aria-hidden="true"></span> Home
-            </NavLink>
-          </div>
-
-          <PublicRoute>
-            <span
-              className={styles.loginBtn}
-              onClick={handleLogin}
-              aria-hidden="true"
-            >
-              Belépés
-            </span>
-          </PublicRoute>
-        </section>
-        <div className={styles.gimmick}>
-          <Loader />
-        </div>
-      </div>
+      <Sidebar />
     </>
   );
 }

@@ -1,0 +1,29 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.quantity {
+  border-radius: 50%;
+  padding: 0.2em 0.4em;
+  top: -20px;
+  position: absolute;
+  font-weight: 300;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  background-color: var(--green-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45em;
+}
+.quantity p {
+  font-size: 15px;
+}
+.amount {
+  margin-left: 0.6em;
+}
+
+.wrap:hover {
+}

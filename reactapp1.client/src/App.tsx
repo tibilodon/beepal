@@ -18,8 +18,10 @@ import ForgotPassword from "./pages/Account/public/ForgotPassword";
 import ForgotPasswordConfirmation from "./pages/Account/ForgotPasswordConfirmation";
 import ResetPassword from "./pages/Account/ResetPassword";
 import ResetPasswordConfirmation from "./pages/Account/ResetPasswordConfirmation";
-
 import ConfirmEmailChange from "./pages/Account/Manage/ConfirmEmailChange";
+
+//  cart
+import Cart from "./pages/Cart/Cart";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -82,6 +84,8 @@ const router = createBrowserRouter(
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="personalData" element={<PersonalData />} />
         </Route>
+
+        <Route path="/cart" element={<Cart />} />
       </Route>
     </>
   )
