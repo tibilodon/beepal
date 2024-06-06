@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ReactApp1.Server.Data;
 using ReactApp1.Server.Helpers;
+using ReactApp1.Server.Interfaces;
 using ReactApp1.Server.Models;
+using ReactApp1.Server.Repository;
 using ReactApp1.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 //   Configure the EF Core context
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -36,6 +37,7 @@ builder.Services.AddSingleton<IEmailSender<AppUser>, EmailSender>();
 
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<ICookieRepository, CookieRepository>();
 var app = builder.Build();
 
 app.UseDefaultFiles();

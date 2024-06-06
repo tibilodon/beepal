@@ -14,6 +14,7 @@
     <Folder Include="src\Components\statusMessage\" />
     <Folder Include="src\Components\utils\" />
     <Folder Include="src\Context\" />
+    <Folder Include="src\Helpers\cookieFetch\" />
     <Folder Include="src\pages\Cart\" />
   </ItemGroup>
   <ItemGroup>
