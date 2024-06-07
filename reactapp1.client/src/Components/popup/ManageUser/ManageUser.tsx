@@ -38,7 +38,8 @@ function ManageUser() {
     }
   };
 
-  function handlePopUp() {
+  function handleToggle() {
+    resetShowStates();
     setShowManageUser(!showManageUser);
   }
 
@@ -49,7 +50,7 @@ function ManageUser() {
 
   return (
     <ProtectedRoute>
-      <img onClick={handlePopUp} className={styles.userIcon} src={user}></img>
+      <img onClick={handleToggle} className={styles.userIcon} src={user}></img>
 
       <div
         className={styles.content}

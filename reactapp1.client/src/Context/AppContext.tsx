@@ -7,6 +7,9 @@ import {
   SetStateAction,
 } from "react";
 
+import { GetCartItems } from "../Helpers/cookieFetch/cookieFetcher";
+import { CartData, CartItem } from "../Helpers/Types/commonTypes";
+
 export type UserDto = {
   id: string;
   userName: string;
@@ -18,6 +21,12 @@ type AppContextProviderType = {
   isLoggedIn: boolean;
   userDto: UserDto;
   setUserDto: Dispatch<SetStateAction<UserDto>>;
+  cartItems: CartItem[];
+  setCartItems: Dispatch<SetStateAction<CartItem[]>>;
+  cartCounter: number;
+  setCartCounter: Dispatch<SetStateAction<number>>;
+  checkCartItems: () => void;
+
   checkUser: () => void;
   resetShowStates: () => void;
   sideNav: boolean;
@@ -34,6 +43,8 @@ type AppContextProviderType = {
   setShowManageUser: Dispatch<SetStateAction<boolean>>;
   showUserProfile: boolean;
   setShowUserProfile: Dispatch<SetStateAction<boolean>>;
+  showCartSidebar: boolean;
+  setShowCartSidebar: Dispatch<SetStateAction<boolean>>;
 };
 export const initialUserDto = {
   id: "",
@@ -41,10 +52,26 @@ export const initialUserDto = {
   nickName: "",
   email: "",
 };
+
+export const initialCartItems: CartItem[] = [
+  {
+    Id: "",
+    Name: "",
+    Quantity: 0,
+    Variant: "",
+  },
+];
+
 const AppContext = createContext<AppContextProviderType>({
   isLoggedIn: false,
   userDto: initialUserDto,
   setUserDto: () => {},
+  cartItems: initialCartItems,
+  setCartItems: () => {},
+  cartCounter: 0,
+  setCartCounter: () => {},
+  checkCartItems: async () => Promise<void>,
+
   checkUser: async () => Promise<void>,
   resetShowStates: () => {},
   sideNav: false,
@@ -61,6 +88,8 @@ const AppContext = createContext<AppContextProviderType>({
   setShowManageUser: () => {},
   showUserProfile: false,
   setShowUserProfile: () => {},
+  showCartSidebar: false,
+  setShowCartSidebar: () => {},
 });
 export const useAppProvider = () => {
   return useContext(AppContext);
@@ -81,10 +110,20 @@ export default function AppContextProvider({ children }: ProviderProps) {
     useState<boolean>(false);
   const [showManageUser, setShowManageUser] = useState<boolean>(false);
   const [showUserProfile, setShowUserProfile] = useState<boolean>(false);
+  const [showCartSidebar, setShowCartSidebar] = useState<boolean>(false);
+  const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
+  const [cartCounter, setCartCounter] = useState<number>(0);
 
   useEffect(() => {
     checkUser();
+    checkCartItems();
   }, []);
+
+  async function checkCartItems(): Promise<void> {
+    const result: CartData = await GetCartItems();
+    setCartItems(result.cartItems);
+    setCartCounter(result.itemCounter);
+  }
 
   async function checkUser(): Promise<void> {
     const response = await fetch("/api/user");
@@ -103,6 +142,8 @@ export default function AppContextProvider({ children }: ProviderProps) {
     setShowForgotPassword(false);
     setShowResendEmailConfirmation(false);
     setShowManageUser(false);
+    setShowUserProfile(false);
+    setShowCartSidebar(false);
   }
 
   return (
@@ -111,6 +152,12 @@ export default function AppContextProvider({ children }: ProviderProps) {
         isLoggedIn,
         userDto,
         setUserDto,
+        cartItems,
+        setCartItems,
+        cartCounter,
+        setCartCounter,
+        checkCartItems,
+
         checkUser,
         resetShowStates,
         sideNav,
@@ -127,6 +174,8 @@ export default function AppContextProvider({ children }: ProviderProps) {
         setShowManageUser,
         showUserProfile,
         setShowUserProfile,
+        showCartSidebar,
+        setShowCartSidebar,
       }}
     >
       <>{children}</>
