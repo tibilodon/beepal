@@ -94,6 +94,7 @@ namespace ReactApp1.Server.Controllers
             await emailStore.SetEmailAsync(user, registerModel.Email, CancellationToken.None);
             var result = await _userManager.CreateAsync(user, registerModel.Password);
 
+
             //  handle errors
             if (!result.Succeeded)
             {
@@ -102,6 +103,7 @@ namespace ReactApp1.Server.Controllers
                 return BadRequest(new { Errors = errors });
             }
 
+            await _userManager.AddToRoleAsync(user, UserRoles.User);
             //  required email confirmation
             var userId = await _userManager.GetUserIdAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -153,7 +155,7 @@ namespace ReactApp1.Server.Controllers
 
             string callbackUrlString = returnUrl + queryString.ToString();
             await _emailSender.SendPasswordResetLinkAsync(isUser, forgotPasswordData.Email, callbackUrlString);
-      
+
             return Ok("Recovery Email sent!");
         }
 
@@ -308,7 +310,7 @@ namespace ReactApp1.Server.Controllers
             return Ok();
         }
 
-    
+
     }
 }
 
