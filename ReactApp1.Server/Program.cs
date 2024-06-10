@@ -38,6 +38,9 @@ builder.Services.AddSingleton<IEmailSender<AppUser>, EmailSender>();
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<ICookieRepository, CookieRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+
 var app = builder.Build();
 
 app.UseDefaultFiles();

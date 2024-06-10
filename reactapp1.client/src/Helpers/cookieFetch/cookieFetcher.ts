@@ -1,4 +1,4 @@
-import { CartItem } from "../Types/commonTypes";
+import { ProductDetailDto } from "../Types/commonTypes";
 
 async function GetCartItems() {
   try {
@@ -15,7 +15,7 @@ async function GetCartItems() {
   }
 }
 
-async function AddItemToCart(item: CartItem) {
+async function AddItemToCart(item: ProductDetailDto) {
   try {
     const response = await fetch("/api/cookie/add", {
       method: "POST",

@@ -5,17 +5,26 @@ import {
   GetCartItems,
   AddItemToCart,
 } from "../../../Helpers/cookieFetch/cookieFetcher";
-import { CartItem } from "../../../Helpers/Types/commonTypes";
+import {
+  Category,
+  Packaging,
+  ProductDetailDto,
+} from "../../../Helpers/Types/commonTypes";
 
 function CartSidebar() {
   const { showCartSidebar, setShowCartSidebar, checkCartItems } =
     useAppProvider();
 
-  const fixValue: CartItem = {
-    Id: "fixval id test",
-    Name: "fixval",
-    Quantity: 2,
-    Variant: "same but different",
+  const fixValue: ProductDetailDto = {
+    Id: "",
+    Category: 1,
+    Description: "some desc",
+    ImageUrl: "",
+    Name: "test name",
+    Packaging: 1,
+    PlacedInCartQuantity: 1,
+    Price: 100,
+    Stock: 3,
   };
 
   const handleAdd = () => {

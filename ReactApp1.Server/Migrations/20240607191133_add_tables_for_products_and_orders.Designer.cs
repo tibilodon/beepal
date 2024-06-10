@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReactApp1.Server.Data;
 
@@ -11,9 +12,11 @@ using ReactApp1.Server.Data;
 namespace ReactApp1.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240607191133_add_tables_for_products_and_orders")]
+    partial class add_tables_for_products_and_orders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -270,19 +273,13 @@ namespace ReactApp1.Server.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProductId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderDatas");
+                    b.ToTable("OrderData");
                 });
 
             modelBuilder.Entity("ReactApp1.Server.Models.Product", b =>
@@ -305,6 +302,9 @@ namespace ReactApp1.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OrderDataId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("Packaging")
                         .HasColumnType("int");
 
@@ -316,7 +316,9 @@ namespace ReactApp1.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.HasIndex("OrderDataId");
+
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -389,17 +391,16 @@ namespace ReactApp1.Server.Migrations
                         .WithMany("Orders")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("ReactApp1.Server.Models.Product", "Product")
-                        .WithMany("Orders")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Address");
 
                     b.Navigation("AppUser");
+                });
 
-                    b.Navigation("Product");
+            modelBuilder.Entity("ReactApp1.Server.Models.Product", b =>
+                {
+                    b.HasOne("ReactApp1.Server.Models.Order.OrderData", null)
+                        .WithMany("Products")
+                        .HasForeignKey("OrderDataId");
                 });
 
             modelBuilder.Entity("ReactApp1.Server.Models.AppUser", b =>
@@ -407,9 +408,9 @@ namespace ReactApp1.Server.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("ReactApp1.Server.Models.Product", b =>
+            modelBuilder.Entity("ReactApp1.Server.Models.Order.OrderData", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
