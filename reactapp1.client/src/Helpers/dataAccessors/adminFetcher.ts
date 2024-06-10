@@ -31,6 +31,7 @@ async function AddProduct(
       },
       body: JSON.stringify(item),
     });
+    console.log(item);
     const result = await response.json();
     if (response.ok) {
       console.log(result);

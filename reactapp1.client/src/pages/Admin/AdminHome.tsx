@@ -14,12 +14,15 @@ function AdminHome() {
     initialProductDetails
   );
 
-  const onChangeHandler = (e: React.FormEvent<HTMLInputElement>): void => {
+  const onChangeHandler = (
+    e: React.FormEvent<HTMLInputElement | HTMLSelectElement>
+  ): void => {
     const { id, value } = e.currentTarget;
 
     setFormData((prevVals: ProductDetail) => ({
       ...prevVals,
-      [id]: value,
+      //  turn value into enum value
+      [id]: id === "category" || id === "packaging" ? Number(value) : value,
     }));
   };
 
@@ -88,6 +91,14 @@ function AdminHome() {
             type="text"
             onChangeHandler={onChangeHandler}
           />
+          <select
+            value={formData.category}
+            id="category"
+            onChange={onChangeHandler}
+          >
+            <option value={1}>Méz</option>
+            <option value={2}>Méhészeti termékek</option>
+          </select>
           <ButtonA label="Save" color="success" type="submit" />
         </form>
       </div>

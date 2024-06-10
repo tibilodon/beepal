@@ -20,8 +20,6 @@ namespace ReactApp1.Server.Repository
 
         public bool Add(Product product)
         {
-            //var productsId = System.Guid.NewGuid().ToString().ToUpper();
-            //product.Id = productsId;
             _context.Add(product);
             return Save();
         }
