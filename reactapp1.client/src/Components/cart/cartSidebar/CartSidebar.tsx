@@ -4,7 +4,7 @@ import close from "../../../assets/icons/close.svg";
 import {
   GetCartItems,
   AddItemToCart,
-} from "../../../Helpers/cookieFetch/cookieFetcher";
+} from "../../../Helpers/dataAccessors/cookieFetcher";
 import {
   Category,
   Packaging,
@@ -17,11 +17,11 @@ function CartSidebar() {
 
   const fixValue: ProductDetailDto = {
     Id: "",
-    Category: 1,
+    Category: Category.Honey,
     Description: "some desc",
     ImageUrl: "",
     Name: "test name",
-    Packaging: 1,
+    Packaging: Packaging.Regular,
     PlacedInCartQuantity: 1,
     Price: 100,
     Stock: 3,

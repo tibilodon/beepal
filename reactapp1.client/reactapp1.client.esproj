@@ -15,8 +15,10 @@
     <Folder Include="src\Components\utils\" />
     <Folder Include="src\Context\" />
     <Folder Include="src\Helpers\cookieFetch\" />
+    <Folder Include="src\Helpers\initialDatas\" />
     <Folder Include="src\Helpers\Types\" />
     <Folder Include="src\pages\Cart\" />
+    <Folder Include="src\pages\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".vscode\launch.json" />

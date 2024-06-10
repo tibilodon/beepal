@@ -1,28 +1,28 @@
-type CartItem = {
+export type CartItem = {
   Id: string;
   Name: string;
   Quantity: number;
   Variant: string;
 };
 
-type CartData = {
+export type CartData = {
   cartItems: CartItem[];
   itemCounter: number;
 };
 
 //  initializing the first value will in turn assigns and increments to any additional value
-enum Category {
-  Honey,
-  BeekeepingProducts,
+export enum Category {
+  Honey = "Méz",
+  BeekeepingProducts = "Méhészeti Termékek",
 }
 
-enum Packaging {
-  Small,
-  Regular,
-  Large,
+export enum Packaging {
+  Small = "250g",
+  Regular = "500g",
+  Large = "750g",
 }
 
-type ProductDetailDto = {
+export type ProductDetailDto = {
   Id: string;
   Name: string;
   Description: string;
@@ -34,4 +34,12 @@ type ProductDetailDto = {
   PlacedInCartQuantity: number;
 };
 
-export type { CartData, CartItem, ProductDetailDto, Category, Packaging };
+export type ProductDetail = {
+  name: string;
+  description: string;
+  imageUrl: string;
+  category: Category;
+  packaging: Packaging;
+  price: number;
+  stock: number;
+};

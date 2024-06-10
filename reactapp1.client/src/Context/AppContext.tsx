@@ -7,7 +7,7 @@ import {
   SetStateAction,
 } from "react";
 
-import { GetCartItems } from "../Helpers/cookieFetch/cookieFetcher";
+import { GetCartItems } from "../Helpers/dataAccessors/cookieFetcher";
 import { CartData, CartItem } from "../Helpers/Types/commonTypes";
 
 export type UserDto = {

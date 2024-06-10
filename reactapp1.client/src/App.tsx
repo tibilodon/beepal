@@ -22,6 +22,7 @@ import ConfirmEmailChange from "./pages/Account/Manage/ConfirmEmailChange";
 
 //  cart
 import Cart from "./pages/Cart/Cart";
+import AdminHome from "./pages/Admin/AdminHome";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
         path="account/confirmEmailChange"
         element={<ConfirmEmailChange />}
       />
+      <Route path="/admin" element={<AdminHome />} />
       <Route path="/" element={<RootLayout />}>
         <Route
           index
