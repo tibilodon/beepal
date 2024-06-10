@@ -15,6 +15,6 @@ namespace ReactApp1.Server.Models
         public Packaging Packaging { get; set; }
         public int Price { get; set; }
         public int Stock { get; set; }
-        public ICollection<OrderData> Orders { get; set; } = new List<OrderData>();
+        public ICollection<OrderData>? Orders { get; set; } = new List<OrderData>();
     }
 }
