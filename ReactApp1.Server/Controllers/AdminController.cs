@@ -77,6 +77,8 @@ namespace ReactApp1.Server.Controllers
             {
                 return result;
             }
+            var id = Guid.NewGuid().ToString().ToUpper();
+            product.Id = id;
             _productRepository.Add(product);
             var products = await _productRepository.GetAll();
             return Ok(new
@@ -86,7 +88,7 @@ namespace ReactApp1.Server.Controllers
 
         }
 
-        [HttpPut("update/product/{productId}")]
+        [HttpPut("product/update/{productId}")]
         public async Task<ActionResult> UpdateProduct(string productId, [FromBody] Product product)
         {
             if (!ModelState.IsValid)

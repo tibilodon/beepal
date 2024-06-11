@@ -1,3 +1,10 @@
+export type UserDto = {
+  id: string;
+  userName: string;
+  nickName: string;
+  email: string;
+};
+
 export type CartItem = {
   Id: string;
   Name: string;
@@ -15,21 +22,12 @@ export enum Category {
   Honey = 1,
   BeekeepingProducts,
 }
-// export enum Category {
-//   Honey = "Méz",
-//   BeekeepingProducts = "Méhészeti Termékek",
-// }
 
 export enum Packaging {
   Small = 1,
   Regular,
   Large,
 }
-// export enum Packaging {
-//   Small = "250g",
-//   Regular = "500g",
-//   Large = "750g",
-// }
 
 export type ProductDetailDto = {
   Id: string;

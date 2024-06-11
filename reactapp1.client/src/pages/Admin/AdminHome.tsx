@@ -1,7 +1,6 @@
-import styles from "./adminHome.module.css";
-import { useEffect, useState } from "react";
+import styles from "./admin.module.css";
+import { useState } from "react";
 import {
-  GetAllProducts,
   AddProduct,
   DeleteProduct,
 } from "../../Helpers/dataAccessors/adminFetcher";
@@ -9,8 +8,12 @@ import { ProductDetail } from "../../Helpers/Types/commonTypes";
 import { initialProductDetails } from "../../Helpers/initialDatas/initialData";
 import Input from "../../Components/form/input/Input";
 import ButtonA from "../../Components/buttons/ButtonA";
+import { useAppProvider } from "../../Context/AppContext";
+import { useNavigate } from "react-router-dom";
 function AdminHome() {
-  const [products, setProducts] = useState<ProductDetail[]>();
+  const navigate = useNavigate();
+  const { products, setProducts } = useAppProvider();
+
   const [formData, setFormData] = useState<ProductDetail>(
     initialProductDetails
   );
@@ -27,15 +30,19 @@ function AdminHome() {
     }));
   };
 
-  async function GetData() {
-    const result: ProductDetail[] = await GetAllProducts();
-    console.log("thy result", result);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const result = await AddProduct(formData);
     setProducts(result);
-  }
+    setFormData(initialProductDetails);
+  };
 
-  useEffect(() => {
-    GetData();
-  }, []);
+  const handleDelete = async (e: React.MouseEvent<HTMLElement>, id: string) => {
+    e.preventDefault();
+    const result = await DeleteProduct(id);
+    setProducts(result);
+    setFormData(initialProductDetails);
+  };
 
   return (
     <>
@@ -50,9 +57,14 @@ function AdminHome() {
                 <p>{item.category}</p>
                 <p>{item.packaging}</p>
                 <ButtonA
+                  label="Update"
+                  color="success"
+                  onClick={() => navigate(`edit/${item.id}`)}
+                />
+                <ButtonA
                   label="Delete"
                   color="danger"
-                  onClick={() => DeleteProduct(item.id!)}
+                  onClick={(e) => handleDelete(e, item.id!)}
                 />
               </div>
             );
@@ -61,7 +73,7 @@ function AdminHome() {
 
       <div className={styles.wrap}>
         <h1>ADD PRODUCT</h1>
-        <form onSubmit={(e) => AddProduct(e, formData)}>
+        <form onSubmit={handleSubmit}>
           <Input
             value={formData.description}
             id="description"
@@ -104,6 +116,15 @@ function AdminHome() {
           >
             <option value={1}>Méz</option>
             <option value={2}>Méhészeti termékek</option>
+          </select>
+          <select
+            value={formData.packaging}
+            id="packaging"
+            onChange={onChangeHandler}
+          >
+            <option value={1}>250g</option>
+            <option value={2}>500g</option>
+            <option value={3}>750g</option>
           </select>
           <ButtonA label="Save" color="success" type="submit" />
         </form>

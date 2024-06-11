@@ -5,7 +5,8 @@ type ColorTypes = "danger" | "success" | "basic";
 
 interface ButtonAProps {
   //  TODO: optional in dev
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  // onClick?: () => void;
   label: string;
   type?: "submit" | "reset" | "button" | undefined;
   disabled?: boolean;

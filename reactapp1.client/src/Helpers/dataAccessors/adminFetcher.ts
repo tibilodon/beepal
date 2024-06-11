@@ -18,11 +18,7 @@ async function GetAllProducts(): Promise<ProductDetail[]> {
   }
 }
 
-async function AddProduct(
-  e: React.FormEvent<HTMLFormElement>,
-  item: ProductDetail
-) {
-  e.preventDefault();
+async function AddProduct(item: ProductDetail) {
   try {
     const response = await fetch("/api/admin/product/add", {
       method: "POST",
@@ -34,7 +30,8 @@ async function AddProduct(
     console.log(item);
     const result = await response.json();
     if (response.ok) {
-      console.log(result);
+      console.log("PRODUCT ADDED, RESULT:", result);
+      return result.products;
     } else {
       console.log("some error", response);
     }
@@ -55,6 +52,7 @@ async function DeleteProduct(id: string) {
     const result = await response.json();
     if (response.ok) {
       console.log(result);
+      return result.products;
     } else {
       console.log("some error", response);
     }
@@ -63,11 +61,7 @@ async function DeleteProduct(id: string) {
   }
 }
 
-async function UpdateProduct(
-  e: React.FormEvent<HTMLFormElement>,
-  item: ProductDetail
-) {
-  e.preventDefault();
+async function UpdateProduct(item: ProductDetail) {
   try {
     const response = await fetch(`/api/admin/product/update/${item.id}`, {
       method: "PUT",
@@ -80,6 +74,7 @@ async function UpdateProduct(
     const result = await response.json();
     if (response.ok) {
       console.log(result);
+      return result.products;
     } else {
       console.log("some error", response);
     }

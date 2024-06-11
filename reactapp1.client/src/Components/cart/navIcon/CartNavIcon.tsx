@@ -5,6 +5,7 @@ import { useAppProvider } from "../../../Context/AppContext";
 function CartNavIcon() {
   const { showCartSidebar, setShowCartSidebar, cartCounter, resetShowStates } =
     useAppProvider();
+
   const handleToggle = () => {
     resetShowStates();
     setShowCartSidebar(!showCartSidebar);

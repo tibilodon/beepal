@@ -8,14 +8,14 @@ import {
 } from "react";
 
 import { GetCartItems } from "../Helpers/dataAccessors/cookieFetcher";
-import { CartData, CartItem } from "../Helpers/Types/commonTypes";
-
-export type UserDto = {
-  id: string;
-  userName: string;
-  nickName: string;
-  email: string;
-};
+import {
+  CartData,
+  CartItem,
+  ProductDetail,
+  UserDto,
+} from "../Helpers/Types/commonTypes";
+import { initialProductDetails } from "../Helpers/initialDatas/initialData";
+import { GetAllProducts } from "../Helpers/dataAccessors/adminFetcher";
 
 type AppContextProviderType = {
   isLoggedIn: boolean;
@@ -45,6 +45,11 @@ type AppContextProviderType = {
   setShowUserProfile: Dispatch<SetStateAction<boolean>>;
   showCartSidebar: boolean;
   setShowCartSidebar: Dispatch<SetStateAction<boolean>>;
+
+  //  products
+  products: ProductDetail[];
+  setProducts: Dispatch<SetStateAction<ProductDetail[]>>;
+  getProductsData: () => void;
 };
 export const initialUserDto = {
   id: "",
@@ -90,6 +95,10 @@ const AppContext = createContext<AppContextProviderType>({
   setShowUserProfile: () => {},
   showCartSidebar: false,
   setShowCartSidebar: () => {},
+  //  products
+  products: [initialProductDetails],
+  setProducts: () => {},
+  getProductsData: () => Promise<void>,
 });
 export const useAppProvider = () => {
   return useContext(AppContext);
@@ -114,9 +123,15 @@ export default function AppContextProvider({ children }: ProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
   const [cartCounter, setCartCounter] = useState<number>(0);
 
+  //  products
+  const [products, setProducts] = useState<ProductDetail[]>([
+    initialProductDetails,
+  ]);
+
   useEffect(() => {
     checkUser();
     checkCartItems();
+    getProductsData();
   }, []);
 
   async function checkCartItems(): Promise<void> {
@@ -133,6 +148,12 @@ export default function AppContextProvider({ children }: ProviderProps) {
     if (data.userDto) {
       setUserDto(data.userDto);
     }
+  }
+
+  async function getProductsData(): Promise<void> {
+    const result: ProductDetail[] = await GetAllProducts();
+    console.log("thy result", result);
+    setProducts(result);
   }
 
   function resetShowStates(): void {
@@ -176,6 +197,10 @@ export default function AppContextProvider({ children }: ProviderProps) {
         setShowUserProfile,
         showCartSidebar,
         setShowCartSidebar,
+        //  products
+        products,
+        setProducts,
+        getProductsData,
       }}
     >
       <>{children}</>
