@@ -44,6 +44,7 @@ export type ProductDetailDto = {
 };
 
 export type ProductDetail = {
+  id?: string;
   name: string;
   description: string;
   imageUrl: string;

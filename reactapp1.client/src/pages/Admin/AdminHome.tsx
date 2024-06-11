@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
   GetAllProducts,
   AddProduct,
+  DeleteProduct,
 } from "../../Helpers/dataAccessors/adminFetcher";
 import { ProductDetail } from "../../Helpers/Types/commonTypes";
 import { initialProductDetails } from "../../Helpers/initialDatas/initialData";
@@ -48,6 +49,11 @@ function AdminHome() {
                 <p>{item.name}</p>
                 <p>{item.category}</p>
                 <p>{item.packaging}</p>
+                <ButtonA
+                  label="Delete"
+                  color="danger"
+                  onClick={() => DeleteProduct(item.id!)}
+                />
               </div>
             );
           })}

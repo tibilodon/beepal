@@ -1,6 +1,7 @@
 import { Category, Packaging, ProductDetail } from "../Types/commonTypes";
 
 const initialProductDetails: ProductDetail = {
+  id: "",
   category: Category.Honey,
   description: "",
   imageUrl: "",

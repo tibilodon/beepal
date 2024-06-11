@@ -78,5 +78,12 @@ namespace ReactApp1.Server.Repository
                 })
                 .ToListAsync();
         }
+
+        public async Task<bool> DeleteById(string id)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            return Delete(product);
+
+        }
     }
 }

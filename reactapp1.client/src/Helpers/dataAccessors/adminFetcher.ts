@@ -24,7 +24,7 @@ async function AddProduct(
 ) {
   e.preventDefault();
   try {
-    const response = await fetch("/api/admin/add/product", {
+    const response = await fetch("/api/admin/product/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,4 +43,49 @@ async function AddProduct(
   }
 }
 
-export { GetAllProducts, AddProduct };
+async function DeleteProduct(id: string) {
+  try {
+    const response = await fetch(`/api/admin/product/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("to be deleted:", id);
+    const result = await response.json();
+    if (response.ok) {
+      console.log(result);
+    } else {
+      console.log("some error", response);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function UpdateProduct(
+  e: React.FormEvent<HTMLFormElement>,
+  item: ProductDetail
+) {
+  e.preventDefault();
+  try {
+    const response = await fetch(`/api/admin/product/update/${item.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    });
+    console.log(item);
+    const result = await response.json();
+    if (response.ok) {
+      console.log(result);
+    } else {
+      console.log("some error", response);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { GetAllProducts, AddProduct, DeleteProduct, UpdateProduct };

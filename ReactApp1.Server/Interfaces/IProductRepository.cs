@@ -15,6 +15,7 @@ namespace ReactApp1.Server.Interfaces
         bool Add(Product product);
         bool Update(Product product);
         bool Delete(Product product);
+        Task<bool> DeleteById(string id);
         bool Save();
     }
 }

@@ -17,6 +17,8 @@ namespace ReactApp1.Server.Controllers
             _userManager = userManager;
             _productRepository = productRepository;
         }
+        //  TODO:
+        //      --handle errors
 
         //  helper
         private async Task<(bool isAuthenticated, ActionResult result)> AuthenticateAndAuthorizeAdmin()
@@ -50,30 +52,6 @@ namespace ReactApp1.Server.Controllers
         [HttpGet("products")]
         public async Task<ActionResult> GetProducts()
         {
-            //check for log status
-            //var isLoggedIn = HttpContext.User.Identity.IsAuthenticated;
-            ////  handle unauthenticated
-            //if (!isLoggedIn)
-            //{
-            //    return BadRequest(new { Errors = "Please log in!" });
-            //}
-            ////  get userId
-            //var userId = HttpContext.User.GetUserId();
-            ////  find user
-            //var user = await _userManager.FindByIdAsync(userId);
-            ////  handle error
-            //if (user == null)
-            //{
-            //    return BadRequest(new { Errors = "User cannot be found" });
-
-            //}
-            ////  check user role
-            //var userRole = await _userManager.IsInRoleAsync(user, "admin");
-            ////  unauthorized
-            //if (!userRole)
-            //{
-            //    return BadRequest(new { Errors = "Unauthorized!" });
-            //};
             var (isAuthenticated, result) = await AuthenticateAndAuthorizeAdmin();
             if (!isAuthenticated)
             {
@@ -86,13 +64,14 @@ namespace ReactApp1.Server.Controllers
             });
         }
 
-        [HttpPost("add/product")]
+        [HttpPost("product/add")]
         public async Task<ActionResult> AddProduct([FromBody] Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            //  check for admin
             var (isAuthenticated, result) = await AuthenticateAndAuthorizeAdmin();
             if (!isAuthenticated)
             {
@@ -107,6 +86,51 @@ namespace ReactApp1.Server.Controllers
 
         }
 
-    }
+        [HttpPut("update/product/{productId}")]
+        public async Task<ActionResult> UpdateProduct(string productId, [FromBody] Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            //  check for admin
+            var (isAuthenticated, result) = await AuthenticateAndAuthorizeAdmin();
+            if (!isAuthenticated)
+            {
+                return result;
+            }
 
+            _productRepository.Update(product);
+            var products = await _productRepository.GetAll();
+            return Ok(new
+            {
+                products
+            });
+        }
+
+        [HttpDelete("product/{productId}")]
+        public async Task<ActionResult> DeleteProduct(string productId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            //  check for admin
+            var (isAuthenticated, result) = await AuthenticateAndAuthorizeAdmin();
+            if (!isAuthenticated)
+            {
+                return result;
+            }
+            await _productRepository.DeleteById(productId);
+            var products = await _productRepository.GetAll();
+            return Ok(new
+            {
+                products
+            });
+        }
+
+
+
+
+    }
 }
