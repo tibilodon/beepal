@@ -13,7 +13,7 @@ type ValidationError = {
 };
 
 function Profile() {
-  const { userDto, checkUser } = useAppProvider();
+  const { userDto, setUserDto } = useAppProvider();
   const [formData, setFormData] = useState<UserDto>(initialUserDto);
 
   const initialErrors = {
@@ -45,13 +45,15 @@ function Profile() {
         },
         body: JSON.stringify(formData),
       });
+
+      const result = await response.json();
       if (response.ok) {
         //  fetch edited data, reset states, display success message
-        await checkUser();
+        // await checkUser();
+        setUserDto(result.userDto);
         setNotification(true);
         setFormData(userDto);
       } else {
-        const result = await response.json();
         console.log(result.errors);
         setValidationErrors(result.errors);
       }

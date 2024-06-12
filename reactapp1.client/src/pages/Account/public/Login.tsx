@@ -7,7 +7,6 @@ import ButtonA from "../../../Components/buttons/ButtonA";
 import Register from "./Register";
 import ForgotPassword from "./ForgotPassword";
 import ResendEmailConfirmation from "./ResendEmailConfirmation";
-import { useNavigate } from "react-router-dom";
 
 interface LoginData {
   email: string;
@@ -32,14 +31,14 @@ function Login() {
     setShowForgotPassword,
     showResendEmailConfirmation,
     setShowResendEmailConfirmation,
+    setUserDto,
+    setIsLoggedIn,
   } = useAppProvider();
   const initialFormData: LoginData = {
     email: "",
     password: "",
     rememberMe: "",
   };
-
-  const navigate = useNavigate();
 
   const [formData, setFormData] = useState<LoginData>(initialFormData);
 
@@ -61,11 +60,11 @@ function Login() {
         },
         body: JSON.stringify(formData),
       });
+      const result = await response.json();
       if (response.ok) {
-        // await checkUser();
+        setUserDto(result.userDto);
+        setIsLoggedIn(true);
         setShowLogin(false);
-        //  TODO: rethink "refresh options"
-        navigate("/");
       } else {
         const result = await response.json();
         setValidationErrors(result.errors);

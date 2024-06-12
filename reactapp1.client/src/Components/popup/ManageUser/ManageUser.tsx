@@ -11,7 +11,7 @@ function ManageUser() {
   const navigate = useNavigate();
 
   const {
-    checkUser,
+    // checkUser,
     resetShowStates,
     userDto,
     setUserDto,
@@ -32,7 +32,7 @@ function ManageUser() {
         },
       });
       if (response.ok) {
-        await checkUser();
+        // await checkUser();
         setIsLoggedIn(false);
         setUserDto(initialUserDto);
         resetShowStates();

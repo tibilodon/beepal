@@ -24,7 +24,6 @@ import ConfirmEmailChange from "./pages/Account/Manage/ConfirmEmailChange";
 import Cart from "./pages/Cart/Cart";
 import AdminHome from "./pages/Admin/AdminHome";
 import AdminEdit from "./pages/Admin/AdminEdit";
-import { GetRootLayoutData } from "./Helpers/dataAccessors/useLoaderDataFetcher";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,7 +36,7 @@ const router = createBrowserRouter(
         <Route path="admin/edit/:id" element={<AdminEdit />} />
       </Route> */}
 
-      <Route path="/" element={<RootLayout />} loader={GetRootLayoutData}>
+      <Route path="/" element={<RootLayout />}>
         <Route
           index
           element={

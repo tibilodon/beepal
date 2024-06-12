@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppProvider } from "../../../Context/AppContext";
+import { initialUserDto, useAppProvider } from "../../../Context/AppContext";
 import StatusMessage from "../../../Components/statusMessage/StatusMessage";
 
 type ValidationError = {
@@ -12,12 +12,14 @@ type ValidationError = {
 function ConfirmEmailChange() {
   const navigate = useNavigate();
   const [statusMessage, setStatusMessage] = useState("");
-  const { checkUser } = useAppProvider();
+  // const { checkUser } = useAppProvider();
 
   // receives data in params, Post request to server, which in turn sends out link to confirm new email address
   useEffect(() => {
     populateData();
   });
+
+  const { setUserDto, setIsLoggedIn } = useAppProvider();
 
   const initialErrors: ValidationError = {
     Error: "",
@@ -45,13 +47,15 @@ function ConfirmEmailChange() {
         },
         body: JSON.stringify(data),
       });
+      const result = await response.json();
       if (response.ok) {
-        await checkUser();
-        const result = await response.json();
+        setUserDto(initialUserDto);
+        setIsLoggedIn(false);
+        // await checkUser();
+
         setStatusMessage("E-mail cím sikeresen módosítva!");
-        if (result.errors) {
-          setValidationErrors(result.errors);
-        }
+      } else {
+        setValidationErrors(result.errors);
       }
     } catch (error) {
       console.log(error);
@@ -75,11 +79,6 @@ function ConfirmEmailChange() {
           })}
         </div>
       ) : (
-        //    <section className="statusMessage">
-
-        //        <h1 className="success">{statusMessage}</h1>
-        //        <ButtonA label="Tovább a főoldalra" onClick={()=>navigate("/") } />
-        //</section>
         <StatusMessage
           buttonLabel="Tovább a főoldalra"
           onClickHandler={() => navigate("/")}

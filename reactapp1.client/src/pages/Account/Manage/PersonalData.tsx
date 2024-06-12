@@ -1,6 +1,6 @@
 ﻿import styles from "./manage.module.css";
 import { useNavigate } from "react-router-dom";
-import { useAppProvider } from "../../../Context/AppContext";
+import { initialUserDto, useAppProvider } from "../../../Context/AppContext";
 import { useState } from "react";
 import ButtonA from "../../../Components/buttons/ButtonA";
 import AlertNotification from "../../../Components/notification/AlertNotification";
@@ -10,7 +10,8 @@ type ValidationErrors = {
 };
 function PersonalData() {
   const navigate = useNavigate();
-  const { userDto, checkUser, resetShowStates } = useAppProvider();
+  const { userDto, setUserDto, setIsLoggedIn, resetShowStates } =
+    useAppProvider();
 
   const initialValidationErrors: ValidationErrors = {
     Errors: "",
@@ -18,15 +19,8 @@ function PersonalData() {
   const [validationErrors, setValidationErrors] = useState(
     initialValidationErrors
   );
-  //const [isIntentionalDelete, setIsIntentionalDelete] = useState(false);
 
-  //useEffect(() => {
-  //    isIntentionalDelete && handleDelete()
-  //}, [isIntentionalDelete])
-
-  const handleDelete = async (): // e: React.MouseEvent<HTMLButtonElement>
-  Promise<void> => {
-    // e.preventDefault();
+  const handleDelete = async (): Promise<void> => {
     try {
       const response = await fetch("/api/user/deletePersonalData", {
         method: "POST",
@@ -37,7 +31,9 @@ function PersonalData() {
       });
       const result = await response.json();
       if (response.ok) {
-        await checkUser();
+        // await checkUser();
+        setUserDto(initialUserDto);
+        setIsLoggedIn(false);
         resetShowStates();
         navigate("/");
       } else {

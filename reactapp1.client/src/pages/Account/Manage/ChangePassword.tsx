@@ -3,8 +3,8 @@ import { useState } from "react";
 import SuccessNotification from "../../../Components/notification/SuccessNotification";
 import Input from "../../../Components/form/input/Input";
 import ButtonA from "../../../Components/buttons/ButtonA";
-import { useAppProvider } from "../../../Context/AppContext";
-import { useNavigate } from "react-router-dom";
+// import { useAppProvider } from "../../../Context/AppContext";
+// import { useNavigate } from "react-router-dom";
 
 type ValidationError = {
   Error: string;
@@ -20,8 +20,8 @@ type ChangePasswordData = {
 };
 
 function ChangePassword() {
-  const navigate = useNavigate();
-  const { checkUser } = useAppProvider();
+  // const navigate = useNavigate();
+  // const { checkUser } = useAppProvider();
 
   const [notification, setNotification] = useState<boolean>(false);
 
@@ -66,7 +66,7 @@ function ChangePassword() {
       if (response.ok) {
         //navigate("/account/changePasswordConfirmation");
         // await checkUser();
-        navigate(0);
+        // navigate(0);
         setNotification(true);
         setFormData(initialFormData);
       } else {

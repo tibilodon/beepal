@@ -74,8 +74,15 @@ namespace ReactApp1.Server.Controllers
 
                 if (setUserName.Succeeded)
                 {
+                    var result = new UserDto
+                    {
+                        Id = isUser.Id,
+                        Email = isUser.Email,
+                        UserName = isUser.UserName,
+                        NickName = isUser.NickName,
+                    };
                     statusMessage = "user updated";
-                    return Ok(new { statusMessage });
+                    return Ok(new { userDto = result });
                 }
             }
             var errors = ValidationErrorMapper.CreateCustomErrors("could not update username");
@@ -114,7 +121,8 @@ namespace ReactApp1.Server.Controllers
 
             await _signInManager.RefreshSignInAsync(user);
             statusMessage = "Password changed Successfully!";
-            return Ok(new { statusMessage });
+
+            return Ok(new { statusMessage, });
         }
 
         //  change email address

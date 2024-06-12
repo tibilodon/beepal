@@ -6,6 +6,7 @@ using ReactApp1.Server.Data;
 using ReactApp1.Server.Helpers;
 using ReactApp1.Server.Models;
 using ReactApp1.Server.Models.Account;
+using ReactApp1.Server.Models.Dto;
 using System.Text;
 using System.Web;
 
@@ -292,8 +293,14 @@ namespace ReactApp1.Server.Controllers
             var result = await _signInManager.PasswordSignInAsync(user, loginData.Password, loginData.RememberMe == "on" ? true : false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-
-                return Ok(new { login = true, message = "Successfully logged in" });
+                var isUser = new UserDto
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    NickName = user.NickName,
+                    UserName = user.UserName
+                };
+                return Ok(new { userDto = isUser });
             }
             var error = ValidationErrorMapper.CreateCustomErrors("Login Failed!");
             return BadRequest(new
