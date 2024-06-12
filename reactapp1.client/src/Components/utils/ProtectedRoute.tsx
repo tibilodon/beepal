@@ -1,17 +1,23 @@
-import { useAppProvider } from "../../Context/AppContext";
+import { useLoaderData } from "react-router-dom";
+import { RootLayoutUseLoaderData } from "../../Helpers/Types/commonTypes";
+
 function ProtectedRoute({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
- 
-    const { isLoggedIn } = useAppProvider();
-    if (!isLoggedIn) {
-        return null;
-    }
-    return (
-       children
-    )
+  const { isLoggedIn } = useLoaderData() as RootLayoutUseLoaderData;
+  const data = useLoaderData();
+  console.log(data);
+  if (!isLoggedIn) {
+    return null;
+  }
+  return children;
+  //   const { isLoggedIn } = useAppProvider();
+  //   if (!isLoggedIn) {
+  //     return null;
+  //   }
+  //   return children;
 }
 
 export default ProtectedRoute;

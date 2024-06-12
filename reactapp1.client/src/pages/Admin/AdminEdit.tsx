@@ -3,9 +3,12 @@ import { ProductDetail } from "../../Helpers/Types/commonTypes";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppProvider } from "../../Context/AppContext";
 import { useState } from "react";
-import { UpdateProduct } from "../../Helpers/dataAccessors/adminFetcher";
-import Input from "../../Components/form/input/Input";
+import {
+  DeleteProduct,
+  UpdateProduct,
+} from "../../Helpers/dataAccessors/adminFetcher";
 import ButtonA from "../../Components/buttons/ButtonA";
+import ProductForm from "../../Components/form/admin/product/ProductForm";
 
 function AdminEdit() {
   const navigate = useNavigate();
@@ -33,67 +36,30 @@ function AdminEdit() {
     navigate("/admin");
   };
 
+  const handleDelete = async (e: React.MouseEvent<HTMLElement>, id: string) => {
+    e.preventDefault();
+    const result = await DeleteProduct(id);
+    setProducts(result);
+    // setFormData(initialProductDetails);
+  };
+
   return (
     <>
       <div className={styles.wrap}>
         <h1>Adminedit admin</h1>
         <div className={styles.wrap}>
-          <h1>ADD PRODUCT</h1>
-          <form onSubmit={handleSubmit}>
-            <Input
-              value={formData.description}
-              id="description"
-              placeholder="description"
-              type="text"
-              onChangeHandler={onChangeHandler}
-            />{" "}
-            <Input
-              value={formData.imageUrl}
-              id="imageUrl"
-              placeholder="imageUrl"
-              type="text"
-              onChangeHandler={onChangeHandler}
-            />
-            <Input
-              value={formData.name}
-              id="name"
-              placeholder="name"
-              type="text"
-              onChangeHandler={onChangeHandler}
-            />
-            <Input
-              value={formData.price}
-              id="price"
-              placeholder="price"
-              type="text"
-              onChangeHandler={onChangeHandler}
-            />
-            <Input
-              value={formData.stock}
-              id="stock"
-              placeholder="stock"
-              type="text"
-              onChangeHandler={onChangeHandler}
-            />
-            <select
-              value={formData.category}
-              id="category"
-              onChange={onChangeHandler}
-            >
-              <option value={1}>Méz</option>
-              <option value={2}>Méhészeti termékek</option>
-            </select>
-            <select
-              value={formData.packaging}
-              id="packaging"
-              onChange={onChangeHandler}
-            >
-              <option value={1}>250g</option>
-              <option value={2}>500g</option>
-              <option value={3}>750g</option>
-            </select>
-            <ButtonA label="Save" color="success" type="submit" />
-          </form>
+          <h1>Edit PRODUCT</h1>
+          <ProductForm
+            formData={formData}
+            setFormData={setFormData}
+            handleSubmit={handleSubmit}
+            onChangeHandler={onChangeHandler}
+          />
+          <ButtonA
+            label="Delete"
+            color="danger"
+            onClick={(e) => handleDelete(e, id!)}
+          />
         </div>
       </div>
     </>

@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\Components\cart\cartSidebar\" />
+    <Folder Include="src\Components\form\textfield\" />
     <Folder Include="src\Components\sidebar\" />
     <Folder Include="src\Components\statusMessage\" />
     <Folder Include="src\Components\utils\" />

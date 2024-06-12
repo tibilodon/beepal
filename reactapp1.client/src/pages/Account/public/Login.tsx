@@ -7,6 +7,7 @@ import ButtonA from "../../../Components/buttons/ButtonA";
 import Register from "./Register";
 import ForgotPassword from "./ForgotPassword";
 import ResendEmailConfirmation from "./ResendEmailConfirmation";
+import { useNavigate } from "react-router-dom";
 
 interface LoginData {
   email: string;
@@ -21,7 +22,6 @@ type ValidationErrors = {
 };
 function Login() {
   const {
-    checkUser,
     showLogin,
     setShowLogin,
     sideNav,
@@ -38,6 +38,8 @@ function Login() {
     password: "",
     rememberMe: "",
   };
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState<LoginData>(initialFormData);
 
@@ -60,8 +62,10 @@ function Login() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        await checkUser();
+        // await checkUser();
         setShowLogin(false);
+        //  TODO: rethink "refresh options"
+        navigate("/");
       } else {
         const result = await response.json();
         setValidationErrors(result.errors);

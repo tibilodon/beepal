@@ -1,0 +1,25 @@
+.wrap {
+  width: 100%;
+}
+.wrap textarea {
+  border: 1px solid var(--gray-color);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 1em;
+  width: 100%;
+  color: var(--gray-color);
+  caret-color: var(--gray-color);
+}
+
+.wrap textarea:focus::-webkit-textarea-placeholder {
+  color: var(--gray-color);
+}
+
+.wrap textarea::placeholder {
+  color: var(--gray-color);
+}
+
+.wrap textarea:focus {
+  border: 1px solid var(--black-color);
+  color: var(--black-color);
+}

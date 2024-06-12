@@ -50,6 +50,9 @@ type AppContextProviderType = {
   products: ProductDetail[];
   setProducts: Dispatch<SetStateAction<ProductDetail[]>>;
   getProductsData: () => void;
+  //  loader
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 };
 export const initialUserDto = {
   id: "",
@@ -99,6 +102,9 @@ const AppContext = createContext<AppContextProviderType>({
   products: [initialProductDetails],
   setProducts: () => {},
   getProductsData: () => Promise<void>,
+  //  loader
+  isLoading: false,
+  setIsLoading: () => {},
 });
 export const useAppProvider = () => {
   return useContext(AppContext);
@@ -123,6 +129,8 @@ export default function AppContextProvider({ children }: ProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
   const [cartCounter, setCartCounter] = useState<number>(0);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   //  products
   const [products, setProducts] = useState<ProductDetail[]>([
     initialProductDetails,
@@ -141,12 +149,15 @@ export default function AppContextProvider({ children }: ProviderProps) {
   }
 
   async function checkUser(): Promise<void> {
+    setIsLoading(true);
     const response = await fetch("/api/user");
     const data = await response.json();
-
-    setIsLoggedIn(data.isLoggedIn);
-    if (data.userDto) {
-      setUserDto(data.userDto);
+    if (response.ok) {
+      setIsLoggedIn(data.isLoggedIn);
+      if (data.userDto) {
+        setUserDto(data.userDto);
+      }
+      setIsLoading(false);
     }
   }
 
@@ -201,6 +212,9 @@ export default function AppContextProvider({ children }: ProviderProps) {
         products,
         setProducts,
         getProductsData,
+        //  loader
+        isLoading,
+        setIsLoading,
       }}
     >
       <>{children}</>

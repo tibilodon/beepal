@@ -51,3 +51,9 @@ export type ProductDetail = {
   price: number;
   stock: number;
 };
+
+export type RootLayoutUseLoaderData = {
+  isLoggedIn: boolean;
+  userDto: UserDto;
+  state: string;
+};
