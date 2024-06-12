@@ -2,8 +2,9 @@ import styles from "./sidebar.module.css";
 import { useAppProvider } from "../../Context/AppContext";
 import { NavLink } from "react-router-dom";
 import PublicRoute from "../utils/PublicRoute";
-import Loader from "../Loader/Loader";
+
 import close from "../../assets/icons/close.svg";
+import Gimmick from "../gimmick/Gimmick";
 
 function Sidebar() {
   const {
@@ -56,7 +57,7 @@ function Sidebar() {
           </PublicRoute>
         </section>
         <div className={styles.gimmick}>
-          <Loader />
+          <Gimmick />
         </div>
       </div>
     </>

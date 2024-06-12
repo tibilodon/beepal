@@ -22,6 +22,7 @@ function ManageUser() {
 
   const { userName, email, nickName } = userDto;
 
+  // const handleLogout = async () => {
   const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {

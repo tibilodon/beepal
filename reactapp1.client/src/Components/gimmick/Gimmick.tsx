@@ -1,7 +1,7 @@
-import styles from "./loader.module.css";
+import styles from "./gimmick.module.css";
 import image from "../../assets/bee.png";
 
-function Loader() {
+function Gimmick() {
   return (
     <>
       <div className={styles.beeWrap}>
@@ -17,4 +17,4 @@ function Loader() {
   );
 }
 
-export default Loader;
+export default Gimmick;
