@@ -55,5 +55,4 @@ export type ProductDetail = {
 export type RootLayoutUseLoaderData = {
   isLoggedIn: boolean;
   userDto: UserDto;
-  state: string;
 };

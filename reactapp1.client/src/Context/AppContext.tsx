@@ -19,6 +19,8 @@ import { GetAllProducts } from "../Helpers/dataAccessors/adminFetcher";
 
 type AppContextProviderType = {
   isLoggedIn: boolean;
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+
   userDto: UserDto;
   setUserDto: Dispatch<SetStateAction<UserDto>>;
   cartItems: CartItem[];
@@ -72,6 +74,8 @@ export const initialCartItems: CartItem[] = [
 
 const AppContext = createContext<AppContextProviderType>({
   isLoggedIn: false,
+  setIsLoggedIn: () => {},
+
   userDto: initialUserDto,
   setUserDto: () => {},
   cartItems: initialCartItems,
@@ -140,6 +144,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
     checkUser();
     checkCartItems();
     getProductsData();
+    console.log("context useEffect ran");
   }, []);
 
   async function checkCartItems(): Promise<void> {
@@ -182,6 +187,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
     <AppContext.Provider
       value={{
         isLoggedIn,
+        setIsLoggedIn,
         userDto,
         setUserDto,
         cartItems,

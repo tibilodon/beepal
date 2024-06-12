@@ -49,7 +49,6 @@ namespace ReactApp1.Server.Controllers
                 };
                 return Ok(new { isLoggedIn, userDto });
             }
-            //return Ok(new { isLoggedIn });
             var errors = ValidationErrorMapper.CreateCustomErrors("user not logged in");
             //return BadRequest(new { Errors = errors });
             return Ok(new { isLoggedIn });
@@ -287,7 +286,7 @@ namespace ReactApp1.Server.Controllers
             return Ok(new { File = result });
         }
 
-     
+
     }
 }
 

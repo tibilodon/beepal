@@ -5,6 +5,7 @@ import user from "../../../assets/icons/user.svg";
 import { useAppProvider } from "../../../Context/AppContext";
 import { useNavigate } from "react-router-dom";
 import ButtonA from "../../buttons/ButtonA";
+import { initialUserDto } from "../../../Context/AppContext";
 
 function ManageUser() {
   const navigate = useNavigate();
@@ -13,8 +14,10 @@ function ManageUser() {
     checkUser,
     resetShowStates,
     userDto,
+    setUserDto,
     showManageUser,
     setShowManageUser,
+    setIsLoggedIn,
   } = useAppProvider();
 
   const { userName, email, nickName } = userDto;
@@ -30,6 +33,8 @@ function ManageUser() {
       });
       if (response.ok) {
         await checkUser();
+        setIsLoggedIn(false);
+        setUserDto(initialUserDto);
         resetShowStates();
         navigate("/");
       }
