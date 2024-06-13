@@ -1,20 +1,28 @@
-import { initialProductDetails } from "../initialDatas/initialData";
-import { ProductDetail } from "../Types/commonTypes";
+import { AdminProductDetail, ProductDetail } from "../Types/commonTypes";
 
-async function GetAllProducts(): Promise<ProductDetail[]> {
+type Data = {
+  products: AdminProductDetail[] | null;
+  errors: string;
+};
+
+async function GetAllProducts(): Promise<Data> {
   try {
     const response = await fetch("/api/admin/products");
     const result = await response.json();
+
+    console.log("i am taller", result);
     if (response.ok) {
-      console.log(result);
-      return result.products;
+      return { errors: "", products: result.products };
     } else {
       console.log("some error", result);
-      return [initialProductDetails];
+      return { errors: result.errors, products: null };
     }
   } catch (error) {
     console.log(error);
-    return [initialProductDetails];
+    return {
+      errors: `error`,
+      products: null,
+    };
   }
 }
 

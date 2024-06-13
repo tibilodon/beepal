@@ -57,7 +57,7 @@ namespace ReactApp1.Server.Controllers
             {
                 return result;
             }
-            var products = await _productRepository.GetAll();
+            var products = await _productRepository.AdminGetAll();
             return Ok(new
             {
                 products
@@ -85,7 +85,6 @@ namespace ReactApp1.Server.Controllers
             {
                 products
             });
-
         }
 
         [HttpPut("product/update/{productId}")]

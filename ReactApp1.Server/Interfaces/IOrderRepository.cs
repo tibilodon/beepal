@@ -1,17 +1,17 @@
-﻿using ReactApp1.Server.Models.Order;
+﻿using ReactApp1.Server.Models.Orders;
 
 namespace ReactApp1.Server.Interfaces
 {
     public interface IOrderRepository
     {
-        bool Add(OrderData orderData);
-        bool Update(OrderData orderData);
-        bool Delete(OrderData orderData);
+        bool Add(OrderDetails OrderDetails);
+        bool Update(OrderDetails OrderDetails);
+        bool Delete(OrderDetails OrderDetails);
         bool Save();
-        Task<IEnumerable<OrderData>> GetAll();
-        Task<OrderData> GetByIdAsync(string id);
-        Task<OrderData> GetByIdAsyncNoTracking(string id);
-        Task<List<OrderData>> GetAllOrdersForAppUser();
+        Task<IEnumerable<OrderDetails>> GetAll();
+        Task<OrderDetails> GetByIdAsync(string id);
+        Task<OrderDetails> GetByIdAsyncNoTracking(string id);
+        Task<List<OrderDetails>> GetAllOrdersForAppUser();
 
 
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using ReactApp1.Server.Models.Order;
+using ReactApp1.Server.Models.Orders;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReactApp1.Server.Models
@@ -12,7 +13,7 @@ namespace ReactApp1.Server.Models
         public int? AddressId { get; set; }
         public Address? Address { get; set; }
 
-        public ICollection<OrderData>? Orders { get; set; }
+        public ICollection<OrderDetails>? Orders { get; set; } = new List<OrderDetails>();
 
     }
 }

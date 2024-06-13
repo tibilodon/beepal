@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReactApp1.Server.Data;
 using ReactApp1.Server.Interfaces;
-using ReactApp1.Server.Models.Order;
+using ReactApp1.Server.Models.Orders;
 
 namespace ReactApp1.Server.Repository
 {
@@ -16,17 +16,18 @@ namespace ReactApp1.Server.Repository
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public bool Add(OrderData orderData)
+        public bool Add(OrderDetails OrderDetails)
         {
-            _context.Add(orderData);
+            _context.Add(OrderDetails);
             return Save();
         }
 
-        public bool Delete(OrderData orderData)
+        public bool Delete(OrderDetails OrderDetails)
         {
-            _context.Remove(orderData);
+            _context.Remove(OrderDetails);
             return Save();
         }
+
 
         public bool Save()
         {
@@ -34,35 +35,38 @@ namespace ReactApp1.Server.Repository
             return saved > 0 ? true : false;
         }
 
-        public bool Update(OrderData orderData)
+        public bool Update(OrderDetails OrderDetails)
         {
-            _context.Update(orderData);
+            _context.Update(OrderDetails);
             return Save();
         }
 
-        public async Task<IEnumerable<OrderData>> GetAll()
+        public async Task<IEnumerable<OrderDetails>> GetAll()
         {
-            return await _context.OrderDatas.ToListAsync();
+            return await _context.OrderDetails.ToListAsync();
         }
 
-        public async Task<List<OrderData>> GetAllOrdersForAppUser()
+        public async Task<List<OrderDetails>> GetAllOrderDetailsForAppUser()
         {
             var curUser = _httpContextAccessor.HttpContext.User.GetUserId();
-            return await _context.OrderDatas.Include(o => o.Product).Where(od => od.AppUserId == curUser).ToListAsync();
+            return await _context.OrderDetails.Include(o => o.OrderDatas).Where(od => od.AppUserId == curUser).ToListAsync();
         }
 
-        public async Task<OrderData> GetByIdAsync(string id)
+        public async Task<OrderDetails> GetByIdAsync(string id)
         {
-            return await _context.OrderDatas.Include(o => o.Product).FirstOrDefaultAsync(o => o.Id == id);
+            return await _context.OrderDetails.Include(o => o.OrderDatas).FirstOrDefaultAsync(o => o.Id == id);
         }
 
-        public async Task<OrderData> GetByIdAsyncNoTracking(string id)
+        public async Task<OrderDetails> GetByIdAsyncNoTracking(string id)
         {
-            return await _context.OrderDatas.AsNoTracking().Include(o => o.Product).FirstOrDefaultAsync(o => o.Id == id);
+            return await _context.OrderDetails.AsNoTracking().Include(o => o.OrderDatas).FirstOrDefaultAsync(o => o.Id == id);
 
 
         }
 
-
+        public Task<List<OrderDetails>> GetAllOrdersForAppUser()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

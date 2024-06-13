@@ -42,6 +42,7 @@ function ExpandableTextfield({
           placeholder={placeHolder}
           onChange={valSetter}
           rows={1}
+          aria-label="product description"
         />
       </div>
     </>

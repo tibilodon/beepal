@@ -85,5 +85,39 @@ namespace ReactApp1.Server.Repository
             return Delete(product);
 
         }
+
+        public async Task<IEnumerable<object>> AdminGetAll()
+        {
+            return await _context.Products
+         .Select(p => new
+         {
+             p.Id,
+             p.Name,
+             p.Description,
+             p.ImageUrl,
+             p.Category,
+             p.Packaging,
+             p.Price,
+             p.Stock,
+             OrderDatas = p.OrderDatas.Select(od => new
+             {
+                 od.OrderId,
+                 OrderDetails = new
+                 {
+                     od.OrderDetails.Id,
+                     od.OrderDetails.OrderDate,
+                     od.OrderDetails.AddressId,
+                     Address = od.OrderDetails.Address,
+                     AppUser = new
+                     {
+                         od.OrderDetails.AppUser.NickName,
+                         od.OrderDetails.AppUser.Email
+                     }
+                 },
+                 od.ProductId
+             }).ToList()
+         })
+         .ToListAsync();
+        }
     }
 }

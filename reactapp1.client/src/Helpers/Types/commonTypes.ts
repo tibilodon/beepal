@@ -51,3 +51,25 @@ export type ProductDetail = {
   price: number;
   stock: number;
 };
+
+export type Address = {
+  id: number;
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+};
+
+export type OrderData = {
+  id: string;
+  addressId: number;
+  address: Address;
+  userId: string;
+  user: UserDto;
+  productId: string;
+  product: ProductDetail;
+};
+
+export interface AdminProductDetail extends ProductDetail {
+  order: OrderData[];
+}
