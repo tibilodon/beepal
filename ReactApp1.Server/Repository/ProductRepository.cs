@@ -4,6 +4,7 @@ using ReactApp1.Server.Data.Enum;
 using ReactApp1.Server.Interfaces;
 using ReactApp1.Server.Models;
 using ReactApp1.Server.Models.Dto;
+using ReactApp1.Server.Models.Dto.Admin;
 
 namespace ReactApp1.Server.Repository
 {
@@ -86,38 +87,66 @@ namespace ReactApp1.Server.Repository
 
         }
 
-        public async Task<IEnumerable<object>> AdminGetAll()
+        public async Task<IEnumerable<AdminProductDto>> AdminGetAll()
         {
-            return await _context.Products
-         .Select(p => new
-         {
-             p.Id,
-             p.Name,
-             p.Description,
-             p.ImageUrl,
-             p.Category,
-             p.Packaging,
-             p.Price,
-             p.Stock,
-             OrderDatas = p.OrderDatas.Select(od => new
-             {
-                 od.OrderId,
-                 OrderDetails = new
-                 {
-                     od.OrderDetails.Id,
-                     od.OrderDetails.OrderDate,
-                     od.OrderDetails.AddressId,
-                     Address = od.OrderDetails.Address,
-                     AppUser = new
-                     {
-                         od.OrderDetails.AppUser.NickName,
-                         od.OrderDetails.AppUser.Email
-                     }
-                 },
-                 od.ProductId
-             }).ToList()
-         })
-         .ToListAsync();
+            //   return await _context.Products
+            //.Select(p => new
+            //{
+            //    p.Id,
+            //    p.Name,
+            //    p.Description,
+            //    p.ImageUrl,
+            //    p.Category,
+            //    p.Packaging,
+            //    p.Price,
+            //    p.Stock,
+            //    OrderDatas = p.OrderDatas.Select(od => new
+            //    {
+            //        od.OrderId,
+            //        OrderDetails = new
+            //        {
+            //            od.OrderDetails.Id,
+            //            od.OrderDetails.OrderDate,
+            //            od.OrderDetails.AddressId,
+            //            Address = od.OrderDetails.Address,
+            //            AppUser = new
+            //            {
+            //                od.OrderDetails.AppUser.NickName,
+            //                od.OrderDetails.AppUser.Email
+            //            }
+            //        },
+            //        od.ProductId
+            //    }).ToList()
+            //})
+            //.ToListAsync();
+
+            return await _context.Products.Select(p => new AdminProductDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                ImageUrl = p.ImageUrl,
+                Category = p.Category,
+                Packaging = p.Packaging,
+                Price = p.Price,
+                Stock = p.Stock,
+                OrderDatas = p.OrderDatas.Select(od => new AdminOrderDetailsDto
+                {
+                    OrderId = od.OrderId,
+                    OrderDate = od.OrderDetails.OrderDate,
+                    Address = od.OrderDetails.Address,
+                    Customer = new UserDto
+                    {
+                        Id = od.OrderDetails.AppUserId,
+                        UserName = od.OrderDetails.AppUser.UserName,
+                        NickName = od.OrderDetails.AppUser.NickName,
+                        Email = od.OrderDetails.AppUser.Email
+                    }
+                }
+               ).ToList()
+
+            }).ToListAsync();
         }
+
     }
 }

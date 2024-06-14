@@ -1,9 +1,8 @@
 ﻿using ReactApp1.Server.Data.Enum;
-using ReactApp1.Server.Models.Orders;
 
-namespace ReactApp1.Server.Models.Dto
+namespace ReactApp1.Server.Models.Dto.Admin
 {
-    public class AdminProductDetails
+    public class AdminProductDto
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -13,6 +12,6 @@ namespace ReactApp1.Server.Models.Dto
         public Packaging Packaging { get; set; }
         public int Price { get; set; }
         public int Stock { get; set; }
-        public ICollection<OrderDetails> OrderDetails { get; set; }
+        public ICollection<AdminOrderDetailsDto> OrderDatas { get; set; } = new List<AdminOrderDetailsDto>();
     }
 }

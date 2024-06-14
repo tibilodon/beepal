@@ -1,13 +1,14 @@
 ﻿using ReactApp1.Server.Data.Enum;
 using ReactApp1.Server.Models;
 using ReactApp1.Server.Models.Dto;
+using ReactApp1.Server.Models.Dto.Admin;
 
 namespace ReactApp1.Server.Interfaces
 {
     public interface IProductRepository
     {
         Task<IEnumerable<Product>> GetAll();
-        Task<IEnumerable<object>> AdminGetAll();
+        Task<IEnumerable<AdminProductDto>> AdminGetAll();
         Task<Product> GetByIdAsync(string id);
         Task<Product> GetByIdAsyncNoTracking(string id);
         Task<IEnumerable<Product>> GetByCategoryAsync(Category category);

@@ -1,0 +1,13 @@
+﻿using ReactApp1.Server.Models.Order;
+
+namespace ReactApp1.Server.Models.Dto.Admin
+{
+    public class AdminOrderDetailsDto
+    {
+
+        public string OrderId { get; set; }
+        public DateTime OrderDate { get; set; }
+        public Address Address { get; set; }
+        public UserDto Customer { get; set; }
+    }
+}
