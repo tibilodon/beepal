@@ -24,6 +24,8 @@ import ConfirmEmailChange from "./pages/Account/Manage/ConfirmEmailChange";
 import Cart from "./pages/Cart/Cart";
 import AdminHome from "./pages/Admin/AdminHome";
 import AdminEdit from "./pages/Admin/AdminEdit";
+import AdminLayout from "./Layouts/admin/AdminLayout";
+import AdminAddProduct from "./pages/Admin/AdminAddProduct";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,10 +34,6 @@ const router = createBrowserRouter(
         path="account/confirmEmailChange"
         element={<ConfirmEmailChange />}
       />
-      {/* <Route path="/admin" element={<AdminHome />}>
-        <Route path="admin/edit/:id" element={<AdminEdit />} />
-      </Route> */}
-
       <Route path="/" element={<RootLayout />}>
         <Route
           index
@@ -94,9 +92,18 @@ const router = createBrowserRouter(
         <Route path="/cart" element={<Cart />} />
       </Route>
 
-      <Route path="/admin" element={<AdminHome />} />
-
-      <Route path="/admin/edit/:id" element={<AdminEdit />} />
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          index
+          element={
+            <>
+              <AdminHome />
+            </>
+          }
+        />
+        <Route path="/admin/add" element={<AdminAddProduct />} />
+        <Route path="/admin/edit/:id" element={<AdminEdit />} />
+      </Route>
     </>
   )
 );

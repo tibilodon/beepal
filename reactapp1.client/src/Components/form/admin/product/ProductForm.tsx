@@ -22,13 +22,6 @@ function ProductForm({
   return (
     <>
       <form className={styles.wrap} onSubmit={handleSubmit}>
-        {/* <Input
-          value={formData.description}
-          id="description"
-          placeholder="description"
-          type="text"
-          onChangeHandler={onChangeHandler}
-        />{" "} */}
         <ExpandableTextfield
           formData={formData}
           setFormData={setFormData}

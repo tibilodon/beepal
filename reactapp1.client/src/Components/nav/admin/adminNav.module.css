@@ -1,0 +1,31 @@
+.navbar {
+  top: 0;
+  height: var(--navbar-height);
+  width: 100%;
+  position: fixed;
+  background-color: var(--gray-color);
+
+  padding: 0 1em;
+
+  /* border-radius: 30px; */
+  box-shadow: var(--box-shadow);
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
+  align-items: center;
+}
+.wrap span {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navLink {
+  font-size: 20px;
+}
+.active {
+  border-bottom: 1px solid var(--black-color);
+}

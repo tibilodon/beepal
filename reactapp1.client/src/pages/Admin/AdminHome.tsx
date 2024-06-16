@@ -1,27 +1,21 @@
 import styles from "./admin.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
-  AddProduct,
   DeleteProduct,
-  GetAllProducts,
+  GetAllProductsAdmin,
 } from "../../Helpers/dataAccessors/adminFetcher";
-import { ProductDetail } from "../../Helpers/Types/commonTypes";
-import { initialProductDetails } from "../../Helpers/initialDatas/initialData";
 import ButtonA from "../../Components/buttons/ButtonA";
 import { useAppProvider } from "../../Context/AppContext";
 import { useNavigate } from "react-router-dom";
-import ProductForm from "../../Components/form/admin/product/ProductForm";
 import Loader from "../../Components/Loader/Loader";
 function AdminHome() {
   const navigate = useNavigate();
-  const { isLoading, setIsLoading } = useAppProvider();
-  const [products, setProducts] = useState<ProductDetail[]>([
-    initialProductDetails,
-  ]);
+  const { isLoading, setIsLoading, products, setProducts } = useAppProvider();
+
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
-      const data = await GetAllProducts();
+      const data = await GetAllProductsAdmin();
       console.log(data);
       if (data?.errors) {
         navigate("/");
@@ -32,45 +26,13 @@ function AdminHome() {
       setIsLoading(false);
     };
     getData();
-  }, [navigate, setIsLoading]);
-
-  const [formData, setFormData] = useState<ProductDetail>(
-    initialProductDetails
-  );
-
-  const onChangeHandler = (
-    e: React.FormEvent<HTMLInputElement | HTMLSelectElement>
-  ): void => {
-    const { id, value } = e.currentTarget;
-
-    setFormData((prevVals: ProductDetail) => ({
-      ...prevVals,
-      //  turn value into enum value
-      [id]: id === "category" || id === "packaging" ? Number(value) : value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const result = await AddProduct(formData);
-    setProducts(result);
-    setFormData(initialProductDetails);
-  };
+  }, [navigate, setIsLoading, setProducts]);
 
   const handleDelete = async (e: React.MouseEvent<HTMLElement>, id: string) => {
     e.preventDefault();
     const result = await DeleteProduct(id);
     setProducts(result);
-    setFormData(initialProductDetails);
   };
-
-  function scrollToCreate() {
-    window.scroll({
-      top: document.body.offsetHeight,
-      left: 0,
-      behavior: "smooth",
-    });
-  }
 
   if (isLoading) {
     return <Loader />;
@@ -81,43 +43,59 @@ function AdminHome() {
       <div className={styles.wrap}>
         <h1>welcome admin</h1>
         <h1 className="danger">Your products</h1>
-        <span className={styles.createBtn}>
-          <ButtonA label="Add Product" color="basic" onClick={scrollToCreate} />
-        </span>
+
         {products &&
           products.map((item, index) => {
-            //  convert category and packaging to readable form
-            let category: string;
-            let packaging: string;
-            switch (item.category) {
-              case 2:
-                category = "Méhészeti termékek";
-                break;
-
-              default:
-                category = "Méz";
-                break;
-            }
-            switch (item.packaging) {
-              case 2:
-                packaging = "500g";
-                break;
-              case 3:
-                packaging = "750g";
-                break;
-
-              default:
-                packaging = "250g";
-                break;
-            }
             return (
               <div className={styles.products} key={index}>
-                <p>{item.id}</p>
-                <p>{item.name}</p>
-                <p>{category}</p>
-                <p>{packaging}</p>
-                <p>{item.packaging}</p>
-                <p>{item.packaging}</p>
+                {Object.entries(item)
+                  .filter(([, value]) => typeof value != "object")
+                  .map(([key, value], i) => {
+                    //  convert category and packaging to readable form
+                    if (key === "category" && value === 1) {
+                      return (
+                        <span key={i} className={styles.detail}>
+                          {key}
+                          <p>&nbsp;Méz</p>
+                        </span>
+                      );
+                    }
+                    if (key === "category" && value === 2) {
+                      return (
+                        <span key={i} className={styles.detail}>
+                          {key}:<p>&nbsp;Méhészeti termékek</p>
+                        </span>
+                      );
+                    }
+
+                    if (key === "packaging" && value === 1) {
+                      return (
+                        <span key={i} className={styles.detail}>
+                          {key}:<p>&nbsp;250g</p>
+                        </span>
+                      );
+                    }
+                    if (key === "packaging" && value === 2) {
+                      return (
+                        <span key={i} className={styles.detail}>
+                          {key}:<p>&nbsp;500g</p>
+                        </span>
+                      );
+                    }
+                    if (key === "packaging" && value === 3) {
+                      return (
+                        <span key={i} className={styles.detail}>
+                          {key}:<p>&nbsp;750g</p>
+                        </span>
+                      );
+                    }
+
+                    return (
+                      <span key={i} className={styles.detail}>
+                        {key}:<p>&nbsp;{value}</p>
+                      </span>
+                    );
+                  })}
 
                 <ButtonA
                   label="Update"
@@ -134,7 +112,7 @@ function AdminHome() {
           })}
       </div>
 
-      <div className={styles.wrap}>
+      {/* <div className={styles.wrap}>
         <h1>ADD PRODUCT</h1>
         <ProductForm
           formData={formData}
@@ -142,7 +120,7 @@ function AdminHome() {
           handleSubmit={handleSubmit}
           onChangeHandler={onChangeHandler}
         />
-      </div>
+      </div> */}
     </>
   );
 }

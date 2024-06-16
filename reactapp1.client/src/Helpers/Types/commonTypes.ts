@@ -30,15 +30,15 @@ export enum Packaging {
 }
 
 export type ProductDetailDto = {
-  Id: string;
-  Name: string;
-  Description: string;
-  ImageUrl: string;
-  Category: Category;
-  Packaging: Packaging;
-  Price: number;
-  Stock: number;
-  PlacedInCartQuantity: number;
+  id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  category: Category;
+  packaging: Packaging;
+  price: number;
+  stock: number;
+  placedInCartQuantity: number;
 };
 
 export type ProductDetail = {
@@ -70,6 +70,16 @@ export type OrderData = {
   product: ProductDetail;
 };
 
-export interface AdminProductDetail extends ProductDetail {
-  order: OrderData[];
+export type AdminOrderDetailsDto = {
+  orderId: string;
+  isFulfilled: boolean;
+  orderDate: string;
+  address: Address;
+  customer: UserDto;
+};
+
+export interface AdminProductDetailDto extends ProductDetail {
+  orderDatas: AdminOrderDetailsDto[];
 }
+
+export type ColorTypes = "danger" | "success" | "basic";

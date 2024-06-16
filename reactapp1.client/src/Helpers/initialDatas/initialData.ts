@@ -1,4 +1,9 @@
-import { Category, Packaging, ProductDetail } from "../Types/commonTypes";
+import {
+  AdminProductDetailDto,
+  Category,
+  Packaging,
+  ProductDetail,
+} from "../Types/commonTypes";
 
 const initialProductDetails: ProductDetail = {
   id: "",
@@ -11,4 +16,29 @@ const initialProductDetails: ProductDetail = {
   stock: 0,
 };
 
-export { initialProductDetails };
+const initialAdminProductDetailsDto: AdminProductDetailDto = {
+  id: "",
+  category: 1,
+  description: "",
+  imageUrl: "",
+  name: "",
+  packaging: 1,
+  price: 0,
+  stock: 0,
+  orderDatas: [
+    {
+      address: { city: "", id: 0, state: "", street: "", zipCode: "" },
+      customer: {
+        id: "",
+        email: "",
+        nickName: "",
+        userName: "",
+      },
+      isFulfilled: false,
+      orderDate: "",
+      orderId: "",
+    },
+  ],
+};
+
+export { initialProductDetails, initialAdminProductDetailsDto };

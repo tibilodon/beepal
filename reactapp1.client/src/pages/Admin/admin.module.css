@@ -6,17 +6,13 @@
 .wrap h1 {
   text-align: center;
 }
-.products p {
-  font-size: 16px;
-  font-weight: 200;
-}
-.createBtn {
+
+.detail {
   display: flex;
-  width: 100%;
-  background-color: var(--white-color);
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  padding: 0.3em;
-  box-shadow: var(--box-shadow);
+  font-size: 15px;
+  font-weight: bold;
+}
+.detail p {
+  font-size: 15px;
+  font-weight: normal;
 }

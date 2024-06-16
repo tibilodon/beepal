@@ -1,11 +1,11 @@
-import { AdminProductDetail, ProductDetail } from "../Types/commonTypes";
+import { AdminProductDetailDto, ProductDetail } from "../Types/commonTypes";
 
 type Data = {
-  products: AdminProductDetail[] | null;
+  products: AdminProductDetailDto[] | null;
   errors: string;
 };
 
-async function GetAllProducts(): Promise<Data> {
+async function GetAllProductsAdmin(): Promise<Data> {
   try {
     const response = await fetch("/api/admin/products");
     const result = await response.json();
@@ -36,12 +36,13 @@ async function AddProduct(item: ProductDetail) {
       body: JSON.stringify(item),
     });
     console.log(item);
-    const result = await response.json();
+    // const result = await response.json();
     if (response.ok) {
-      console.log("PRODUCT ADDED, RESULT:", result);
-      return result.products;
+      // console.log("PRODUCT ADDED, RESULT:", result);
+      return response;
     } else {
       console.log("some error", response);
+      return response;
     }
   } catch (error) {
     console.log(error);
@@ -91,4 +92,4 @@ async function UpdateProduct(item: ProductDetail) {
   }
 }
 
-export { GetAllProducts, AddProduct, DeleteProduct, UpdateProduct };
+export { GetAllProductsAdmin, AddProduct, DeleteProduct, UpdateProduct };

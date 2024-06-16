@@ -25,6 +25,7 @@ function Home() {
       return { errors: "Failed to fetch products", products: null };
     }
   };
+
   return (
     <>
       <div className={styles.wrap}>

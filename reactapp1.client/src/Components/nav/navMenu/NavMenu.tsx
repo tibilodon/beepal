@@ -24,7 +24,6 @@ function NavMenu() {
         <img
           className={styles.navIcon}
           onClick={handleToggle}
-          // onClick={() => setSideNav(!sideNav)}
           src={menuIcon}
         ></img>
         <Link onClick={resetShowStates} to={"/"}>

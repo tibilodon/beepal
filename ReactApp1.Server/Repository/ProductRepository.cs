@@ -89,37 +89,6 @@ namespace ReactApp1.Server.Repository
 
         public async Task<IEnumerable<AdminProductDto>> AdminGetAll()
         {
-            //   return await _context.Products
-            //.Select(p => new
-            //{
-            //    p.Id,
-            //    p.Name,
-            //    p.Description,
-            //    p.ImageUrl,
-            //    p.Category,
-            //    p.Packaging,
-            //    p.Price,
-            //    p.Stock,
-            //    OrderDatas = p.OrderDatas.Select(od => new
-            //    {
-            //        od.OrderId,
-            //        OrderDetails = new
-            //        {
-            //            od.OrderDetails.Id,
-            //            od.OrderDetails.OrderDate,
-            //            od.OrderDetails.AddressId,
-            //            Address = od.OrderDetails.Address,
-            //            AppUser = new
-            //            {
-            //                od.OrderDetails.AppUser.NickName,
-            //                od.OrderDetails.AppUser.Email
-            //            }
-            //        },
-            //        od.ProductId
-            //    }).ToList()
-            //})
-            //.ToListAsync();
-
             return await _context.Products.Select(p => new AdminProductDto
             {
                 Id = p.Id,
@@ -134,6 +103,7 @@ namespace ReactApp1.Server.Repository
                 {
                     OrderId = od.OrderId,
                     OrderDate = od.OrderDetails.OrderDate,
+                    IsFulfilled = od.OrderDetails.IsFulfilled,
                     Address = od.OrderDetails.Address,
                     Customer = new UserDto
                     {
@@ -144,9 +114,7 @@ namespace ReactApp1.Server.Repository
                     }
                 }
                ).ToList()
-
             }).ToListAsync();
         }
-
     }
 }

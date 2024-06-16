@@ -1,7 +1,6 @@
+import { ColorTypes } from "../../Helpers/Types/commonTypes";
 import styles from "./button.module.css";
 import { useState, useEffect } from "react";
-
-type ColorTypes = "danger" | "success" | "basic";
 
 interface ButtonAProps {
   //  TODO: optional in dev

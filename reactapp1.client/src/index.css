@@ -8,6 +8,7 @@
   font-size: 25px;
   font-weight: 600;
   color: var(--black-color);
+  text-decoration: none;
 }
 
 :root {

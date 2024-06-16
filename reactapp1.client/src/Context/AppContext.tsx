@@ -15,6 +15,7 @@ import {
   UserDto,
 } from "../Helpers/Types/commonTypes";
 import { initialProductDetails } from "../Helpers/initialDatas/initialData";
+import { GetAllProducts } from "../Helpers/dataAccessors/productFetcher";
 
 type AppContextProviderType = {
   isLoggedIn: boolean;
@@ -50,7 +51,7 @@ type AppContextProviderType = {
   //  products
   products: ProductDetail[];
   setProducts: Dispatch<SetStateAction<ProductDetail[]>>;
-  // getProductsData: () => void;
+  getProductsData: () => void;
   //  loader
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
@@ -104,7 +105,7 @@ const AppContext = createContext<AppContextProviderType>({
   //  products
   products: [initialProductDetails],
   setProducts: () => {},
-  // getProductsData: () => Promise<void>,
+  getProductsData: () => Promise<void>,
   //  loader
   isLoading: false,
   setIsLoading: () => {},
@@ -142,7 +143,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
   useEffect(() => {
     checkUser();
     checkCartItems();
-    // getProductsData();
+    getProductsData();
     console.log("context useEffect ran");
   }, []);
 
@@ -165,11 +166,17 @@ export default function AppContextProvider({ children }: ProviderProps) {
     }
   }
 
-  // async function getProductsData(): Promise<void> {
-  //   const result: ProductDetail[] = await GetAllProducts();
-  //   console.log("thy result", result);
-  //   setProducts(result);
-  // }
+  async function getProductsData(): Promise<void> {
+    setIsLoading(true);
+    const result = await GetAllProducts();
+    if (result?.errors) {
+      // TODO: set error
+    }
+    if (result?.products !== null) {
+      setProducts(result.products);
+    }
+    setIsLoading(false);
+  }
 
   function resetShowStates(): void {
     setSideNav(false);
@@ -216,7 +223,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
         //  products
         products,
         setProducts,
-        // getProductsData,
+        getProductsData,
         //  loader
         isLoading,
         setIsLoading,
