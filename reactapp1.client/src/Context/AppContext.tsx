@@ -173,6 +173,7 @@ export default function AppContextProvider({ children }: ProviderProps) {
       // TODO: set error
     }
     if (result?.products !== null) {
+      console.log("ALL PRODUCTS:", result.products);
       setProducts(result.products);
     }
     setIsLoading(false);

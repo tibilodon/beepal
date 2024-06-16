@@ -100,7 +100,6 @@ namespace ReactApp1.Server.Controllers
             {
                 return result;
             }
-
             _productRepository.Update(product);
             var products = await _productRepository.GetAll();
             return Ok(new

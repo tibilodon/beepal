@@ -15,6 +15,8 @@ function AdminEdit() {
   const { id } = useParams();
   const { products, setProducts } = useAppProvider();
   const product = products.find((p) => p.id === id);
+  console.log("the product:", product);
+
   const [formData, setFormData] = useState<ProductDetail>(product!);
 
   const onChangeHandler = (
@@ -31,6 +33,7 @@ function AdminEdit() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("is getting submitted!!:_", formData);
     const result = await UpdateProduct(formData);
     setProducts(result);
     navigate("/admin");

@@ -27,7 +27,13 @@ const initialAdminProductDetailsDto: AdminProductDetailDto = {
   stock: 0,
   orderDatas: [
     {
-      address: { city: "", id: 0, state: "", street: "", zipCode: "" },
+      address: {
+        city: "",
+        id: 0,
+        state: "",
+        street: "",
+        zipCode: "",
+      },
       customer: {
         id: "",
         email: "",
@@ -35,7 +41,6 @@ const initialAdminProductDetailsDto: AdminProductDetailDto = {
         userName: "",
       },
       isFulfilled: false,
-      orderDate: "",
       orderId: "",
     },
   ],

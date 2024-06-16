@@ -79,7 +79,7 @@ async function UpdateProduct(item: ProductDetail) {
       },
       body: JSON.stringify(item),
     });
-    console.log(item);
+    console.log("GETTING UPDATED", item);
     const result = await response.json();
     if (response.ok) {
       console.log(result);

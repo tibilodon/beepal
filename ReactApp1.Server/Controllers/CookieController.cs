@@ -43,7 +43,7 @@ namespace ReactApp1.Server.Controllers
         //      if variant does not match, add new item
         //      if item does match, quantity++
         //  return ProductDetailDto
-        public async Task<ActionResult> AddCartItem([FromBody] ProductDetailDto productDetailDto)
+        public async Task<ActionResult> AddCartItem([FromBody] CookieProductDetailDto productDetailDto)
         {
             if (!ModelState.IsValid)
             {

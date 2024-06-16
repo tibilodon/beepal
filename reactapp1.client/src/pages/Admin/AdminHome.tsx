@@ -1,5 +1,5 @@
 import styles from "./admin.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   DeleteProduct,
   GetAllProductsAdmin,
@@ -8,9 +8,14 @@ import ButtonA from "../../Components/buttons/ButtonA";
 import { useAppProvider } from "../../Context/AppContext";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
+import { AdminProductDetailDto } from "../../Helpers/Types/commonTypes";
+import { initialAdminProductDetailsDto } from "../../Helpers/initialDatas/initialData";
 function AdminHome() {
   const navigate = useNavigate();
-  const { isLoading, setIsLoading, products, setProducts } = useAppProvider();
+  const { isLoading, setIsLoading } = useAppProvider();
+  const [adminProducts, setAdminProducts] = useState<AdminProductDetailDto[]>([
+    initialAdminProductDetailsDto,
+  ]);
 
   useEffect(() => {
     const getData = async () => {
@@ -21,17 +26,17 @@ function AdminHome() {
         navigate("/");
       }
       if (data?.products !== null) {
-        setProducts(data.products);
+        setAdminProducts(data.products);
       }
       setIsLoading(false);
     };
     getData();
-  }, [navigate, setIsLoading, setProducts]);
+  }, [navigate, setIsLoading]);
 
   const handleDelete = async (e: React.MouseEvent<HTMLElement>, id: string) => {
     e.preventDefault();
     const result = await DeleteProduct(id);
-    setProducts(result);
+    setAdminProducts(result);
   };
 
   if (isLoading) {
@@ -44,8 +49,8 @@ function AdminHome() {
         <h1>welcome admin</h1>
         <h1 className="danger">Your products</h1>
 
-        {products &&
-          products.map((item, index) => {
+        {adminProducts &&
+          adminProducts.map((item, index) => {
             return (
               <div className={styles.products} key={index}>
                 {Object.entries(item)
@@ -92,7 +97,7 @@ function AdminHome() {
 
                     return (
                       <span key={i} className={styles.detail}>
-                        {key}:<p>&nbsp;{value}</p>
+                        {key}:<p>&nbsp;{value.toString()}</p>
                       </span>
                     );
                   })}

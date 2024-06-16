@@ -21,6 +21,7 @@ namespace ReactApp1.Server.Repository
 
         public bool Add(Product product)
         {
+
             _context.Add(product);
             return Save();
         }
@@ -39,12 +40,30 @@ namespace ReactApp1.Server.Repository
 
         public bool Update(Product product)
         {
+            //  setting up auto-generated field is unnecessarily complicated
+            product.UpdatedAt = DateTime.Now;
             _context.Update(product);
             return Save();
         }
-        public async Task<IEnumerable<Product>> GetAll()
+        public async Task<IEnumerable<ProductDto>> GetAll()
         {
-            return await _context.Products.ToListAsync();
+            var result = await _context.Products.ToListAsync();
+            return result.Select(product => new ProductDto
+            {
+                Id = product.Id,
+                CreatedAt = product.CreatedAt,
+                UpdatedAt = product.UpdatedAt,
+                Name = product.Name,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                Category = product.Category,
+                Packaging = product.Packaging,
+                Price = product.Price,
+                Stock = product.Stock,
+
+            }).ToList();
+
+
         }
 
         public async Task<IEnumerable<Product>> GetByCategoryAsync(Category category)
@@ -63,10 +82,10 @@ namespace ReactApp1.Server.Repository
             return await _context.Products.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<List<ProductDetailDto>> GetProductsByIds(List<string> productIds)
+        public async Task<List<CookieProductDetailDto>> GetProductsByIds(List<string> productIds)
         {
             return await _context.Products.Where(p => productIds.Contains(p.Id))
-                .Select(p => new ProductDetailDto
+                .Select(p => new CookieProductDetailDto
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -92,6 +111,8 @@ namespace ReactApp1.Server.Repository
             return await _context.Products.Select(p => new AdminProductDto
             {
                 Id = p.Id,
+                CreatedAt = p.CreatedAt,
+                UpdatedAt = p.UpdatedAt,
                 Name = p.Name,
                 Description = p.Description,
                 ImageUrl = p.ImageUrl,
@@ -102,7 +123,8 @@ namespace ReactApp1.Server.Repository
                 OrderDatas = p.OrderDatas.Select(od => new AdminOrderDetailsDto
                 {
                     OrderId = od.OrderId,
-                    OrderDate = od.OrderDetails.OrderDate,
+                    CreatedAt = od.OrderDetails.CreatedAt,
+                    UpdatedAt = od.OrderDetails.UpdatedAt,
                     IsFulfilled = od.OrderDetails.IsFulfilled,
                     Address = od.OrderDetails.Address,
                     Customer = new UserDto

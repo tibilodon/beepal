@@ -62,6 +62,7 @@ export type Address = {
 
 export type OrderData = {
   id: string;
+
   addressId: number;
   address: Address;
   userId: string;
@@ -73,7 +74,6 @@ export type OrderData = {
 export type AdminOrderDetailsDto = {
   orderId: string;
   isFulfilled: boolean;
-  orderDate: string;
   address: Address;
   customer: UserDto;
 };

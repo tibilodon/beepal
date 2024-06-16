@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using ReactApp1.Server.Models;
 using ReactApp1.Server.Models.Order;
 using ReactApp1.Server.Models.Orders;
@@ -32,9 +33,9 @@ namespace ReactApp1.Server.Data
                 .HasForeignKey(od => od.OrderId);
 
             modelBuilder.Entity<OrderData>()
-                         .HasOne(od => od.Product)
-                         .WithMany(p => p.OrderDatas)
-                         .HasForeignKey(od => od.ProductId);
+                 .HasOne(od => od.Product)
+                 .WithMany(p => p.OrderDatas)
+                 .HasForeignKey(od => od.ProductId);
 
 
             modelBuilder.Entity<OrderDetails>()
@@ -47,7 +48,34 @@ namespace ReactApp1.Server.Data
                 .HasOne(od => od.Address)
                 .WithMany()
                 .HasForeignKey(od => od.AddressId);
-        }
 
+            //  handle createdAt, updatedAt creation automatically
+            modelBuilder.Entity<Product>()
+                .Property(b => b.CreatedAt)
+                .HasDefaultValueSql("getutcdate()");
+
+            modelBuilder.Entity<Product>().Property(b => b.UpdatedAt)
+                .ValueGeneratedOnAddOrUpdate()
+                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Save);
+
+            modelBuilder.Entity<OrderDetails>()
+              .Property(b => b.CreatedAt)
+              .HasDefaultValueSql("getutcdate()");
+
+            modelBuilder.Entity<OrderDetails>().Property(b => b.UpdatedAt)
+                .ValueGeneratedOnAddOrUpdate()
+                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Save);
+
+            modelBuilder.Entity<Address>()
+            .Property(b => b.CreatedAt)
+            .HasDefaultValueSql("getutcdate()");
+
+            modelBuilder.Entity<Address>().Property(b => b.UpdatedAt)
+                .ValueGeneratedOnAddOrUpdate()
+                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Save);
+
+
+
+        }
     }
 }
