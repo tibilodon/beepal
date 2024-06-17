@@ -21,8 +21,8 @@ function AdminHome() {
     const getData = async () => {
       setIsLoading(true);
       const data = await GetAllProductsAdmin();
-      console.log(data);
       if (data?.errors) {
+        console.log(data.errors);
         navigate("/");
       }
       if (data?.products !== null) {

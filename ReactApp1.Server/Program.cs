@@ -44,6 +44,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped<ICookieRepository, CookieRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 
 var app = builder.Build();

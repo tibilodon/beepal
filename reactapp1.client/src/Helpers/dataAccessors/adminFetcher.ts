@@ -9,8 +9,6 @@ async function GetAllProductsAdmin(): Promise<Data> {
   try {
     const response = await fetch("/api/admin/products");
     const result = await response.json();
-
-    console.log("i am taller", result);
     if (response.ok) {
       return { errors: "", products: result.products };
     } else {
@@ -35,10 +33,7 @@ async function AddProduct(item: ProductDetail) {
       },
       body: JSON.stringify(item),
     });
-    console.log(item);
-    // const result = await response.json();
     if (response.ok) {
-      // console.log("PRODUCT ADDED, RESULT:", result);
       return response;
     } else {
       console.log("some error", response);
@@ -57,7 +52,6 @@ async function DeleteProduct(id: string) {
         "Content-Type": "application/json",
       },
     });
-    console.log("to be deleted:", id);
     const result = await response.json();
     if (response.ok) {
       console.log(result);
@@ -79,7 +73,6 @@ async function UpdateProduct(item: ProductDetail) {
       },
       body: JSON.stringify(item),
     });
-    console.log("GETTING UPDATED", item);
     const result = await response.json();
     if (response.ok) {
       console.log(result);

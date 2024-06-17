@@ -22,23 +22,17 @@ function ProductForm({
   return (
     <>
       <form className={styles.wrap} onSubmit={handleSubmit}>
-        <ExpandableTextfield
-          formData={formData}
-          setFormData={setFormData}
-          formField="description"
-          placeHolder="description"
+        <Input
+          value={formData.name}
+          id="name"
+          placeholder="name"
+          type="text"
+          onChangeHandler={onChangeHandler}
         />
         <Input
           value={formData.imageUrl}
           id="imageUrl"
           placeholder="imageUrl"
-          type="text"
-          onChangeHandler={onChangeHandler}
-        />
-        <Input
-          value={formData.name}
-          id="name"
-          placeholder="name"
           type="text"
           onChangeHandler={onChangeHandler}
         />
@@ -55,6 +49,12 @@ function ProductForm({
           placeholder="stock"
           type="text"
           onChangeHandler={onChangeHandler}
+        />
+        <ExpandableTextfield
+          formData={formData}
+          setFormData={setFormData}
+          formField="description"
+          placeHolder="description"
         />
         <select
           value={formData.category}

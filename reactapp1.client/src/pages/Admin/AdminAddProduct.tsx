@@ -5,8 +5,10 @@ import styles from "./admin.module.css";
 import { initialProductDetails } from "../../Helpers/initialDatas/initialData";
 import { AddProduct } from "../../Helpers/dataAccessors/adminFetcher";
 import { useNavigate } from "react-router-dom";
+import { useAppProvider } from "../../Context/AppContext";
 
 function AdminAddProduct() {
+  const { setProducts } = useAppProvider();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<ProductDetail>(
     initialProductDetails
@@ -15,8 +17,10 @@ function AdminAddProduct() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const result = await AddProduct(formData);
+    const data = await result?.json();
     if (result?.ok) {
-      navigate("/admin");
+      setProducts(data.products);
+      navigate("/admin", { replace: true });
     }
     setFormData(initialProductDetails);
   };

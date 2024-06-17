@@ -11,11 +11,13 @@ namespace ReactApp1.Server.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IProductRepository _productRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public AdminController(UserManager<AppUser> userManager, IProductRepository productRepository)
+        public AdminController(UserManager<AppUser> userManager, IProductRepository productRepository, IOrderRepository orderRepository)
         {
             _userManager = userManager;
             _productRepository = productRepository;
+            _orderRepository = orderRepository;
         }
         //  TODO:
         //      --handle errors
@@ -129,6 +131,21 @@ namespace ReactApp1.Server.Controllers
             });
         }
 
+        //  orders
+        [HttpGet("orders")]
+        public async Task<ActionResult> GetOrders()
+        {
+            var (isAuthenticated, result) = await AuthenticateAndAuthorizeAdmin();
+            if (!isAuthenticated)
+            {
+                return result;
+            }
+            var orders = await _orderRepository.GetAll();
+            return Ok(new
+            {
+                orders
+            });
+        }
 
 
 

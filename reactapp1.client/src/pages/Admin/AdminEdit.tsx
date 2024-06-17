@@ -2,22 +2,28 @@ import styles from "./admin.module.css";
 import { ProductDetail } from "../../Helpers/Types/commonTypes";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppProvider } from "../../Context/AppContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DeleteProduct,
   UpdateProduct,
 } from "../../Helpers/dataAccessors/adminFetcher";
 import ButtonA from "../../Components/buttons/ButtonA";
 import ProductForm from "../../Components/form/admin/product/ProductForm";
+import { initialProductDetails } from "../../Helpers/initialDatas/initialData";
 
 function AdminEdit() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { products, setProducts } = useAppProvider();
-  const product = products.find((p) => p.id === id);
-  console.log("the product:", product);
+  useEffect(() => {
+    const product = products.find((p) => p.id === id);
 
-  const [formData, setFormData] = useState<ProductDetail>(product!);
+    setFormData(product!);
+  }, [id, products]);
+
+  const [formData, setFormData] = useState<ProductDetail>(
+    initialProductDetails
+  );
 
   const onChangeHandler = (
     e: React.FormEvent<HTMLInputElement | HTMLSelectElement>
@@ -33,17 +39,16 @@ function AdminEdit() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("is getting submitted!!:_", formData);
     const result = await UpdateProduct(formData);
     setProducts(result);
-    navigate("/admin");
+    navigate("/admin", { replace: true });
   };
 
   const handleDelete = async (e: React.MouseEvent<HTMLElement>, id: string) => {
     e.preventDefault();
     const result = await DeleteProduct(id);
     setProducts(result);
-    // setFormData(initialProductDetails);
+    navigate("/admin", { replace: true });
   };
 
   return (

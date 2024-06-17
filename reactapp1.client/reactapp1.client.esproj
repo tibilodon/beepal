@@ -9,6 +9,7 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\Components\cards\ProductCard\" />
     <Folder Include="src\Components\cart\cartSidebar\" />
     <Folder Include="src\Components\form\textfield\" />
     <Folder Include="src\Components\sidebar\" />
@@ -21,6 +22,7 @@
     <Folder Include="src\Layouts\admin\" />
     <Folder Include="src\pages\Cart\" />
     <Folder Include="src\pages\Admin\" />
+    <Folder Include="src\pages\Products\" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".vscode\launch.json" />
