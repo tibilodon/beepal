@@ -26,6 +26,8 @@ import AdminHome from "./pages/Admin/AdminHome";
 import AdminEdit from "./pages/Admin/AdminEdit";
 import AdminLayout from "./Layouts/admin/AdminLayout";
 import AdminAddProduct from "./pages/Admin/AdminAddProduct";
+import ProductsHome from "./pages/Products/ProductsHome";
+import Product from "./pages/Products/Product";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -58,10 +60,8 @@ const router = createBrowserRouter(
             </>
           }
         />
-        {/* <Route
-          path="account/resendEmailConfirmation"
-          element={<ResendEmailConfirmation />}
-        /> */}
+        <Route path="products" element={<ProductsHome />} />
+        <Route path="product/:id" element={<Product />} />
 
         <Route path="account/forgotPassword" element={<ForgotPassword />} />
         <Route

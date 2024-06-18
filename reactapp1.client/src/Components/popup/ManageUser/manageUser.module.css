@@ -1,63 +1,63 @@
 .userIcon {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .content {
-    transition: 0.5s ease;
-    height: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 1.7em;
-    right: 3em;
+  transition: 0.5s ease;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 1.7em;
+  right: 3em;
 }
 
 .popUp * {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .popUp {
-    background-color: var(--white-color);
-    box-shadow: var(--box-shadow);
-    padding: 1em;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3em;
+  background-color: var(--white-color);
+  box-shadow: var(--box-shadow);
+  padding: 1em;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
 }
 
-    .popUp span {
-        display: block;
-        min-height: 35px;
-        min-width: 35px;
-        line-height: 35px;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
-        background-color: var(--green-color);
-        color: white;
-        text-align: center;
-        font-size: 2em;
-    }
+.popUp span {
+  display: block;
+  min-height: 35px;
+  min-width: 35px;
+  line-height: 35px;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: var(--green-color);
+  color: white;
+  text-align: center;
+  font-size: 2em;
+}
 
 .details {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .heroSection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
 }
 
-    .heroSection ul li {
-        word-break: break-word;
-        /*font-size:10px;*/
-    }
+.heroSection ul li {
+  word-break: break-word;
+  /*font-size:10px;*/
+}
 
-@media(max-width: 515px) {
-    .popUp * {
-        font-size: var(--small-screen-font-size);
-        /*font-size:13px;*/
-    }
+@media (max-width: 515px) {
+  .popUp * {
+    font-size: var(--small-font-size);
+    /*font-size:13px;*/
+  }
 }

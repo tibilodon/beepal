@@ -1,2 +1,7 @@
-body {
+.wrap {
+  min-height: 100vh;
+  border: 3px solid red;
+  margin-top: 3.2em;
+}
+.wrap h1 {
 }

@@ -2,7 +2,6 @@
 import image from "../../assets/images/home-image.jpg";
 import ButtonA from "../../Components/buttons/ButtonA";
 import { useAppProvider } from "../../Context/AppContext";
-// import { useEffect } from "react";
 
 function Home() {
   const { showRegister } = useAppProvider();

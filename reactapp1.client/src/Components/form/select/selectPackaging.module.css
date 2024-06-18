@@ -1,0 +1,7 @@
+.wrap {
+  border: 2x solid red;
+}
+.wrap,
+.wrap optgroup > * {
+  font-size: var(--small-font-size);
+}

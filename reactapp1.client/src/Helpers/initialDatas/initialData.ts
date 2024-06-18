@@ -3,6 +3,7 @@ import {
   Category,
   Packaging,
   ProductDetail,
+  ProductDetailDto,
 } from "../Types/commonTypes";
 
 const initialProductDetails: ProductDetail = {
@@ -14,6 +15,18 @@ const initialProductDetails: ProductDetail = {
   packaging: Packaging.Regular,
   price: 0,
   stock: 0,
+};
+
+const initialCartItem: ProductDetailDto = {
+  id: "",
+  category: Category.Honey,
+  description: "",
+  imageUrl: "",
+  name: "",
+  packaging: Packaging.Regular,
+  price: 0,
+  stock: 0,
+  placedInCartQuantity: 0,
 };
 
 const initialAdminProductDetailsDto: AdminProductDetailDto = {
@@ -46,4 +59,8 @@ const initialAdminProductDetailsDto: AdminProductDetailDto = {
   ],
 };
 
-export { initialProductDetails, initialAdminProductDetailsDto };
+export {
+  initialProductDetails,
+  initialAdminProductDetailsDto,
+  initialCartItem,
+};

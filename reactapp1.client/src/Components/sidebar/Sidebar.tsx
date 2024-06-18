@@ -15,6 +15,7 @@ function Sidebar() {
     setShowLogin,
   } = useAppProvider();
   const handleLogin = () => {
+    console.log("hit sidebar");
     setSideNav(false);
     setShowForgotPassword(false);
     setShowRegister(false);
@@ -34,17 +35,25 @@ function Sidebar() {
           <img className={styles.navIcon} src={close}></img>
         </button>
         <section className={styles.navLinks}>
-          <div className="">
-            <NavLink
-              onClick={() => setSideNav(!sideNav)}
-              to={"/"}
-              className={({ isActive }) =>
-                isActive ? "navLinkMain active" : "navLinkMain"
-              }
-            >
-              <span className="" aria-hidden="true"></span> Home
-            </NavLink>
-          </div>
+          <NavLink
+            onClick={() => setSideNav(!sideNav)}
+            to={"/"}
+            className={({ isActive }) =>
+              isActive ? "navLinkMain active" : "navLinkMain"
+            }
+          >
+            Főoldal
+          </NavLink>
+
+          <NavLink
+            onClick={() => setSideNav(!sideNav)}
+            to={"/products"}
+            className={({ isActive }) =>
+              isActive ? "navLinkMain active" : "navLinkMain"
+            }
+          >
+            Termékek
+          </NavLink>
 
           <PublicRoute>
             <span

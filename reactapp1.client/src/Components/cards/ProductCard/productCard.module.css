@@ -1,2 +1,9 @@
-body {
+.wrap {
+  border: 2px solid black;
+}
+.wrap img {
+  width: 200px;
+}
+.details span {
+  font-size: 16px;
 }

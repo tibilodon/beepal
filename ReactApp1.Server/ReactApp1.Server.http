@@ -1,6 +1,6 @@
 @ReactApp1.Server_HostAddress = http://localhost:5068
 
-GET {{ReactApp1.Server_HostAddress}}/weatherforecast/
+GET {{ReactApp1.Server_HostAddress}}/beepal/
 Accept: application/json
 
 ###
