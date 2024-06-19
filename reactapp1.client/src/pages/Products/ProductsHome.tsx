@@ -34,6 +34,7 @@ function ProductsHome() {
               </section>
             );
           })}
+        <hr />
         <h1>Méhészeti termékek</h1>
         {otherProducts &&
           otherProducts.map((item) => {

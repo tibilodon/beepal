@@ -26,7 +26,7 @@ function SelectPackaging({ value, setValue, id }: Props) {
       id={id}
       onChange={onChangeHandler}
     >
-      <optgroup>
+      <optgroup label="Kiszerelés">
         <option value={1}>250g</option>
         <option value={2}>500g</option>
         <option value={3}>750g</option>

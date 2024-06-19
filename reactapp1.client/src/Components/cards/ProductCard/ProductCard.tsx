@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ProductDetail,
   ProductDetailDto,
@@ -6,14 +6,19 @@ import {
 import SelectPackaging from "../../form/select/SelectPackaging";
 import styles from "./productCard.module.css";
 import ButtonA from "../../buttons/ButtonA";
+import { initialCartItem } from "../../../Helpers/initialDatas/initialData";
 
 interface Props {
   product: ProductDetail;
 }
 
 function ProductCard({ product }: Props) {
-  const data = { ...product, placedInCartQuantity: 0 };
-  const [cartItems, setCartItems] = useState<ProductDetailDto>(data);
+  useEffect(() => {
+    const data = { ...product, placedInCartQuantity: 0 };
+    setCartItems(data);
+  }, [product]);
+
+  const [cartItems, setCartItems] = useState<ProductDetailDto>(initialCartItem);
 
   function handleAddToCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
@@ -30,7 +35,7 @@ function ProductCard({ product }: Props) {
         <div className={styles.wrap}>
           <img src={cartItems.imageUrl} />
           <section className={styles.details}>
-            <span>{cartItems.name}</span>
+            <span className={styles.productName}>{cartItems.name}</span>
             <span>{cartItems.price * cartItems.packaging} Ft</span>
             <SelectPackaging
               id="packaging"

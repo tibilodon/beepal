@@ -1,11 +1,10 @@
 ﻿import styles from "./home.module.css";
 import image from "../../assets/images/home-image.jpg";
 import ButtonA from "../../Components/buttons/ButtonA";
-import { useAppProvider } from "../../Context/AppContext";
+import Featured from "./Featured";
+import { Link } from "react-router-dom";
 
 function Home() {
-  const { showRegister } = useAppProvider();
-
   return (
     <>
       <div className={styles.wrap}>
@@ -20,9 +19,12 @@ function Home() {
           </h4>
         </section>
         <span className={styles.btn}>
-          <ButtonA label="Vásárlás" onClick={() => console.log(showRegister)} />
+          <Link to={"/products"}>
+            <ButtonA label="Vásárlás" />
+          </Link>
         </span>
       </div>
+      <Featured />
     </>
   );
 }

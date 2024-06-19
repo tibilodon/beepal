@@ -15,7 +15,6 @@ function Sidebar() {
     setShowLogin,
   } = useAppProvider();
   const handleLogin = () => {
-    console.log("hit sidebar");
     setSideNav(false);
     setShowForgotPassword(false);
     setShowRegister(false);

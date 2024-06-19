@@ -1,9 +1,28 @@
 .wrap {
-  border: 2px solid black;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  margin: 1em;
+  transition: 0.5s;
 }
 .wrap img {
   width: 200px;
 }
+
+.details {
+  text-align: center;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  gap: 0.3em;
+}
 .details span {
   font-size: 16px;
+}
+.productName {
+  font-weight: 200;
 }
