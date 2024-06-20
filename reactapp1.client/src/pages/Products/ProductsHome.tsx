@@ -6,6 +6,7 @@ import styles from "./products.module.css";
 import { ProductDetail } from "../../Helpers/Types/commonTypes";
 import Loader from "../../Components/Loader/Loader";
 import Login from "../Account/public/Login";
+import { Link } from "react-router-dom";
 function ProductsHome() {
   const { products } = useAppProvider();
   const [honeyProducts, setHoneyProducts] = useState<ProductDetail[]>();
@@ -30,7 +31,9 @@ function ProductsHome() {
           honeyProducts.map((item) => {
             return (
               <section key={item.id}>
-                <ProductCard product={item} />
+                <Link to={`/product/${item.id}`}>
+                  <ProductCard product={item} />
+                </Link>
               </section>
             );
           })}

@@ -1,11 +1,20 @@
 .wrap {
+  width: 100%;
+  display: flex;
+
+  justify-content: center;
+  gap: 0.3em;
+  align-items: center;
+}
+.select {
   width: 4em;
 }
-.wrap,
-.wrap optgroup,
-.wrap optgroup > * {
+.select,
+.label,
+.select optgroup,
+.select optgroup > * {
   font-size: var(--small-font-size);
 }
-.wrap optgroup {
+.select optgroup {
   font-size: var(--small-font-size);
 }

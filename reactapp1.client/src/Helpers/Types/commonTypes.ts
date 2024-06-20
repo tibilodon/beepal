@@ -17,7 +17,7 @@ export type CartData = {
   itemCounter: number;
 };
 
-//  initializing the first value will in turn assigns and increments to any additional value
+//  initializing the first value will in turn assigns and increments any additional value
 export enum Category {
   Honey = 1,
   BeekeepingProducts,

@@ -39,6 +39,11 @@
   position: absolute;
   bottom: 3em;
 }
+.sliderWrap {
+  width: 100%;
+  height: 100vh;
+  padding: 2em;
+}
 
 @media (min-width: 980px) {
   .wrap {

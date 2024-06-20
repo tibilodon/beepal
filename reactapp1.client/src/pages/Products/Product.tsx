@@ -1,6 +1,79 @@
+import styles from "./products.module.css";
+import { useEffect, useState } from "react";
+import { useAppProvider } from "../../Context/AppContext";
+import { useParams } from "react-router-dom";
+import Loader from "../../Components/Loader/Loader";
+import SelectPackaging from "../../Components/form/select/SelectPackaging";
+import { ProductDetailDto } from "../../Helpers/Types/commonTypes";
+import { initialCartItem } from "../../Helpers/initialDatas/initialData";
+import SelectAmount from "../../Components/form/select/SelectAmount";
+import ButtonA from "../../Components/buttons/ButtonA";
+
 function Product() {
+  const { id } = useParams();
+  const { products } = useAppProvider();
+  const [product, setProduct] = useState<ProductDetailDto>(initialCartItem);
+  useEffect(() => {
+    const findProduct = products.find((p) => p.id === id);
+    if (findProduct) {
+      const data = { ...findProduct, placedInCartQuantity: 0 };
+      setProduct(data!);
+    }
+  }, [id, products]);
+
+  if (!product) {
+    return <Loader />;
+  }
+
   return (
-    <p>Hello world!</p>
+    <>
+      {
+        <div className={styles.productWrap}>
+          <section className={styles.image}>
+            <img src={product.imageUrl} />
+            <div className={styles.test}>
+              <span>{product.price * product.packaging} Ft</span>
+              <SelectPackaging
+                value={product.packaging}
+                setValue={setProduct}
+                id="packaging"
+              />
+              <SelectAmount
+                id="placedInCartQuantity"
+                value={product.stock}
+                setValue={setProduct}
+              />
+              <ButtonA
+                label="Kosárba"
+                color="success"
+                onClick={() => console.log(product)}
+              />
+            </div>
+          </section>
+          <section className={styles.details}>
+            <h1>{product.name}</h1>
+            <p>{product.description}</p>
+            {/* <span>{product.price * product.packaging} Ft</span>
+            <SelectPackaging
+              value={product.packaging}
+              setValue={setProduct}
+              id="packaging"
+            />
+
+            <SelectAmount
+              id="placedInCartQuantity"
+              value={product.stock}
+              setValue={setProduct}
+            />
+            <ButtonA
+              label="Kosárba"
+              color="success"
+              onClick={() => console.log(product)}
+            /> */}
+          </section>
+        </div>
+      }
+    </>
   );
 }
 

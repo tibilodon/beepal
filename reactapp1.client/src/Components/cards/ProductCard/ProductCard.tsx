@@ -3,10 +3,10 @@ import {
   ProductDetail,
   ProductDetailDto,
 } from "../../../Helpers/Types/commonTypes";
-import SelectPackaging from "../../form/select/SelectPackaging";
 import styles from "./productCard.module.css";
 import ButtonA from "../../buttons/ButtonA";
 import { initialCartItem } from "../../../Helpers/initialDatas/initialData";
+import SelectPackaging from "../../form/select/SelectPackaging";
 
 interface Props {
   product: ProductDetail;

@@ -1,12 +1,36 @@
 .wrap {
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
+  top: 1em;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
 }
 
 .buttons {
   display: flex;
   gap: 1em;
+  position: relative;
+}
+
+.cardSlider {
+  width: 100%;
+  display: flex;
+  flex-shrink: 0;
+  flex-grow: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+@media not (prefers-reduced-motion) {
+  .cardSlider {
+    transition: translate 300ms ease-in-out;
+  }
 }

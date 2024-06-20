@@ -19,6 +19,7 @@
   align-items: center;
   width: 40%;
   gap: 0.3em;
+  width: 100%;
 }
 .details span {
   font-size: 16px;

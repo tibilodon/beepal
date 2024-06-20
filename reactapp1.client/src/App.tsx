@@ -28,6 +28,7 @@ import AdminLayout from "./Layouts/admin/AdminLayout";
 import AdminAddProduct from "./pages/Admin/AdminAddProduct";
 import ProductsHome from "./pages/Products/ProductsHome";
 import Product from "./pages/Products/Product";
+import TestPage from "./pages/Test/TestPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -60,6 +61,8 @@ const router = createBrowserRouter(
             </>
           }
         />
+
+        <Route path="test" element={<TestPage />} />
         <Route path="products" element={<ProductsHome />} />
         <Route path="product/:id" element={<Product />} />
 
