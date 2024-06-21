@@ -9,8 +9,6 @@ import {
 
 import { GetCartItems } from "../Helpers/dataAccessors/cookieFetcher";
 import {
-  // CartData,
-  CartItem,
   ProductDetail,
   ProductDetailDto,
   UserDto,
@@ -18,6 +16,7 @@ import {
 import {
   initialProductDetailDto,
   initialProductDetails,
+  initialUserDto,
 } from "../Helpers/initialDatas/initialData";
 import { GetAllProducts } from "../Helpers/dataAccessors/productFetcher";
 
@@ -60,21 +59,6 @@ type AppContextProviderType = {
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 };
-export const initialUserDto = {
-  id: "",
-  userName: "",
-  nickName: "",
-  email: "",
-};
-
-export const initialCartItems: CartItem[] = [
-  {
-    Id: "",
-    Name: "",
-    Quantity: 0,
-    Variant: "",
-  },
-];
 
 const AppContext = createContext<AppContextProviderType>({
   isLoggedIn: false,

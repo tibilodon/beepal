@@ -1,4 +1,5 @@
-﻿using ReactApp1.Server.Interfaces;
+﻿using ReactApp1.Server.Data.Enum;
+using ReactApp1.Server.Interfaces;
 using ReactApp1.Server.Models;
 using System.Text.Json;
 
@@ -7,10 +8,10 @@ namespace ReactApp1.Server.Repository
     public class CookieRepository : ICookieRepository
     {
         private const string CookieName = "cart";
-        public bool DeleteCartItem(IRequestCookieCollection requestCookies, IResponseCookies responseCookies, string id)
+        public bool DeleteCartItem(IRequestCookieCollection requestCookies, IResponseCookies responseCookies, string id, int packaging)
         {
             var items = GetCartItems(requestCookies);
-            var itemToRemove = items.FirstOrDefault(item => item.Id == id);
+            var itemToRemove = items.FirstOrDefault(item => item.Id == id && item.Packaging == (Packaging)packaging);
             if (itemToRemove != null)
             {
                 items.Remove(itemToRemove);

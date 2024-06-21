@@ -59,8 +59,16 @@ const initialAdminProductDetailsDto: AdminProductDetailDto = {
   ],
 };
 
+const initialUserDto = {
+  id: "",
+  userName: "",
+  nickName: "",
+  email: "",
+};
+
 export {
   initialProductDetails,
   initialAdminProductDetailsDto,
   initialProductDetailDto,
+  initialUserDto,
 };

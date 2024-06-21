@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
 import { AdminProductDetailDto } from "../../Helpers/Types/commonTypes";
 import { initialAdminProductDetailsDto } from "../../Helpers/initialDatas/initialData";
+import WhiteSpace from "../../Components/utils/WhiteSpace";
 function AdminHome() {
   const navigate = useNavigate();
   const { isLoading, setIsLoading } = useAppProvider();
@@ -60,15 +61,18 @@ function AdminHome() {
                     if (key === "category" && value === 1) {
                       return (
                         <span key={i} className={styles.detail}>
-                          {key}
-                          <p>&nbsp;Méz</p>
+                          {key}:
+                          <WhiteSpace />
+                          <p>Méz</p>
                         </span>
                       );
                     }
                     if (key === "category" && value === 2) {
                       return (
                         <span key={i} className={styles.detail}>
-                          {key}:<p>&nbsp;Méhészeti termékek</p>
+                          {key}:
+                          <WhiteSpace />
+                          <p>Méhészeti termékek</p>
                         </span>
                       );
                     }
@@ -76,28 +80,36 @@ function AdminHome() {
                     if (key === "packaging" && value === 1) {
                       return (
                         <span key={i} className={styles.detail}>
-                          {key}:<p>&nbsp;250g</p>
+                          {key}:
+                          <WhiteSpace />
+                          <p>250g</p>
                         </span>
                       );
                     }
                     if (key === "packaging" && value === 2) {
                       return (
                         <span key={i} className={styles.detail}>
-                          {key}:<p>&nbsp;500g</p>
+                          {key}:
+                          <WhiteSpace />
+                          <p>500g</p>
                         </span>
                       );
                     }
                     if (key === "packaging" && value === 3) {
                       return (
                         <span key={i} className={styles.detail}>
-                          {key}:<p>&nbsp;750g</p>
+                          {key}:
+                          <WhiteSpace />
+                          <p>750g</p>
                         </span>
                       );
                     }
 
                     return (
                       <span key={i} className={styles.detail}>
-                        {key}:<p>&nbsp;{value.toString()}</p>
+                        {key}:
+                        <WhiteSpace />
+                        <p>{value.toString()}</p>
                       </span>
                     );
                   })}

@@ -7,12 +7,16 @@ import styles from "./productCard.module.css";
 import ButtonA from "../../buttons/ButtonA";
 import { initialProductDetailDto } from "../../../Helpers/initialDatas/initialData";
 import SelectPackaging from "../../form/select/SelectPackaging";
+import { AddItemToCart } from "../../../Helpers/dataAccessors/cookieFetcher";
+import { useAppProvider } from "../../../Context/AppContext";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: ProductDetail;
 }
 
 function ProductCard({ product }: Props) {
+  const { checkCartItems } = useAppProvider();
   useEffect(() => {
     const data = { ...product, placedInCartQuantity: 0 };
     setCartItems(data);
@@ -22,20 +26,31 @@ function ProductCard({ product }: Props) {
     initialProductDetailDto
   );
 
-  function handleAddToCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  async function handleAddToCart(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
     e.preventDefault();
-
-    setCartItems((prevVals: ProductDetailDto) => ({
-      ...prevVals,
-      placedInCartQuantity: prevVals.placedInCartQuantity + 1,
-    }));
+    console.log("ekkke?");
+    const data: ProductDetailDto = { ...cartItems, placedInCartQuantity: 1 };
+    // setCartItems((prevVals: ProductDetailDto) => ({
+    //   ...prevVals,
+    //   placedInCartQuantity: prevVals.placedInCartQuantity + 1,
+    // }));
+    setCartItems(data);
+    const result = await AddItemToCart(data);
+    if (result) {
+      //  refresh value
+      await checkCartItems();
+    }
   }
 
   return (
     <>
       {cartItems && (
         <div className={styles.wrap}>
-          <img src={cartItems.imageUrl} />
+          <Link to={`/product/${cartItems.id}`}>
+            <img src={cartItems.imageUrl} />
+          </Link>
           <section className={styles.details}>
             <span className={styles.productName}>{cartItems.name}</span>
             <span>{cartItems.price * cartItems.packaging} Ft</span>
@@ -57,3 +72,6 @@ function ProductCard({ product }: Props) {
 }
 
 export default ProductCard;
+// function checkCartItems() {
+//   throw new Error("Function not implemented.");
+// }

@@ -1,20 +1,51 @@
-import SliderV from "../../Components/slider/Slider";
+import Loader from "../../Components/Loader/Loader";
 import { useAppProvider } from "../../Context/AppContext";
+import {
+  AddItemToCart,
+  GetCartItems,
+} from "../../Helpers/dataAccessors/cookieFetcher";
+import { ProductDetailDto } from "../../Helpers/Types/commonTypes";
 import styles from "./testPage.module.css";
 
 function TestPage() {
-  const { products } = useAppProvider();
+  const {
+    showCartSidebar,
+    setShowCartSidebar,
+    checkCartItems,
+    products,
+    isLoading,
+  } = useAppProvider();
+
+  const handleAdd = async () => {
+    //  loading state change would disturb UX
+    const data: ProductDetailDto = { ...products[0], placedInCartQuantity: 1 };
+    const result = await AddItemToCart(data);
+    if (result) {
+      //  refresh value
+      await checkCartItems();
+    }
+  };
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <div
-        style={{
-          maxWidth: "1200px",
-          width: "100%",
-          height: "500px",
-          margin: "0 auto",
-        }}
+        className={styles.sideNav}
+        style={{ width: `${showCartSidebar ? "300px" : "0"}` }}
       >
-        <SliderV data={products} />
+        <button
+          onClick={() => setShowCartSidebar(!showCartSidebar)}
+          className={styles.closebtn}
+        >
+          {/* <img className={styles.navIcon} src={close}></img> */}
+        </button>
+        <section className={styles.navLinks}>
+          <p onClick={GetCartItems}>get cookies</p>
+          <p onClick={handleAdd}>set fix value</p>
+          <p onClick={checkCartItems}>refresh</p>
+        </section>
       </div>
     </>
   );

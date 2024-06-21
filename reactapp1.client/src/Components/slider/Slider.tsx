@@ -2,7 +2,7 @@ import styles from "./slider.module.css";
 import { ProductDetail } from "../../Helpers/Types/commonTypes";
 import ButtonA from "../buttons/ButtonA";
 import { useEffect, useState } from "react";
-import ProductCard from "../cards/ProductCard/ProductCard";
+import ProductCard from "../cards/productCard/ProductCard";
 
 type Props = {
   data: ProductDetail[];

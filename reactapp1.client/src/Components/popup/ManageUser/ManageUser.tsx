@@ -5,7 +5,7 @@ import user from "../../../assets/icons/user.svg";
 import { useAppProvider } from "../../../Context/AppContext";
 import { useNavigate } from "react-router-dom";
 import ButtonA from "../../buttons/ButtonA";
-import { initialUserDto } from "../../../Context/AppContext";
+import { initialUserDto } from "../../../Helpers/initialDatas/initialData";
 
 function ManageUser() {
   const navigate = useNavigate();

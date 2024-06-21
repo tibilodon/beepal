@@ -50,4 +50,27 @@ async function AddItemToCart(item: ProductDetailDto): Promise<boolean> {
   }
 }
 
-export { GetCartItems, AddItemToCart };
+async function DeleteCookie(id: string, packaging: number): Promise<boolean> {
+  try {
+    const response = await fetch(`/api/cookie/${id}/${packaging}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    // const result = await response.json();
+    if (response.ok) {
+      console.log(response);
+      return true;
+    } else {
+      console.log("some error", response);
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+export { GetCartItems, AddItemToCart, DeleteCookie };

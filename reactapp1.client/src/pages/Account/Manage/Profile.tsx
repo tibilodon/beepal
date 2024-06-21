@@ -1,10 +1,11 @@
 ﻿import styles from "./manage.module.css";
-import { initialUserDto, useAppProvider } from "../../../Context/AppContext";
+import { useAppProvider } from "../../../Context/AppContext";
 import { useEffect, useState } from "react";
 import Input from "../../../Components/form/input/Input";
 import ButtonA from "../../../Components/buttons/ButtonA";
 import SuccessNotification from "../../../Components/notification/SuccessNotification";
 import { UserDto } from "../../../Helpers/Types/commonTypes";
+import { initialUserDto } from "../../../Helpers/initialDatas/initialData";
 
 type ValidationError = {
   Error: string;

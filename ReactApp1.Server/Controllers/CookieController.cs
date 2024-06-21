@@ -25,28 +25,6 @@ namespace ReactApp1.Server.Controllers
         {
 
             var requestCookies = HttpContext.Request.Cookies;
-            //var cartItems = _cookieRepository.GetCartItems(requestCookies);
-            ////  initiate new list for product ids
-            //List<string> productIds = new List<string>();
-
-            //int itemCounter = 0;
-            //foreach (var item in cartItems)
-            //{
-            //    productIds.Add(item.Id);
-            //    itemCounter += item.PlacedInCartQuantity;
-            //}
-            //var products = await _productRepository.GetProductsByIds(productIds);
-            ////  append quantity to result
-            //foreach (var product in products)
-            //{
-            //    var cartItem = cartItems.FirstOrDefault(item => item.Id == product.Id);
-            //    if (cartItem != null)
-            //    {
-            //        product.PlacedInCartQuantity = cartItem.PlacedInCartQuantity;
-            //    }
-            //}
-
-
             //  get cookies
             var cartItems = _cookieRepository.GetCartItems(requestCookies);
             //  extract ids and push them into an array
@@ -55,21 +33,49 @@ namespace ReactApp1.Server.Controllers
             var products = await _productRepository.GetProductsByIds(productIds);
 
             //  add valid PlacedInCartQuantity values to the object
-            foreach (var product in products)
+            //foreach (var product in products)
+            //{
+            //    //  find the item with the matching id
+            //    var prod = cartItems.FirstOrDefault(item => item.Id == product.Id);
+            //    if (prod != null)
+            //    {
+            //        product.PlacedInCartQuantity = prod.PlacedInCartQuantity;
+            //        product.Packaging = prod.Packaging;
+            //    }
+
+            //}
+
+
+            var data = new List<CookieProductDetailDto>();
+            foreach (var items in cartItems)
             {
                 //  find the item with the matching id
-                var prod = cartItems.FirstOrDefault(item => item.Id == product.Id);
+                var prod = products.FirstOrDefault(item => item.Id == items.Id);
                 if (prod != null)
                 {
-                    product.PlacedInCartQuantity = prod.PlacedInCartQuantity;
+                    var newItem = new CookieProductDetailDto
+                    {
+                        Id = items.Id,
+                        Name = prod.Name,
+                        Packaging = items.Packaging,
+                        Category = prod.Category,
+                        CreatedAt = prod.CreatedAt,
+                        Description = prod.Description,
+                        ImageUrl = prod.ImageUrl,
+                        PlacedInCartQuantity = items.PlacedInCartQuantity,
+                        Price = prod.Price,
+                        Stock = prod.Stock,
+                        UpdatedAt = prod.UpdatedAt,
+                    };
+                    data.Add(newItem);
+                    //product.PlacedInCartQuantity = prod.PlacedInCartQuantity;
+                    //product.Packaging = prod.Packaging;
                 }
+
             }
             //  summorize all items in the cart
             int itemCounter = cartItems.Sum(item => item.PlacedInCartQuantity);
-
-
-
-            return Ok(new { products, itemCounter});
+            return Ok(new { products = data, itemCounter });
         }
 
         [HttpPost("add")]
@@ -110,10 +116,6 @@ namespace ReactApp1.Server.Controllers
                 if (updateItem.Packaging != cartItem.Packaging)
                 {
                     cartItems.Add(cartItem);
-
-                    //_cookieRepository.SaveCartItems(responseCookies, cartItems);
-                    //var newData = await Get();
-                    //return Ok(new { data = newData });
                 }
                 //  otherwise, update the item
                 else
@@ -121,52 +123,38 @@ namespace ReactApp1.Server.Controllers
                     updateItem.PlacedInCartQuantity++;
 
                 }
-                //cartItem.PlacedInCartQuantity += updateItem.PlacedInCartQuantity++;
-                //updateItem.Packaging = cartItem.Packaging;
-                //_cookieRepository.SaveCartItems(responseCookies, cartItems);
-                //var newAmountData = await Get();
-                //return Ok(new { data = newAmountData });
-
-                //return Ok(new { cartItems });
-
             }
             else
             {
                 cartItems.Add(cartItem);
             }
-            //  item is not present in cookies, append it
-            //cartItems.Add(cartItem);
             _cookieRepository.SaveCartItems(responseCookies, cartItems);
-            //UpdateRequestCookies(responseCookies, cartItems);
-            //var data = await Get();
-            //return Ok(new { data });
-            //return Ok(Get());
 
-            //  TODO://////////
-            //var ez = _contextAccessor.HttpContext.Request.Cookies;
-            ////var ezItems = _cookieRepository.GetCartItems(ez);
-            ////responseCookies = HttpContext.Response.Cookies;
-
-            //var newCartItems = _cookieRepository.GetCartItems(ez);
-            //var newProductIds = newCartItems.Select(item => item.Id).ToList();
-            //var newProducts = await _productRepository.GetProductsByIds(newProductIds);
-
-            //foreach (var product in newProducts)
-            //{
-            //    var newCartItem = newCartItems.FirstOrDefault(item => item.Id == product.Id);
-            //    if (newCartItem != null)
-            //    {
-            //        product.PlacedInCartQuantity = newCartItem.PlacedInCartQuantity;
-            //    }
-            //}
-
-            //int newItemCounter = newCartItems.Sum(item => item.PlacedInCartQuantity);
-
-            //return Ok(new { products = newProducts, itemCounter = newItemCounter });
             return Ok("item added to cart");
 
         }
 
+        [HttpDelete("{productId}/{packaging}")]
+        public async Task<ActionResult> DeleteCookie(string productId, int packaging)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var requestCookies = HttpContext.Request.Cookies;
+            var responseCookies = HttpContext.Response.Cookies;
+
+            var result = _cookieRepository.DeleteCartItem(requestCookies, responseCookies, productId, packaging);
+            if (result)
+            {
+                return Ok("Successfully deleted!");
+
+            }
+            else
+            {
+                return BadRequest("Product Cannot be deleted");
+            }
+        }
 
 
     }

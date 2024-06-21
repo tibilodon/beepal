@@ -5,18 +5,6 @@ export type UserDto = {
   email: string;
 };
 
-export type CartItem = {
-  Id: string;
-  Name: string;
-  Quantity: number;
-  Variant: string;
-};
-
-export type CartData = {
-  cartItems: CartItem[];
-  itemCounter: number;
-};
-
 //  initializing the first value will in turn assigns and increments any additional value
 export enum Category {
   Honey = 1,

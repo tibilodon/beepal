@@ -1,9 +1,10 @@
 ﻿import styles from "./manage.module.css";
 import { useNavigate } from "react-router-dom";
-import { initialUserDto, useAppProvider } from "../../../Context/AppContext";
+import { useAppProvider } from "../../../Context/AppContext";
 import { useState } from "react";
 import ButtonA from "../../../Components/buttons/ButtonA";
 import AlertNotification from "../../../Components/notification/AlertNotification";
+import { initialUserDto } from "../../../Helpers/initialDatas/initialData";
 
 type ValidationErrors = {
   Errors: string;
