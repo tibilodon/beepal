@@ -17,7 +17,7 @@ const initialProductDetails: ProductDetail = {
   stock: 0,
 };
 
-const initialCartItem: ProductDetailDto = {
+const initialProductDetailDto: ProductDetailDto = {
   id: "",
   category: Category.Honey,
   description: "",
@@ -62,5 +62,5 @@ const initialAdminProductDetailsDto: AdminProductDetailDto = {
 export {
   initialProductDetails,
   initialAdminProductDetailsDto,
-  initialCartItem,
+  initialProductDetailDto,
 };

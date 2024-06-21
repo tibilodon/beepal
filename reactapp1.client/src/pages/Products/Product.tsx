@@ -5,14 +5,16 @@ import { useParams } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
 import SelectPackaging from "../../Components/form/select/SelectPackaging";
 import { ProductDetailDto } from "../../Helpers/Types/commonTypes";
-import { initialCartItem } from "../../Helpers/initialDatas/initialData";
+import { initialProductDetailDto } from "../../Helpers/initialDatas/initialData";
 import SelectAmount from "../../Components/form/select/SelectAmount";
 import ButtonA from "../../Components/buttons/ButtonA";
 
 function Product() {
   const { id } = useParams();
   const { products } = useAppProvider();
-  const [product, setProduct] = useState<ProductDetailDto>(initialCartItem);
+  const [product, setProduct] = useState<ProductDetailDto>(
+    initialProductDetailDto
+  );
   useEffect(() => {
     const findProduct = products.find((p) => p.id === id);
     if (findProduct) {

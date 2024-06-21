@@ -5,7 +5,7 @@ import {
 } from "../../../Helpers/Types/commonTypes";
 import styles from "./productCard.module.css";
 import ButtonA from "../../buttons/ButtonA";
-import { initialCartItem } from "../../../Helpers/initialDatas/initialData";
+import { initialProductDetailDto } from "../../../Helpers/initialDatas/initialData";
 import SelectPackaging from "../../form/select/SelectPackaging";
 
 interface Props {
@@ -18,7 +18,9 @@ function ProductCard({ product }: Props) {
     setCartItems(data);
   }, [product]);
 
-  const [cartItems, setCartItems] = useState<ProductDetailDto>(initialCartItem);
+  const [cartItems, setCartItems] = useState<ProductDetailDto>(
+    initialProductDetailDto
+  );
 
   function handleAddToCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();

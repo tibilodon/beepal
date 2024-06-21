@@ -2,7 +2,7 @@
 import image from "../../assets/images/home-image.jpg";
 import ButtonA from "../../Components/buttons/ButtonA";
 import Featured from "./Featured";
-import { Link } from "react-router-dom";
+import { Link, ScrollRestoration } from "react-router-dom";
 
 function Home() {
   return (
@@ -27,6 +27,7 @@ function Home() {
         </div>
 
         <Featured />
+        <ScrollRestoration />
       </div>
     </>
   );

@@ -82,4 +82,9 @@ export interface AdminProductDetailDto extends ProductDetail {
   orderDatas: AdminOrderDetailsDto[];
 }
 
+export type GetCartItemsResult = {
+  products: ProductDetailDto[];
+  itemCounter: number;
+};
+
 export type ColorTypes = "danger" | "success" | "basic";

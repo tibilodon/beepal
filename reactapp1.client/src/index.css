@@ -42,6 +42,8 @@
 
 .active {
   color: var(--green-color);
+  border-bottom: 1px solid var(--green-color);
+  width: fit-content;
 }
 
 .navLinkManage {

@@ -5,31 +5,31 @@ import {
   GetCartItems,
   AddItemToCart,
 } from "../../../Helpers/dataAccessors/cookieFetcher";
-import {
-  Category,
-  Packaging,
-  ProductDetailDto,
-} from "../../../Helpers/Types/commonTypes";
+import { ProductDetailDto } from "../../../Helpers/Types/commonTypes";
+import Loader from "../../Loader/Loader";
 
 function CartSidebar() {
-  const { showCartSidebar, setShowCartSidebar, checkCartItems } =
-    useAppProvider();
+  const {
+    showCartSidebar,
+    setShowCartSidebar,
+    checkCartItems,
+    products,
+    isLoading,
+  } = useAppProvider();
 
-  const fixValue: ProductDetailDto = {
-    Id: "",
-    Category: Category.Honey,
-    Description: "some desc",
-    ImageUrl: "",
-    Name: "test name",
-    Packaging: Packaging.Regular,
-    PlacedInCartQuantity: 1,
-    Price: 100,
-    Stock: 3,
+  const handleAdd = async () => {
+    //  loading state change would disturb UX
+    const data: ProductDetailDto = { ...products[0], placedInCartQuantity: 1 };
+    const result = await AddItemToCart(data);
+    if (result) {
+      //  refresh value
+      await checkCartItems();
+    }
   };
 
-  const handleAdd = () => {
-    AddItemToCart(fixValue);
-  };
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

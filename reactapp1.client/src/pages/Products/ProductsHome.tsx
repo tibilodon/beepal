@@ -6,7 +6,7 @@ import styles from "./products.module.css";
 import { ProductDetail } from "../../Helpers/Types/commonTypes";
 import Loader from "../../Components/Loader/Loader";
 import Login from "../Account/public/Login";
-import { Link } from "react-router-dom";
+import { Link, ScrollRestoration } from "react-router-dom";
 function ProductsHome() {
   const { products } = useAppProvider();
   const [honeyProducts, setHoneyProducts] = useState<ProductDetail[]>();
@@ -48,6 +48,7 @@ function ProductsHome() {
             );
           })}
       </div>
+      <ScrollRestoration />
       <Login />
     </>
   );

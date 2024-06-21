@@ -11,5 +11,6 @@ namespace ReactApp1.Server
             return user.FindFirst(ClaimTypes.NameIdentifier).Value;
 
         }
+
     }
 }

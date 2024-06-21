@@ -36,6 +36,7 @@ namespace ReactApp1.Server.Repository
             cookies.Append(CookieName, cookieValue, new CookieOptions
             {
                 Expires = DateTime.Now.AddDays(1),
+
             });
         }
     }

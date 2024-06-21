@@ -50,6 +50,7 @@ function Sidebar() {
             className={({ isActive }) =>
               isActive ? "navLinkMain active" : "navLinkMain"
             }
+            end
           >
             Termékek
           </NavLink>

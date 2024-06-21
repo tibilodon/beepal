@@ -12,28 +12,64 @@ namespace ReactApp1.Server.Controllers
     {
         private readonly ICookieRepository _cookieRepository;
         private readonly IProductRepository _productRepository;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public CookieController(ICookieRepository cookieRepository, IProductRepository productRepository)
+        public CookieController(ICookieRepository cookieRepository, IProductRepository productRepository, IHttpContextAccessor contextAccessor)
         {
             _cookieRepository = cookieRepository;
             _productRepository = productRepository;
+            _contextAccessor = contextAccessor;
         }
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            var requestCookies = HttpContext.Request.Cookies;
-            var cartItems = _cookieRepository.GetCartItems(requestCookies);
-            //  initiate new list for product ids
-            List<string> productIds = new List<string>();
 
-            int itemCounter = 0;
-            foreach (var item in cartItems)
-            {
-                productIds.Add(item.Id);
-                itemCounter += item.PlacedInCartQuantity;
-            }
+            var requestCookies = HttpContext.Request.Cookies;
+            //var cartItems = _cookieRepository.GetCartItems(requestCookies);
+            ////  initiate new list for product ids
+            //List<string> productIds = new List<string>();
+
+            //int itemCounter = 0;
+            //foreach (var item in cartItems)
+            //{
+            //    productIds.Add(item.Id);
+            //    itemCounter += item.PlacedInCartQuantity;
+            //}
+            //var products = await _productRepository.GetProductsByIds(productIds);
+            ////  append quantity to result
+            //foreach (var product in products)
+            //{
+            //    var cartItem = cartItems.FirstOrDefault(item => item.Id == product.Id);
+            //    if (cartItem != null)
+            //    {
+            //        product.PlacedInCartQuantity = cartItem.PlacedInCartQuantity;
+            //    }
+            //}
+
+
+            //  get cookies
+            var cartItems = _cookieRepository.GetCartItems(requestCookies);
+            //  extract ids and push them into an array
+            var productIds = cartItems.Select(item => item.Id).ToList();
+            //  get products based on the ids array
             var products = await _productRepository.GetProductsByIds(productIds);
-            return Ok(new { products, itemCounter });
+
+            //  add valid PlacedInCartQuantity values to the object
+            foreach (var product in products)
+            {
+                //  find the item with the matching id
+                var prod = cartItems.FirstOrDefault(item => item.Id == product.Id);
+                if (prod != null)
+                {
+                    product.PlacedInCartQuantity = prod.PlacedInCartQuantity;
+                }
+            }
+            //  summorize all items in the cart
+            int itemCounter = cartItems.Sum(item => item.PlacedInCartQuantity);
+
+
+
+            return Ok(new { products, itemCounter});
         }
 
         [HttpPost("add")]
@@ -75,27 +111,63 @@ namespace ReactApp1.Server.Controllers
                 {
                     cartItems.Add(cartItem);
 
-                    _cookieRepository.SaveCartItems(responseCookies, cartItems);
-                    return Ok(Get());
+                    //_cookieRepository.SaveCartItems(responseCookies, cartItems);
+                    //var newData = await Get();
+                    //return Ok(new { data = newData });
                 }
                 //  otherwise, update the item
-                updateItem.PlacedInCartQuantity++;
+                else
+                {
+                    updateItem.PlacedInCartQuantity++;
+
+                }
+                //cartItem.PlacedInCartQuantity += updateItem.PlacedInCartQuantity++;
                 //updateItem.Packaging = cartItem.Packaging;
-                _cookieRepository.SaveCartItems(responseCookies, cartItems);
-                return Ok(Get());
+                //_cookieRepository.SaveCartItems(responseCookies, cartItems);
+                //var newAmountData = await Get();
+                //return Ok(new { data = newAmountData });
 
                 //return Ok(new { cartItems });
 
             }
+            else
+            {
+                cartItems.Add(cartItem);
+            }
             //  item is not present in cookies, append it
-            cartItems.Add(cartItem);
+            //cartItems.Add(cartItem);
             _cookieRepository.SaveCartItems(responseCookies, cartItems);
+            //UpdateRequestCookies(responseCookies, cartItems);
+            //var data = await Get();
+            //return Ok(new { data });
+            //return Ok(Get());
 
-            //return Ok(new { cartItems });
-            return Ok(Get());
+            //  TODO://////////
+            //var ez = _contextAccessor.HttpContext.Request.Cookies;
+            ////var ezItems = _cookieRepository.GetCartItems(ez);
+            ////responseCookies = HttpContext.Response.Cookies;
 
+            //var newCartItems = _cookieRepository.GetCartItems(ez);
+            //var newProductIds = newCartItems.Select(item => item.Id).ToList();
+            //var newProducts = await _productRepository.GetProductsByIds(newProductIds);
+
+            //foreach (var product in newProducts)
+            //{
+            //    var newCartItem = newCartItems.FirstOrDefault(item => item.Id == product.Id);
+            //    if (newCartItem != null)
+            //    {
+            //        product.PlacedInCartQuantity = newCartItem.PlacedInCartQuantity;
+            //    }
+            //}
+
+            //int newItemCounter = newCartItems.Sum(item => item.PlacedInCartQuantity);
+
+            //return Ok(new { products = newProducts, itemCounter = newItemCounter });
+            return Ok("item added to cart");
 
         }
+
+
 
     }
 }

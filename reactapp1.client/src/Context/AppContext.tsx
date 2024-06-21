@@ -9,12 +9,16 @@ import {
 
 import { GetCartItems } from "../Helpers/dataAccessors/cookieFetcher";
 import {
-  CartData,
+  // CartData,
   CartItem,
   ProductDetail,
+  ProductDetailDto,
   UserDto,
 } from "../Helpers/Types/commonTypes";
-import { initialProductDetails } from "../Helpers/initialDatas/initialData";
+import {
+  initialProductDetailDto,
+  initialProductDetails,
+} from "../Helpers/initialDatas/initialData";
 import { GetAllProducts } from "../Helpers/dataAccessors/productFetcher";
 
 type AppContextProviderType = {
@@ -23,11 +27,11 @@ type AppContextProviderType = {
 
   userDto: UserDto;
   setUserDto: Dispatch<SetStateAction<UserDto>>;
-  cartItems: CartItem[];
-  setCartItems: Dispatch<SetStateAction<CartItem[]>>;
+  cartItems: ProductDetailDto[];
+  setCartItems: Dispatch<SetStateAction<ProductDetailDto[]>>;
   cartCounter: number;
   setCartCounter: Dispatch<SetStateAction<number>>;
-  checkCartItems: () => void;
+  checkCartItems: () => Promise<boolean>;
 
   checkUser: () => void;
   resetShowStates: () => void;
@@ -78,11 +82,11 @@ const AppContext = createContext<AppContextProviderType>({
 
   userDto: initialUserDto,
   setUserDto: () => {},
-  cartItems: initialCartItems,
+  cartItems: [initialProductDetailDto],
   setCartItems: () => {},
   cartCounter: 0,
   setCartCounter: () => {},
-  checkCartItems: async () => Promise<void>,
+  checkCartItems: async () => Promise.resolve(false),
 
   checkUser: async () => Promise<void>,
   resetShowStates: () => {},
@@ -130,7 +134,9 @@ export default function AppContextProvider({ children }: ProviderProps) {
   const [showManageUser, setShowManageUser] = useState<boolean>(false);
   const [showUserProfile, setShowUserProfile] = useState<boolean>(false);
   const [showCartSidebar, setShowCartSidebar] = useState<boolean>(false);
-  const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
+  const [cartItems, setCartItems] = useState<ProductDetailDto[]>([
+    initialProductDetailDto,
+  ]);
   const [cartCounter, setCartCounter] = useState<number>(0);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -140,21 +146,41 @@ export default function AppContextProvider({ children }: ProviderProps) {
     initialProductDetails,
   ]);
 
+  // TODO: check the need for setTimeout in production.
+  //  error cause: server is not available on initialization (app start), to avoid such bottleneck a small delay is placed between the initial render and the data fetch
   useEffect(() => {
-    checkUser();
-    checkCartItems();
-    getProductsData();
+    setIsLoading(true);
+    async function getData() {
+      const responses = await Promise.all([
+        checkUser(),
+        checkCartItems(),
+        getProductsData(),
+      ]);
+      const allResponsesSuccessful = responses.every(
+        (response) => response !== false
+      );
+      if (allResponsesSuccessful) {
+        setIsLoading(false);
+      }
+    }
+    const timeoutId = setTimeout(() => {
+      getData();
+      //  !Initial delay
+    }, 1000);
+
     console.log("context useEffect ran");
+    return () => clearTimeout(timeoutId);
   }, []);
 
-  async function checkCartItems(): Promise<void> {
-    const result: CartData = await GetCartItems();
-    setCartItems(result.cartItems);
+  async function checkCartItems(): Promise<boolean> {
+    const result = await GetCartItems();
+    console.log("the reuslts:,", result);
+    setCartItems(result.products);
     setCartCounter(result.itemCounter);
+    return true;
   }
 
-  async function checkUser(): Promise<void> {
-    setIsLoading(true);
+  async function checkUser(): Promise<boolean> {
     const response = await fetch("/api/user");
     const data = await response.json();
     if (response.ok) {
@@ -162,20 +188,23 @@ export default function AppContextProvider({ children }: ProviderProps) {
       if (data.userDto) {
         setUserDto(data.userDto);
       }
-      setIsLoading(false);
+      return true;
     }
+    return false;
   }
 
-  async function getProductsData(): Promise<void> {
-    setIsLoading(true);
+  async function getProductsData(): Promise<boolean> {
     const result = await GetAllProducts();
     if (result?.errors) {
       // TODO: set error
+      console.log(result.errors);
+      return false;
     }
     if (result?.products !== null) {
       setProducts(result.products);
+      return true;
     }
-    setIsLoading(false);
+    return true;
   }
 
   function resetShowStates(): void {
