@@ -33,20 +33,9 @@ namespace ReactApp1.Server.Controllers
             var products = await _productRepository.GetProductsByIds(productIds);
 
             //  add valid PlacedInCartQuantity values to the object
-            //foreach (var product in products)
-            //{
-            //    //  find the item with the matching id
-            //    var prod = cartItems.FirstOrDefault(item => item.Id == product.Id);
-            //    if (prod != null)
-            //    {
-            //        product.PlacedInCartQuantity = prod.PlacedInCartQuantity;
-            //        product.Packaging = prod.Packaging;
-            //    }
-
-            //}
-
 
             var data = new List<CookieProductDetailDto>();
+            //  loop through cartItems, as products with the same id can be present with a diffrent variable
             foreach (var items in cartItems)
             {
                 //  find the item with the matching id
@@ -68,14 +57,14 @@ namespace ReactApp1.Server.Controllers
                         UpdatedAt = prod.UpdatedAt,
                     };
                     data.Add(newItem);
-                    //product.PlacedInCartQuantity = prod.PlacedInCartQuantity;
-                    //product.Packaging = prod.Packaging;
+
                 }
 
             }
             //  summorize all items in the cart
             int itemCounter = cartItems.Sum(item => item.PlacedInCartQuantity);
-            return Ok(new { products = data, itemCounter });
+            int totalAmount = data.Sum(prod => prod.PlacedInCartQuantity * ((int)prod.Packaging * prod.Price));
+            return Ok(new { products = data, itemCounter, totalAmount });
         }
 
         [HttpPost("add")]

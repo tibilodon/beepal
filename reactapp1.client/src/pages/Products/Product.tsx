@@ -8,10 +8,11 @@ import { ProductDetailDto } from "../../Helpers/Types/commonTypes";
 import { initialProductDetailDto } from "../../Helpers/initialDatas/initialData";
 import SelectAmount from "../../Components/form/select/SelectAmount";
 import ButtonA from "../../Components/buttons/ButtonA";
+import { AddItemToCart } from "../../Helpers/dataAccessors/cookieFetcher";
 
 function Product() {
   const { id } = useParams();
-  const { products } = useAppProvider();
+  const { products, checkCartItems, setShowCartSidebar } = useAppProvider();
   const [product, setProduct] = useState<ProductDetailDto>(
     initialProductDetailDto
   );
@@ -25,6 +26,18 @@ function Product() {
 
   if (!product) {
     return <Loader />;
+  }
+
+  async function handleAddToCart(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.preventDefault();
+    const result = await AddItemToCart(product);
+    if (result) {
+      //  refresh value
+      await checkCartItems();
+      setShowCartSidebar(true);
+    }
   }
 
   return (
@@ -48,30 +61,13 @@ function Product() {
               <ButtonA
                 label="Kosárba"
                 color="success"
-                onClick={() => console.log(product)}
+                onClick={handleAddToCart}
               />
             </div>
           </section>
           <section className={styles.details}>
             <h1>{product.name}</h1>
             <p>{product.description}</p>
-            {/* <span>{product.price * product.packaging} Ft</span>
-            <SelectPackaging
-              value={product.packaging}
-              setValue={setProduct}
-              id="packaging"
-            />
-
-            <SelectAmount
-              id="placedInCartQuantity"
-              value={product.stock}
-              setValue={setProduct}
-            />
-            <ButtonA
-              label="Kosárba"
-              color="success"
-              onClick={() => console.log(product)}
-            /> */}
           </section>
         </div>
       }

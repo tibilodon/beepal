@@ -26,11 +26,14 @@ type AppContextProviderType = {
 
   userDto: UserDto;
   setUserDto: Dispatch<SetStateAction<UserDto>>;
+  //  cart - order
+  checkCartItems: () => Promise<boolean>;
   cartItems: ProductDetailDto[];
   setCartItems: Dispatch<SetStateAction<ProductDetailDto[]>>;
   cartCounter: number;
   setCartCounter: Dispatch<SetStateAction<number>>;
-  checkCartItems: () => Promise<boolean>;
+  totalAmount: number;
+  setTotalAmount: Dispatch<SetStateAction<number>>;
 
   checkUser: () => void;
   resetShowStates: () => void;
@@ -66,11 +69,14 @@ const AppContext = createContext<AppContextProviderType>({
 
   userDto: initialUserDto,
   setUserDto: () => {},
+  //  cart - order
+  checkCartItems: async () => Promise.resolve(false),
   cartItems: [initialProductDetailDto],
   setCartItems: () => {},
   cartCounter: 0,
   setCartCounter: () => {},
-  checkCartItems: async () => Promise.resolve(false),
+  totalAmount: 0,
+  setTotalAmount: () => {},
 
   checkUser: async () => Promise<void>,
   resetShowStates: () => {},
@@ -117,11 +123,13 @@ export default function AppContextProvider({ children }: ProviderProps) {
     useState<boolean>(false);
   const [showManageUser, setShowManageUser] = useState<boolean>(false);
   const [showUserProfile, setShowUserProfile] = useState<boolean>(false);
+  //  cart - order
   const [showCartSidebar, setShowCartSidebar] = useState<boolean>(false);
   const [cartItems, setCartItems] = useState<ProductDetailDto[]>([
     initialProductDetailDto,
   ]);
   const [cartCounter, setCartCounter] = useState<number>(0);
+  const [totalAmount, setTotalAmount] = useState<number>(0);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -158,9 +166,9 @@ export default function AppContextProvider({ children }: ProviderProps) {
 
   async function checkCartItems(): Promise<boolean> {
     const result = await GetCartItems();
-    console.log("the reuslts:,", result);
     setCartItems(result.products);
     setCartCounter(result.itemCounter);
+    setTotalAmount(result.totalAmount);
     return true;
   }
 
@@ -209,11 +217,6 @@ export default function AppContextProvider({ children }: ProviderProps) {
         setIsLoggedIn,
         userDto,
         setUserDto,
-        cartItems,
-        setCartItems,
-        cartCounter,
-        setCartCounter,
-        checkCartItems,
 
         checkUser,
         resetShowStates,
@@ -231,8 +234,16 @@ export default function AppContextProvider({ children }: ProviderProps) {
         setShowManageUser,
         showUserProfile,
         setShowUserProfile,
+        //  cart - order
         showCartSidebar,
         setShowCartSidebar,
+        cartItems,
+        setCartItems,
+        cartCounter,
+        setCartCounter,
+        checkCartItems,
+        totalAmount,
+        setTotalAmount,
         //  products
         products,
         setProducts,

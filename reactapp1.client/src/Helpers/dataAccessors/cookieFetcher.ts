@@ -22,7 +22,11 @@ async function GetCartItems(): Promise<GetCartItemsResult> {
     }
   } catch (error) {
     console.log(error);
-    return { products: [initialProductDetailDto], itemCounter: 0 };
+    return {
+      products: [initialProductDetailDto],
+      itemCounter: 0,
+      totalAmount: 0,
+    };
   }
 }
 

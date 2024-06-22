@@ -15,6 +15,8 @@ function CartItemCard({ product }: Props) {
   const { name, packaging, placedInCartQuantity, price, imageUrl, id } =
     product;
 
+  console.log(product);
+
   async function handleDelete() {
     const result = await DeleteCookie(id, packaging);
     if (result) {
@@ -43,7 +45,7 @@ function CartItemCard({ product }: Props) {
                 <WhiteSpace />
                 <p>x</p>
                 <WhiteSpace />
-                <p>{price} Ft</p>
+                <p>{packaging * price} Ft</p>
               </span>
             </div>
           </div>

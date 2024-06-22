@@ -73,6 +73,7 @@ export interface AdminProductDetailDto extends ProductDetail {
 export type GetCartItemsResult = {
   products: ProductDetailDto[];
   itemCounter: number;
+  totalAmount: number;
 };
 
 export type ColorTypes = "danger" | "success" | "basic";

@@ -2,9 +2,24 @@ import styles from "./cartSidebar.module.css";
 import { useAppProvider } from "../../../Context/AppContext";
 import close from "../../../assets/icons/close.svg";
 import CartItemCard from "../../cards/cartItemCard/CartItemCard";
+import WhiteSpace from "../../utils/WhiteSpace";
+import ButtonA from "../../buttons/ButtonA";
+import { useNavigate } from "react-router-dom";
 
 function CartSidebar() {
-  const { showCartSidebar, setShowCartSidebar, cartItems } = useAppProvider();
+  const navigate = useNavigate();
+  const {
+    showCartSidebar,
+    setShowCartSidebar,
+    cartItems,
+    totalAmount,
+    resetShowStates,
+  } = useAppProvider();
+
+  function handleNavigation(href: string) {
+    resetShowStates();
+    navigate(href);
+  }
 
   return (
     <>
@@ -28,7 +43,21 @@ function CartSidebar() {
             return <CartItemCard key={product.id + index} product={product} />;
           })}
         </section>
-        <footer className={styles.footer}>Végösszeg:</footer>
+        <footer className={styles.footer}>
+          <span>
+            Végösszeg:
+            <WhiteSpace />
+            {totalAmount} Ft
+          </span>
+
+          <ButtonA
+            label="Kosár megtekintése"
+            color="basic"
+            onClick={() => handleNavigation("/cart")}
+          />
+
+          <ButtonA label="Pénztár" color="success" />
+        </footer>
       </div>
     </>
   );

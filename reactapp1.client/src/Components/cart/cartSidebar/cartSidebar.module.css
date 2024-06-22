@@ -22,10 +22,13 @@
 }
 
 .navLinks {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  padding: 1.8em 0 0 1.5em;
+  gap: 0.3em;
+  padding: 0.5em;
+  height: fit-content;
+  margin-bottom: 5.5em;
 }
 .header {
   display: flex;
@@ -57,9 +60,13 @@
   right: 1em;
 }
 .footer {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   z-index: 22;
-  padding: 0.5em 0 0.5em 0.5em;
+  padding: 0.5em;
   background-color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  width: 300px;
 }

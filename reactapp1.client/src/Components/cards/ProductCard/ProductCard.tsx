@@ -16,7 +16,7 @@ interface Props {
 }
 
 function ProductCard({ product }: Props) {
-  const { checkCartItems } = useAppProvider();
+  const { checkCartItems, setShowCartSidebar } = useAppProvider();
   useEffect(() => {
     const data = { ...product, placedInCartQuantity: 0 };
     setCartItems(data);
@@ -30,17 +30,14 @@ function ProductCard({ product }: Props) {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
     e.preventDefault();
-    console.log("ekkke?");
     const data: ProductDetailDto = { ...cartItems, placedInCartQuantity: 1 };
-    // setCartItems((prevVals: ProductDetailDto) => ({
-    //   ...prevVals,
-    //   placedInCartQuantity: prevVals.placedInCartQuantity + 1,
-    // }));
+
     setCartItems(data);
     const result = await AddItemToCart(data);
     if (result) {
       //  refresh value
       await checkCartItems();
+      setShowCartSidebar(true);
     }
   }
 

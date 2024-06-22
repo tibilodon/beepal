@@ -2,7 +2,7 @@
   padding: 0.3em;
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid var(--black-color); */
+  /* border: thin var(--black-color); */
   box-shadow: var(--box-shadow);
 }
 .content {
