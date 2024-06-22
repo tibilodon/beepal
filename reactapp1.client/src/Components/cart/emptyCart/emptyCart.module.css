@@ -1,0 +1,11 @@
+.wrap {
+  height: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.wrap img {
+  filter: brightness(90%);
+  width: 200px;
+}

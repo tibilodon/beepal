@@ -15,8 +15,6 @@ function CartItemCard({ product }: Props) {
   const { name, packaging, placedInCartQuantity, price, imageUrl, id } =
     product;
 
-  console.log(product);
-
   async function handleDelete() {
     const result = await DeleteCookie(id, packaging);
     if (result) {

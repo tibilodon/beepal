@@ -5,6 +5,7 @@ import CartItemCard from "../../cards/cartItemCard/CartItemCard";
 import WhiteSpace from "../../utils/WhiteSpace";
 import ButtonA from "../../buttons/ButtonA";
 import { useNavigate } from "react-router-dom";
+import EmptyCart from "../emptyCart/EmptyCart";
 
 function CartSidebar() {
   const navigate = useNavigate();
@@ -38,26 +39,34 @@ function CartSidebar() {
             <img src={close}></img>
           </button>
         </div>
-        <section className={styles.navLinks}>
-          {cartItems.map((product, index) => {
-            return <CartItemCard key={product.id + index} product={product} />;
-          })}
-        </section>
-        <footer className={styles.footer}>
-          <span>
-            Végösszeg:
-            <WhiteSpace />
-            {totalAmount} Ft
-          </span>
+        {cartItems.length ? (
+          <>
+            <section className={styles.navLinks}>
+              {cartItems.map((product, index) => {
+                return (
+                  <CartItemCard key={product.id + index} product={product} />
+                );
+              })}
+            </section>
+            <footer className={styles.footer}>
+              <span>
+                Végösszeg:
+                <WhiteSpace />
+                {totalAmount} Ft
+              </span>
 
-          <ButtonA
-            label="Kosár megtekintése"
-            color="basic"
-            onClick={() => handleNavigation("/cart")}
-          />
+              <ButtonA
+                label="Kosár megtekintése"
+                color="basic"
+                onClick={() => handleNavigation("/cart")}
+              />
 
-          <ButtonA label="Pénztár" color="success" />
-        </footer>
+              <ButtonA label="Pénztár" color="success" />
+            </footer>
+          </>
+        ) : (
+          <EmptyCart />
+        )}
       </div>
     </>
   );

@@ -69,6 +69,3 @@ function ProductCard({ product }: Props) {
 }
 
 export default ProductCard;
-// function checkCartItems() {
-//   throw new Error("Function not implemented.");
-// }

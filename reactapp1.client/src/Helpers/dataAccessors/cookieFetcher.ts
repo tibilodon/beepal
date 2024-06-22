@@ -3,7 +3,6 @@ import { GetCartItemsResult, ProductDetailDto } from "../Types/commonTypes";
 
 async function GetCartItems(): Promise<GetCartItemsResult> {
   try {
-    console.log("tried to run");
     const response = await fetch("/api/cookie", {
       method: "GET",
       headers: {
@@ -13,7 +12,6 @@ async function GetCartItems(): Promise<GetCartItemsResult> {
     });
     const result = await response.json();
     if (response.ok) {
-      console.log(result);
       return result;
     } else {
       // return {products:[{...initialProductDetails, placedInCartQuantity:0}, itemCounter:0]}
