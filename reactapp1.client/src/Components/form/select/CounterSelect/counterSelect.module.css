@@ -1,0 +1,8 @@
+.wrap {
+  border: 1px solid black;
+  display: flex;
+  height: 1.5em;
+}
+.wrap > * {
+  font-size: var(--small-font-size);
+}

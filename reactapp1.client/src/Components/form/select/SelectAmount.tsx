@@ -1,4 +1,4 @@
-import styles from "./selectPackaging.module.css";
+import styles from "./select.module.css";
 import { Dispatch, SetStateAction } from "react";
 import { ProductDetailDto } from "../../../Helpers/Types/commonTypes";
 interface Props {

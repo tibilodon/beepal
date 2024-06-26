@@ -1,2 +1,5 @@
-body {
+.wrap {
+  margin-top: var(--rootLayout-content-padding-top);
+  width: 100%;
+  padding: 0 1em 1em 1em;
 }

@@ -2,17 +2,21 @@
   width: 100%;
   display: flex;
 
-  justify-content: center;
+  justify-content: space-between;
   gap: 0.3em;
   align-items: center;
 }
 .select {
-  width: 4em;
+  /* width: 4em; */
+  width: 100%;
+  /* border: 8px solid red; */
 }
 .select,
 .label,
 .select optgroup,
 .select optgroup > * {
+  text-align: center;
+  padding: 0.2em;
   font-size: var(--small-font-size);
 }
 .select optgroup {

@@ -1,5 +1,5 @@
 ﻿import styles from "./navMenu.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import menuIcon from "../../../assets/icons/menu.svg";
 import logo from "../../../assets/images/logo.png";
@@ -9,14 +9,26 @@ import ManageUser from "../../popup/ManageUser/ManageUser";
 import CartNavIcon from "../../cart/navIcon/CartNavIcon";
 import Sidebar from "../../sidebar/Sidebar";
 import CartSidebar from "../../cart/cartSidebar/CartSidebar";
+import { useEffect, useState } from "react";
 
 function NavMenu() {
+  const location = useLocation();
   const { sideNav, setSideNav, resetShowStates } = useAppProvider();
 
   function handleToggle() {
     resetShowStates();
     setSideNav(!sideNav);
   }
+
+  const [hideCart, setHideCart] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (location.pathname === "/cart") {
+      setHideCart(true);
+    } else {
+      setHideCart(false);
+    }
+  }, [location]);
 
   return (
     <>
@@ -31,7 +43,7 @@ function NavMenu() {
         </Link>
         <div className={styles.user}>
           <ManageUser />
-          <CartNavIcon />
+          {!hideCart ? <CartNavIcon /> : null}
         </div>
       </nav>
       <Sidebar />

@@ -27,7 +27,7 @@ import AdminEdit from "./pages/Admin/AdminEdit";
 import AdminLayout from "./Layouts/admin/AdminLayout";
 import AdminAddProduct from "./pages/Admin/AdminAddProduct";
 import ProductsHome from "./pages/Products/ProductsHome";
-import Product from "./pages/Products/Product";
+import Product from "./Components/page/product/Product";
 import TestPage from "./pages/Test/TestPage";
 
 const router = createBrowserRouter(

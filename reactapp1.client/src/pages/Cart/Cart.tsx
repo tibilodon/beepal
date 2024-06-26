@@ -1,9 +1,14 @@
 import styles from "./cart.module.css";
-import CartItemCard from "../../Components/cards/cartItemCard/CartItemCard";
+
 import ButtonA from "../../Components/buttons/ButtonA";
+import { useAppProvider } from "../../Context/AppContext";
+
+import CartPageCard from "../../Components/cards/cartPageCard/CartPageCard";
+import { Link } from "react-router-dom";
 
 //  TODO: swap delete icon to value selector
 function Cart() {
+  const { cartItems } = useAppProvider();
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log("cool");
@@ -11,16 +16,17 @@ function Cart() {
   return (
     <>
       <div className={styles.wrap}>
-        <header>
-          <h3>Termék</h3>
-          <h3>Mennyiség</h3>
-        </header>
-        <section>
-          <h1>CARTITEM</h1>
-        </section>
-        <div>
+        {cartItems.map((item, index) => {
+          return (
+            <section key={item.id + index}>
+              <CartPageCard product={item} />
+            </section>
+          );
+        })}
+
+        <Link to={"/"}>
           <ButtonA label="Vásárlás folytatása" color="success" />
-        </div>
+        </Link>
         <section>
           <p>
             Az ár tartalmazza az ÁFÁ-t. A szállítás díja a pénztár oldalon kerül

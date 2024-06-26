@@ -6,7 +6,7 @@ import styles from "./products.module.css";
 import { ProductDetail } from "../../Helpers/Types/commonTypes";
 import Loader from "../../Components/Loader/Loader";
 import Login from "../Account/public/Login";
-import {  ScrollRestoration } from "react-router-dom";
+import { ScrollRestoration } from "react-router-dom";
 function ProductsHome() {
   const { products } = useAppProvider();
   const [honeyProducts, setHoneyProducts] = useState<ProductDetail[]>();
@@ -26,27 +26,29 @@ function ProductsHome() {
   return (
     <>
       <div className={styles.wrap}>
-        <h1>Mézek</h1>
-        {honeyProducts &&
-          honeyProducts.map((item) => {
-            return (
-              <section key={item.id}>
-                {/* <Link to={`/product/${item.id}`}> */}
-                <ProductCard product={item} />
-                {/* </Link> */}
-              </section>
-            );
-          })}
+        <section className={styles.products}>
+          <h1>Mézek</h1>
+          {honeyProducts &&
+            honeyProducts.map((item) => {
+              return (
+                <div key={item.id}>
+                  <ProductCard product={item} />
+                </div>
+              );
+            })}
+        </section>
         <hr />
-        <h1>Méhészeti termékek</h1>
-        {otherProducts &&
-          otherProducts.map((item) => {
-            return (
-              <section key={item.id}>
-                <ProductCard product={item} />
-              </section>
-            );
-          })}
+        <section className={styles.products}>
+          <h1>Méhészeti termékek</h1>
+          {otherProducts &&
+            otherProducts.map((item) => {
+              return (
+                <div key={item.id}>
+                  <ProductCard product={item} />
+                </div>
+              );
+            })}
+        </section>
       </div>
       <ScrollRestoration />
       <Login />

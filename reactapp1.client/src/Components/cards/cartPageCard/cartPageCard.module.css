@@ -1,0 +1,32 @@
+.wrap {
+  padding: 0.3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: thin var(--black-color); */
+  box-shadow: var(--box-shadow);
+}
+.content {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+}
+.content img {
+  width: 30%;
+  height: max-content;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details span > * {
+  font-size: var(--small-font-size);
+}
+.details span {
+  display: flex;
+}
+.deleteIcon {
+  cursor: pointer;
+  filter: brightness(200%);
+}
