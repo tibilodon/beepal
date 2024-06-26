@@ -109,7 +109,16 @@ namespace ReactApp1.Server.Controllers
                 //  otherwise, update the item
                 else
                 {
-                    updateItem.PlacedInCartQuantity++;
+                    //  when PlacedInCartQuantity==0 only an "add to cart" action happened, whithout setting any amount
+                    if (productDetailDto.PlacedInCartQuantity == 0)
+                    {
+                        updateItem.PlacedInCartQuantity++;
+
+                    }
+                    else
+                    {
+                        updateItem.PlacedInCartQuantity = productDetailDto.PlacedInCartQuantity;
+                    }
 
                 }
             }

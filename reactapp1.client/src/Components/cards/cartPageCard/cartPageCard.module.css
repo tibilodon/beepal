@@ -30,3 +30,6 @@
   cursor: pointer;
   filter: brightness(200%);
 }
+.counterSelect {
+  margin-right: 1em;
+}

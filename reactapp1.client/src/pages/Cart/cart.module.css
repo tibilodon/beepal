@@ -2,4 +2,43 @@
   margin-top: var(--rootLayout-content-padding-top);
   width: 100%;
   padding: 0 1em 1em 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.wrap * {
+  font-size: var(--small-font-size);
+}
+.wrap section p {
+  font-weight: 200;
+}
+
+.wrap form label {
+  font-weight: 100;
+}
+.wrap form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.totalAmount {
+  font-size: 25px;
+}
+
+.tnc input {
+  margin-right: 0.3em;
+}
+
+.emptyWrap {
+  margin-top: var(--rootLayout-content-padding-top);
+  height: var(--page-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

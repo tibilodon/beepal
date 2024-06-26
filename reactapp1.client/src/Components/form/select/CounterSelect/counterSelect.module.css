@@ -1,8 +1,23 @@
-.wrap {
-  border: 1px solid black;
-  display: flex;
-  height: 1.5em;
-}
-.wrap > * {
+.wrap * {
+  background-color: var(--gray-color);
   font-size: var(--small-font-size);
+  width: 100%;
+  padding: 0.6em;
+  outline: none;
+  border: none;
+  height: 100%;
+  filter: brightness(120%);
+}
+.wrap {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 1.5em;
+  /* min-width: 3em; */
+}
+.wrap p,
+.wrap button {
+  display: flex;
+  align-items: center;
+  /* padding: 1em; */
 }

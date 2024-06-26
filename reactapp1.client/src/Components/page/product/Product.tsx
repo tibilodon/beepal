@@ -20,7 +20,7 @@ function Product() {
   useEffect(() => {
     const findProduct = products.find((p) => p.id === id);
     if (findProduct) {
-      const data = { ...findProduct, placedInCartQuantity: 0 };
+      const data = { ...findProduct, placedInCartQuantity: 1 };
       setProduct(data!);
     }
   }, [id, products]);
@@ -33,6 +33,7 @@ function Product() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
     e.preventDefault();
+
     const result = await AddItemToCart(product);
     if (result) {
       //  refresh value

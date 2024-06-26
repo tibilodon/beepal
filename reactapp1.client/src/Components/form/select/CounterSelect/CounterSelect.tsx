@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "./counterSelect.module.css";
 import { ProductDetailDto } from "../../../../Helpers/Types/commonTypes";
+import { AddItemToCart } from "../../../../Helpers/dataAccessors/cookieFetcher";
+import { useAppProvider } from "../../../../Context/AppContext";
 
 interface Props {
   state: ProductDetailDto;
@@ -9,27 +11,42 @@ interface Props {
 
 function CounterSelect({ state, setState }: Props) {
   const { placedInCartQuantity, stock } = state;
+  const { checkCartItems } = useAppProvider();
   const [isSubtractionDisabled, setIsSubtractionDisabled] =
     useState<boolean>(false);
 
   const [isAdditionDisabled, setIsAdditionDisabled] = useState<boolean>(false);
 
-  function handleSubtraction() {
+  async function handleSubtraction() {
     if (placedInCartQuantity > 1) {
       const data = {
         ...state,
         placedInCartQuantity: placedInCartQuantity - 1,
       };
-      setState(data);
+      // setState(data);
+      const result = await AddItemToCart(data);
+      if (result) {
+        setState(data);
+
+        //  refresh value
+        await checkCartItems();
+      }
     }
   }
-  function handleAddition() {
+  async function handleAddition() {
     if (placedInCartQuantity < stock) {
       const data = {
         ...state,
         placedInCartQuantity: placedInCartQuantity + 1,
       };
-      setState(data);
+      // setState(data);
+      const result = await AddItemToCart(data);
+
+      if (result) {
+        setState(data);
+        //  refresh value
+        await checkCartItems();
+      }
     }
   }
 

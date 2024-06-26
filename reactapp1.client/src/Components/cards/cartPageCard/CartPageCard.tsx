@@ -31,35 +31,39 @@ function CartPageCard({ product }: Props) {
   return (
     <>
       <div className={styles.wrap}>
-        <Link to={`/product/${id}`} onClick={resetShowStates}>
+        <section>
           <img
             onClick={handleDelete}
             className={styles.deleteIcon}
             src={close}
           ></img>
-          <div className={styles.content}>
-            <img src={imageUrl} />
-            <div className={styles.details}>
-              <span>
-                <p>
-                  {name}
+          <Link to={`/product/${id}`} onClick={resetShowStates}>
+            <div className={styles.content}>
+              <img src={imageUrl} />
+              <div className={styles.details}>
+                <span>
+                  <p>
+                    {name}
+                    <WhiteSpace />
+                    -
+                    <WhiteSpace />
+                  </p>
+                  <p>{ConvertPackaging(packaging)}</p>
+                </span>
+                <span>
+                  <p>{placedInCartQuantity}</p>
                   <WhiteSpace />
-                  -
+                  <p>x</p>
                   <WhiteSpace />
-                </p>
-                <p>{ConvertPackaging(packaging)}</p>
-              </span>
-              <span>
-                <p>{placedInCartQuantity}</p>
-                <WhiteSpace />
-                <p>x</p>
-                <WhiteSpace />
-                <p>{packaging * price} Ft</p>
-              </span>
+                  <p>{packaging * price} Ft</p>
+                </span>
+              </div>
             </div>
-          </div>
-        </Link>
-        <CounterSelect state={currentProduct} setState={setCurrentProduct} />
+          </Link>
+        </section>
+        <span className={styles.counterSelect}>
+          <CounterSelect state={currentProduct} setState={setCurrentProduct} />
+        </span>
       </div>
     </>
   );

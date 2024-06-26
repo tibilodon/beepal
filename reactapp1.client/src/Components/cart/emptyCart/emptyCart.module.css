@@ -3,7 +3,10 @@
   padding: 1em;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1em;
+  text-align: center;
 }
 .wrap img {
   filter: brightness(90%);

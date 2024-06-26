@@ -5,47 +5,74 @@ import { useAppProvider } from "../../Context/AppContext";
 
 import CartPageCard from "../../Components/cards/cartPageCard/CartPageCard";
 import { Link } from "react-router-dom";
+import EmptyCart from "../../Components/cart/emptyCart/EmptyCart";
+import { useState } from "react";
 
-//  TODO: swap delete icon to value selector
+//  TODO: add recommended products for more content
+
 function Cart() {
-  const { cartItems } = useAppProvider();
+  const { cartItems, totalAmount } = useAppProvider();
+  const [tnc, setTnc] = useState(false);
+
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("cool");
+    if (tnc) {
+      console.log("cango");
+    }
   }
+
   return (
     <>
-      <div className={styles.wrap}>
-        {cartItems.map((item, index) => {
-          return (
-            <section key={item.id + index}>
-              <CartPageCard product={item} />
-            </section>
-          );
-        })}
+      {cartItems.length ? (
+        <div className={styles.wrap}>
+          <h1>Kosár</h1>
+          {cartItems.map((item, index) => {
+            return (
+              <section key={item.id + index}>
+                <CartPageCard product={item} />
+              </section>
+            );
+          })}
 
-        <Link to={"/"}>
-          <ButtonA label="Vásárlás folytatása" color="success" />
-        </Link>
-        <section>
-          <p>
-            Az ár tartalmazza az ÁFÁ-t. A szállítás díja a pénztár oldalon kerül
-            kiszámításra.
-          </p>
-          <span>
-            <h3>Összesen: </h3>
-            <h3>PRICE</h3>
-          </span>
-          <form onSubmit={submitHandler}>
-            <label htmlFor="tnc">
-              Kijelentem, hogy az ÁSZF-et elolvastam és elfogadom. A megadott
-              adataim a valóságnak megfelelnek.
-            </label>
-            <input type="checkbox" id="tnc" />
-            <ButtonA type="submit" label="Pénztár" color="basic" />
-          </form>
-        </section>
-      </div>
+          <Link to={"/"}>
+            <ButtonA label="Vásárlás folytatása" color="success" />
+          </Link>
+          <section className={styles.details}>
+            <p>
+              Az ár tartalmazza az ÁFÁ-t. A szállítás díja a pénztár oldalon
+              kerül kiszámításra.
+            </p>
+            <span>
+              <h3 className={styles.totalAmount}>Összesen: {totalAmount} Ft</h3>
+            </span>
+            <form onSubmit={submitHandler}>
+              <span className={styles.tnc}>
+                <input
+                  type="checkbox"
+                  id="tnc"
+                  name="tnc"
+                  checked={tnc}
+                  onChange={() => setTnc(!tnc)}
+                />
+                <label htmlFor="tnc">
+                  Kijelentem, hogy az ÁSZF-et elolvastam és elfogadom. A
+                  megadott adataim a valóságnak megfelelnek.
+                </label>
+              </span>
+              <ButtonA
+                disabled={!tnc}
+                type="submit"
+                label="Pénztár"
+                color="basic"
+              />
+            </form>
+          </section>
+        </div>
+      ) : (
+        <div className={styles.emptyWrap}>
+          <EmptyCart />
+        </div>
+      )}
     </>
   );
 }
