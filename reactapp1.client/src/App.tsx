@@ -29,6 +29,8 @@ import AdminAddProduct from "./pages/Admin/AdminAddProduct";
 import ProductsHome from "./pages/Products/ProductsHome";
 import Product from "./Components/page/product/Product";
 import TestPage from "./pages/Test/TestPage";
+import Tnc from "./pages/Tnc/Tnc";
+import Checkout from "./pages/Checkout/Checkout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -93,7 +95,9 @@ const router = createBrowserRouter(
         </Route>
 
         <Route path="/cart" element={<Cart />} />
+        <Route path="/tnc" element={<Tnc />} />
       </Route>
+      <Route path="/checkout" element={<Checkout />} />
 
       <Route path="/admin" element={<AdminLayout />}>
         <Route

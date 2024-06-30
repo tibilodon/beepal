@@ -5,6 +5,9 @@
   /* border: thin var(--black-color); */
   box-shadow: var(--box-shadow);
 }
+.plainWrap {
+  width: 100%;
+}
 .content {
   display: flex;
   align-items: center;
@@ -28,4 +31,10 @@
 .deleteIcon {
   cursor: pointer;
   filter: brightness(200%);
+}
+.valueDetails {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }

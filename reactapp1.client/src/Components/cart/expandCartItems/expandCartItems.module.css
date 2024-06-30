@@ -1,0 +1,41 @@
+.wrap {
+  width: 100%;
+}
+
+.expand {
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 400ms ease-in-out;
+}
+.active {
+  grid-template-rows: 1fr;
+  width: 100%;
+}
+.content {
+  width: 100%;
+  overflow: hidden;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+.icon {
+  min-width: 35px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header span {
+  cursor: pointer;
+  max-width: 70%;
+  display: flex;
+}
+.header span p {
+  display: flex;
+  align-items: center;
+}

@@ -4,20 +4,22 @@ import ButtonA from "../../Components/buttons/ButtonA";
 import { useAppProvider } from "../../Context/AppContext";
 
 import CartPageCard from "../../Components/cards/cartPageCard/CartPageCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EmptyCart from "../../Components/cart/emptyCart/EmptyCart";
 import { useState } from "react";
 
 //  TODO: add recommended products for more content
 
 function Cart() {
+  const navigate = useNavigate();
   const { cartItems, totalAmount } = useAppProvider();
   const [tnc, setTnc] = useState(false);
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    //  piece of mind
     if (tnc) {
-      console.log("cango");
+      navigate("/checkout");
     }
   }
 
@@ -55,8 +57,12 @@ function Cart() {
                   onChange={() => setTnc(!tnc)}
                 />
                 <label htmlFor="tnc">
-                  Kijelentem, hogy az ÁSZF-et elolvastam és elfogadom. A
-                  megadott adataim a valóságnak megfelelnek.
+                  Kijelentem, hogy az{" "}
+                  <Link className={styles.tncLink} to={"/tnc"}>
+                    ÁSZF-et
+                  </Link>{" "}
+                  elolvastam és elfogadom. A megadott adataim a valóságnak
+                  megfelelnek.
                 </label>
               </span>
               <ButtonA
