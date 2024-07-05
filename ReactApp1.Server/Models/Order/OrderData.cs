@@ -12,6 +12,6 @@ namespace ReactApp1.Server.Models.Orders
         [ForeignKey("Product")]
         public string ProductId { get; set; }
         public Product Product { get; set; }
-
+        public int Quantity { get; set; }
     }
 }

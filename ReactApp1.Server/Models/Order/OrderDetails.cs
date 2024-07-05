@@ -9,6 +9,7 @@ namespace ReactApp1.Server.Models.Orders
 
         [Key]
         public string Id { get; set; } = Guid.NewGuid().ToString().ToUpper();
+        //  TODO: add name
         public bool IsFulfilled { get; set; } = false;
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }

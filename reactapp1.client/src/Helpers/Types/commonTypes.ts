@@ -48,17 +48,6 @@ export type Address = {
   zipCode: string;
 };
 
-export type OrderData = {
-  id: string;
-
-  addressId: number;
-  address: Address;
-  userId: string;
-  user: UserDto;
-  productId: string;
-  product: ProductDetail;
-};
-
 export type AdminOrderDetailsDto = {
   orderId: string;
   isFulfilled: boolean;
@@ -77,3 +66,31 @@ export type GetCartItemsResult = {
 };
 
 export type ColorTypes = "danger" | "success" | "basic";
+
+//  ORDER
+export type Customer = {
+  id?: string;
+  email: string;
+  //TODO: swap to enum
+  firstName: string;
+  lastName: string;
+  //  for handling values starting with eg.: "+"
+  phone: string;
+  //  address
+  //  delivery method
+  //  coupon code:
+};
+export type AddressDto = {
+  zipCode: number;
+  city: string;
+  address: string;
+  additionalDetails?: string;
+};
+export type OrderData = {
+  customer: Customer;
+  address: AddressDto;
+  //  TODO: swap to enum
+  deliveryMethod: string;
+  couponCode: string;
+  // products: ProductDetailDto[];
+};

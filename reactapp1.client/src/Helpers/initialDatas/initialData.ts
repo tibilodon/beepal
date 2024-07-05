@@ -1,6 +1,8 @@
 import {
+  AddressDto,
   AdminProductDetailDto,
   Category,
+  OrderData,
   Packaging,
   ProductDetail,
   ProductDetailDto,
@@ -66,9 +68,35 @@ const initialUserDto = {
   email: "",
 };
 
+const initialAddressDto: AddressDto = {
+  zipCode: 0,
+  city: "",
+  address: "",
+  additionalDetails: "",
+};
+
+const initialCustomer = {
+  id: "",
+  phone: "",
+  email: "",
+  firstName: "",
+  lastName: "",
+};
+
+const initialOrderData: OrderData = {
+  customer: initialCustomer,
+  address: initialAddressDto,
+  deliveryMethod: "",
+  couponCode: "",
+  // products: [initialProductDetailDto],
+};
+
 export {
   initialProductDetails,
   initialAdminProductDetailsDto,
   initialProductDetailDto,
   initialUserDto,
+  initialOrderData,
+  initialCustomer,
+  initialAddressDto,
 };
