@@ -69,7 +69,6 @@ export type ColorTypes = "danger" | "success" | "basic";
 
 //  ORDER
 export type Customer = {
-  id?: string;
   email: string;
   //TODO: swap to enum
   firstName: string;

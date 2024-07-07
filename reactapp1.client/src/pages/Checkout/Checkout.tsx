@@ -20,15 +20,16 @@ import {
 } from "../../Helpers/Types/commonTypes";
 import Divider from "../../Components/utils/Divider";
 import ButtonA from "../../Components/buttons/ButtonA";
+import SuccessNotification from "../../Components/notification/SuccessNotification";
 
 function Checkout() {
   //  TODO: add shipping fee
   const shippingFee: number = 3000;
   const { cartItems, totalAmount, cartCounter } = useAppProvider();
-  const [expand, setExpand] = useState<boolean>(false);
   // const [formData, setFormData] = useState<OrderData>(initialOrderData);
   const [customerData, setCustomerData] = useState<Customer>(initialCustomer);
   const [addressData, setAddressData] = useState<AddressDto>(initialAddressDto);
+  const [errors, setErrors] = useState<boolean>(false);
 
   //  no need to resubmit product data. will be consumed by the backend via cookies
 
@@ -57,8 +58,23 @@ function Checkout() {
     }));
   };
 
-  async function handleSubmit() {
+  function checkEmptyValuesInObject(): boolean {
+    const isCustomer = !Object.values(customerData).every((value) => !!value);
+    const isAddress = !Object.values(addressData).every((value) => !!value);
+
+    if (isCustomer || isAddress) {
+      return true;
+    }
+
+    return false;
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
     //  check for empty values
+    e.preventDefault();
+    if (checkEmptyValuesInObject()) {
+      setErrors(true);
+    }
   }
 
   return (
@@ -77,15 +93,10 @@ function Checkout() {
           </div>
 
           <div className={`${styles.flewCol} ${styles.lighterBackground}`}>
-            <ExpandCartItems
-              expand={expand}
-              setExpand={setExpand}
-              products={cartItems}
-              totalAmount={totalAmount}
-            />
+            <ExpandCartItems products={cartItems} totalAmount={totalAmount} />
           </div>
         </section>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.contactDetails}>
             {/*TODO: add login*/}
             <h1>Kapcsolattartási adatok</h1>
@@ -101,6 +112,7 @@ function Checkout() {
 
           <section className={styles.flexCol}>
             <h3>Szállítási mód</h3>
+            {/*customer*/}
             <Input
               type="text"
               value={customerData.firstName}
@@ -115,6 +127,14 @@ function Checkout() {
               onChangeHandler={handleCustomerData}
               placeholder="Vezetéknév"
             />
+            <Input
+              type="phone"
+              value={customerData.phone}
+              id="phone"
+              onChangeHandler={handleCustomerData}
+              placeholder="Telefonszám"
+            />
+            {/* address*/}
             <Input
               type="number"
               value={addressData.zipCode}
@@ -143,22 +163,10 @@ function Checkout() {
               onChangeHandler={handleAddressData}
               placeholder="Épület, emelet, ajtó, stb. (nem kötelező)"
             />
-            <Input
-              type="phone"
-              value={customerData.phone}
-              id="phone"
-              onChangeHandler={handleCustomerData}
-              placeholder="Telefonszám"
-            />
           </section>
 
           <section className={styles.flexCol}>
-            <ExpandCartItems
-              expand={expand}
-              setExpand={setExpand}
-              products={cartItems}
-              totalAmount={totalAmount}
-            />
+            <ExpandCartItems products={cartItems} totalAmount={totalAmount} />
             <span className={styles.flexRow}>
               <p>Részösszeg</p>
               <p>{totalAmount} Ft</p>
@@ -171,7 +179,13 @@ function Checkout() {
               <p>Végösszeg:</p>
               <p>{totalAmount + shippingFee} Ft</p>
             </span>
-            <ButtonA label="Rendelés" color="basic" />
+            {errors && (
+              <SuccessNotification
+                label="Mezők kitöltése kötelező!"
+                show={errors}
+              />
+            )}
+            <ButtonA label="Rendelés" color="basic" type="submit" />
           </section>
         </form>
         <Divider />

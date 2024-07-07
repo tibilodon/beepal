@@ -2,6 +2,7 @@ import {
   AddressDto,
   AdminProductDetailDto,
   Category,
+  Customer,
   OrderData,
   Packaging,
   ProductDetail,
@@ -75,8 +76,7 @@ const initialAddressDto: AddressDto = {
   additionalDetails: "",
 };
 
-const initialCustomer = {
-  id: "",
+const initialCustomer: Customer = {
   phone: "",
   email: "",
   firstName: "",

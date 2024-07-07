@@ -2,21 +2,21 @@ import styles from "./expandCartItems.module.css";
 import PlainCartItemCard from "../../cards/cartItemCard/PlainCartItemCard";
 import { ProductDetailDto } from "../../../Helpers/Types/commonTypes";
 import icon from "../../../assets/icons/arrow_drop_down.svg";
+import { useState } from "react";
 
 interface Props {
   products: ProductDetailDto[];
   totalAmount: number;
-  expand: boolean;
-  setExpand: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function ExpandCartItems({ products, totalAmount, expand, setExpand }: Props) {
+function ExpandCartItems({ products, totalAmount }: Props) {
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <>
       <div className={styles.wrap}>
         <div className={styles.header}>
-          <span onClick={() => setExpand(!expand)}>
-            {!expand ? (
+          <span onClick={() => setOpen(!open)}>
+            {!open ? (
               <p>Rendelés összegzésének megjelenítése</p>
             ) : (
               <p>Rendelés összegzésének elrejtése</p>
@@ -31,9 +31,7 @@ function ExpandCartItems({ products, totalAmount, expand, setExpand }: Props) {
         </div>
 
         <section
-          className={
-            expand ? `${styles.expand} ${styles.active}` : styles.expand
-          }
+          className={open ? `${styles.expand} ${styles.active}` : styles.expand}
         >
           <span className={styles.content}>
             {products.map((items, i) => {
